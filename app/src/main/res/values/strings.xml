@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">DixitCompanion</string>
+    <string name="BtnNewGame">Nouvelle partie</string>
+    <string name="labelPlayerChoice">Choix des joueurs</string>
+    <string name="add_player_shadowInput">Name</string>
+    <string name="addPlayer_label">Joueur</string>
+    <string name="addPlayer_hint">Nom</string>
+    <string name="addPlayer_btnContinue">Continuer</string>
+</resources>
