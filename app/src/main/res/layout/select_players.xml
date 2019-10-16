@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".game.SelectPlayersActivity">
@@ -13,42 +12,334 @@
         android:layout_height="69dp"
         android:layout_marginTop="32dp"
         android:clickable="false"
+        android:gravity="center"
         android:singleLine="true"
         android:text="@string/labelPlayerChoice"
         android:textSize="30sp"
-        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="280dp"
-        android:layout_height="49dp"
+        android:id="@+id/linearLayoutParent"
+        android:layout_width="305dp"
+        android:layout_height="509dp"
         android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/addPlayer_label"
-            android:textSize="24sp" />
+        <LinearLayout
+            android:id="@+id/linearLayoutChildren"
+            android:layout_width="280dp"
+            android:layout_height="49dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView">
 
-        <EditText
-            android:id="@+id/entry"
-            android:layout_width="132dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginLeft="30dp"
-            android:background="@android:drawable/editbox_background"
-            android:hint="@string/addPlayer_hint"
-            android:importantForAutofill="no"
-            android:inputType="text" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/addPlayer_label"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/entry"
+                android:layout_width="132dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:background="@android:drawable/editbox_background"
+                android:hint="@string/addPlayer_hint"
+                android:importantForAutofill="no"
+                android:inputType="text" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutChildren3"
+            android:layout_width="280dp"
+            android:layout_height="49dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/addPlayer_label"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/entry3"
+                android:layout_width="132dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:background="@android:drawable/editbox_background"
+                android:hint="@string/addPlayer_hint"
+                android:importantForAutofill="no"
+                android:inputType="text" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutChildren4"
+            android:layout_width="280dp"
+            android:layout_height="49dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/addPlayer_label"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/entry4"
+                android:layout_width="132dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:background="@android:drawable/editbox_background"
+                android:hint="@string/addPlayer_hint"
+                android:importantForAutofill="no"
+                android:inputType="text" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutChildren5"
+            android:layout_width="280dp"
+            android:layout_height="49dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/addPlayer_label"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/entry5"
+                android:layout_width="132dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:background="@android:drawable/editbox_background"
+                android:hint="@string/addPlayer_hint"
+                android:importantForAutofill="no"
+                android:inputType="text" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutChildren6"
+            android:layout_width="280dp"
+            android:layout_height="49dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/addPlayer_label"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/entry6"
+                android:layout_width="132dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:background="@android:drawable/editbox_background"
+                android:hint="@string/addPlayer_hint"
+                android:importantForAutofill="no"
+                android:inputType="text" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutChildren7"
+            android:layout_width="280dp"
+            android:layout_height="49dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/addPlayer_label"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/entry7"
+                android:layout_width="132dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:background="@android:drawable/editbox_background"
+                android:hint="@string/addPlayer_hint"
+                android:importantForAutofill="no"
+                android:inputType="text" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutChildren8"
+            android:layout_width="280dp"
+            android:layout_height="49dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/addPlayer_label"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/entry8"
+                android:layout_width="132dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:background="@android:drawable/editbox_background"
+                android:hint="@string/addPlayer_hint"
+                android:importantForAutofill="no"
+                android:inputType="text" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutChildren9"
+            android:layout_width="280dp"
+            android:layout_height="49dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/addPlayer_label"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/entry9"
+                android:layout_width="132dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:background="@android:drawable/editbox_background"
+                android:hint="@string/addPlayer_hint"
+                android:importantForAutofill="no"
+                android:inputType="text" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutChildren10"
+            android:layout_width="280dp"
+            android:layout_height="49dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/addPlayer_label"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/entry10"
+                android:layout_width="132dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:background="@android:drawable/editbox_background"
+                android:hint="@string/addPlayer_hint"
+                android:importantForAutofill="no"
+                android:inputType="text" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutChildren2"
+            android:layout_width="280dp"
+            android:layout_height="49dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/addPlayer_label"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/entry2"
+                android:layout_width="132dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:background="@android:drawable/editbox_background"
+                android:hint="@string/addPlayer_hint"
+                android:importantForAutofill="no"
+                android:inputType="text" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
     <Button
@@ -59,6 +350,8 @@
         android:text="@string/addPlayer_btnContinue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:onClick="continueToNumberPoints"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutParent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

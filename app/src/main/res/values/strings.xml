@@ -6,4 +6,6 @@
     <string name="addPlayer_label">Joueur</string>
     <string name="addPlayer_hint">Nom</string>
     <string name="addPlayer_btnContinue">Continuer</string>
+    <string name="pointsToWinTitle">Nombre de points pour gagner</string>
+    <string name="PointsToWinDefaultValue">30</string>
 </resources>

@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".game.SelectPlayersActivity" />
+        <activity android:name=".game.SelectNumberPoints" />
     </application>
 
 </manifest>
