@@ -29,14 +29,14 @@
         android:hint="@string/PointsToWinDefaultValue"
         android:inputType="number"
         android:textSize="50sp"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/SelectPlayersContinueButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pointsToWinTitle"
         android:importantForAutofill="no" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/SelectPlayersContinueButton"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="153dp"
         android:layout_height="62dp"

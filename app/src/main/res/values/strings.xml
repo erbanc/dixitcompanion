@@ -8,4 +8,5 @@
     <string name="addPlayer_btnContinue">Continuer</string>
     <string name="pointsToWinTitle">Nombre de points pour gagner</string>
     <string name="PointsToWinDefaultValue">30</string>
+    <string name="HomescreenTitle">Dixit Companion</string>
 </resources>
