@@ -24,7 +24,7 @@ public class SelectPlayersActivity extends AppCompatActivity {
 
     public void continueToNumberPoints(View view) {
 
-        final List<Player> players = retrievePlayers(view);
+        final List<Player> players = retrievePlayers();
 
         Game game = Game.builder().players(players).currentTurn(0).build();
 
@@ -38,7 +38,7 @@ public class SelectPlayersActivity extends AppCompatActivity {
         SelectPlayersActivity.this.startActivity(intent);
     }
 
-    private List<Player> retrievePlayers(View view) {
+    private List<Player> retrievePlayers() {
         List<Player> players = new ArrayList<>();
 
         final EditText player1 = findViewById(R.id.Player1Name);
