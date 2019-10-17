@@ -1,6 +1,7 @@
 package fr.erban.dixitcompanion.game.turn;
 
 import java.io.Serializable;
+import java.util.List;
 
 import fr.erban.dixitcompanion.game.player.Player;
 import lombok.Builder;
@@ -17,4 +18,6 @@ public class Turn implements Serializable {
     private boolean everybodyFound;
 
     private Player storyTeller;
+
+    private List<VoteBean> votes;
 }

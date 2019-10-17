@@ -362,7 +362,7 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="153dp"
         android:layout_height="62dp"
-        android:text="@string/addPlayer_btnContinue"
+        android:text="@string/btnContinue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:onClick="continueToNumberPoints"

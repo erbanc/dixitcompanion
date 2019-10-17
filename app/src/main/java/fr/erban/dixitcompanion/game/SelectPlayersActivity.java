@@ -8,6 +8,7 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import fr.erban.dixitcompanion.MainActivity;
@@ -92,7 +93,11 @@ public class SelectPlayersActivity extends AppCompatActivity {
 
     private void addPlayerIfNotEmpty(final EditText player, final List<Player> players) {
         if (player.getText() != null && !player.getText().toString().trim().isEmpty()) {
-            players.add(Player.builder().name(player.getText().toString()).build());
+            players.add(Player.builder()
+                    .name(player.getText().toString())
+                    .currentScore(0)
+                    .scoreSheet(new HashMap<Integer, Integer>())
+                    .build());
         }
     }
 }

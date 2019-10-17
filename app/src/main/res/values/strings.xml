@@ -5,9 +5,18 @@
     <string name="add_player_shadowInput">Name</string>
     <string name="addPlayer_label">Joueur</string>
     <string name="addPlayer_hint">Nom</string>
-    <string name="addPlayer_btnContinue">Continuer</string>
+    <string name="btnContinue">Continuer</string>
     <string name="pointsToWinTitle">Nombre de points pour gagner</string>
     <string name="PointsToWinDefaultValue">30</string>
     <string name="HomescreenTitle">Dixit Companion</string>
     <string name="labelStoryTellerChoice">Qui est le conteur ?</string>
+    <string name="everyoneFoundTitle">Tout le monde a trouvé la bonne carte ?</string>
+    <string name="everyOneFoundText">Tout le monde a trouvé ?</string>
+    <string name="noOneFoundText">Personne n\'a trouvé ?</string>
+    <string name="noOneFoundLabel">Personne n\'a trouvé ?</string>
+    <string name="everyOneFoundLabel">Tout le monde a trouvé ?</string>
+    <string name="whoFoundLabel">Qui a trouvé ?</string>
+    <string name="everyoneFoundYesLabel">OUI</string>
+    <string name="everyoneFoundNoLabel">Non</string>
+    <string name="endTurnTitle">Fin du tour !</string>
 </resources>

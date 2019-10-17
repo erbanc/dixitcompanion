@@ -80,7 +80,7 @@ public class SelectStoryTellerActivity extends AppCompatActivity {
             }
         }
 
-        Intent intent = new Intent(SelectStoryTellerActivity.this, PointsResultActivity.class);
+        Intent intent = new Intent(SelectStoryTellerActivity.this, EveryoneFoundActivity.class);
         intent.putExtra("Game", game);
         intent.putExtra("Turn", turn);
         SelectStoryTellerActivity.this.startActivity(intent);

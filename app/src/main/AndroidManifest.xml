@@ -19,7 +19,8 @@
         <activity android:name=".game.SelectPlayersActivity" />
         <activity android:name=".game.SelectNumberPointsActivity" />
         <activity android:name=".game.turn.SelectStoryTellerActivity" />
-        <activity android:name=".game.turn.PointsResultActivity" />
+        <activity android:name=".game.turn.EveryoneFoundActivity" />
+        <activity android:name=".game.turn.EndTurnActivity" />
     </application>
 
 </manifest>
