@@ -8,7 +8,7 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import fr.erban.dixitcompanion.R;
-import fr.erban.dixitcompanion.game.turn.SelectStoryTellerActivity;
+import fr.erban.dixitcompanion.game.turn.activity.SelectStoryTellerActivity;
 
 public class SelectNumberPointsActivity extends AppCompatActivity {
 

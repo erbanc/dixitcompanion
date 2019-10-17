@@ -1,4 +1,4 @@
-package fr.erban.dixitcompanion.game.turn;
+package fr.erban.dixitcompanion.game.turn.activity;
 
 import android.os.Bundle;
 
@@ -11,6 +11,8 @@ import java.util.Map;
 import fr.erban.dixitcompanion.R;
 import fr.erban.dixitcompanion.game.Game;
 import fr.erban.dixitcompanion.game.player.Player;
+import fr.erban.dixitcompanion.game.turn.Turn;
+import fr.erban.dixitcompanion.game.turn.bean.VoteBean;
 
 public class EndTurnActivity extends AppCompatActivity {
 
@@ -45,13 +47,15 @@ public class EndTurnActivity extends AppCompatActivity {
 
         boolean hasFoundCard = false;
 
-        for (VoteBean vote : votes) {
-            if (vote.getElected().getName().equals(player.getName())) {
-                votesForCard++;
-            }
-            if (vote.getVoter().getName().equals(player.getName())
-                    && vote.getElected().getName().equals(turn.getStoryTeller().getName())) {
-                hasFoundCard = true;
+        if (votes != null) {
+            for (VoteBean vote : votes) {
+                if (vote.getElected().getName().equals(player.getName())) {
+                    votesForCard++;
+                }
+                if (vote.getVoter().getName().equals(player.getName())
+                        && vote.getElected().getName().equals(turn.getStoryTeller().getName())) {
+                    hasFoundCard = true;
+                }
             }
         }
 
@@ -76,9 +80,9 @@ public class EndTurnActivity extends AppCompatActivity {
         if (turn.getStoryTeller().equals(player)) {
 
             if (turn.isNoOneFound() || turn.isEverybodyFound()) {
-                return 0;
+                pointsGranted = 0;
             } else {
-                return 3;
+                pointsGranted = 3;
             }
         } else {
             if (turn.isNoOneFound() || turn.isEverybodyFound()) {

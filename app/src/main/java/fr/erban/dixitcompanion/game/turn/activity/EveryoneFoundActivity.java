@@ -1,4 +1,4 @@
-package fr.erban.dixitcompanion.game.turn;
+package fr.erban.dixitcompanion.game.turn.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import fr.erban.dixitcompanion.R;
 import fr.erban.dixitcompanion.game.Game;
+import fr.erban.dixitcompanion.game.turn.Turn;
 
 public class EveryoneFoundActivity extends AppCompatActivity {
 
@@ -34,7 +35,14 @@ public class EveryoneFoundActivity extends AppCompatActivity {
 
     public void clickNo(View view) {
         this.turn.setEverybodyFound(false);
-        endTurn();
+        toWhoDidNotFind();
+    }
+
+    private void toWhoDidNotFind() {
+        Intent intent = new Intent(EveryoneFoundActivity.this, WhoDidNotFindActivity.class);
+        intent.putExtra("Game", game);
+        intent.putExtra("Turn", turn);
+        EveryoneFoundActivity.this.startActivity(intent);
     }
 
     private void endTurn() {

@@ -1,9 +1,8 @@
-package fr.erban.dixitcompanion.game.turn;
+package fr.erban.dixitcompanion.game.turn.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -15,6 +14,7 @@ import java.util.List;
 import fr.erban.dixitcompanion.R;
 import fr.erban.dixitcompanion.game.Game;
 import fr.erban.dixitcompanion.game.player.Player;
+import fr.erban.dixitcompanion.game.turn.Turn;
 
 public class SelectStoryTellerActivity extends AppCompatActivity {
 
@@ -51,19 +51,6 @@ public class SelectStoryTellerActivity extends AppCompatActivity {
                 android.R.layout.simple_spinner_item, playerNames);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int position, long id) {
-                // TODO : activer bouton continue
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // TODO : desactiver bouton continue
-            }
-        });
     }
 
     public void continueToTurnResults(View view) {

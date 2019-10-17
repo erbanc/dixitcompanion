@@ -1,4 +1,4 @@
-package fr.erban.dixitcompanion.game.turn;
+package fr.erban.dixitcompanion.game.turn.bean;
 
 import fr.erban.dixitcompanion.game.player.Player;
 import lombok.Builder;
