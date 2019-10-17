@@ -26,9 +26,10 @@ public class SelectPlayersActivity extends AppCompatActivity {
 
         final List<Player> players = retrievePlayers();
 
-        Game game = Game.builder().players(players).currentTurn(0).build();
+        final Game game = Game.builder().players(players).currentTurn(0).build();
 
-        Intent intent = new Intent(SelectPlayersActivity.this, SelectNumberPoints.class);
+        Intent intent = new Intent(SelectPlayersActivity.this, SelectNumberPointsActivity.class);
+        intent.putExtra("Game", game);
         SelectPlayersActivity.this.startActivity(intent);
     }
 
@@ -38,6 +39,11 @@ public class SelectPlayersActivity extends AppCompatActivity {
         SelectPlayersActivity.this.startActivity(intent);
     }
 
+    /**
+     * Get the names and the colors of the players
+     *
+     * @return the list of the players
+     */
     private List<Player> retrievePlayers() {
         List<Player> players = new ArrayList<>();
 

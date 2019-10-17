@@ -9,4 +9,5 @@
     <string name="pointsToWinTitle">Nombre de points pour gagner</string>
     <string name="PointsToWinDefaultValue">30</string>
     <string name="HomescreenTitle">Dixit Companion</string>
+    <string name="labelStoryTellerChoice">Qui est le conteur ?</string>
 </resources>

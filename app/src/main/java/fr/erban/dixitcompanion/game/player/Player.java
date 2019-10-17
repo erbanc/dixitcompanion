@@ -1,5 +1,6 @@
 package fr.erban.dixitcompanion.game.player;
 
+import java.io.Serializable;
 import java.util.Map;
 
 import fr.erban.dixitcompanion.game.color.ColorEnum;
@@ -10,13 +11,11 @@ import lombok.Getter;
 @Getter
 @Builder
 @AllArgsConstructor
-public class Player {
+public class Player implements Serializable {
 
     private String name;
 
     private int currentScore;
-
-    private boolean isStoryTeller;
 
     private Map<Integer, Integer> scoreSheet;
 
