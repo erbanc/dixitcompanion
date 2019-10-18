@@ -15,6 +15,7 @@
         android:gravity="center"
         android:singleLine="true"
         android:text="@string/labelPlayerChoice"
+        android:textColor="@color/colorPrimary"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,6 +62,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/addPlayer_label"
+                android:textColor="@color/colorPrimary"
                 android:textSize="24sp" />
 
             <EditText
@@ -92,6 +94,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/addPlayer_label"
+                android:textColor="@color/colorPrimary"
                 android:textSize="24sp" />
 
             <EditText
@@ -123,6 +126,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/addPlayer_label"
+                android:textColor="@color/colorPrimary"
                 android:textSize="24sp" />
 
             <EditText
@@ -154,6 +158,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/addPlayer_label"
+                android:textColor="@color/colorPrimary"
                 android:textSize="24sp" />
 
             <EditText
@@ -185,6 +190,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/addPlayer_label"
+                android:textColor="@color/colorPrimary"
                 android:textSize="24sp" />
 
             <EditText
@@ -216,6 +222,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/addPlayer_label"
+                android:textColor="@color/colorPrimary"
                 android:textSize="24sp" />
 
             <EditText
@@ -247,6 +254,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/addPlayer_label"
+                android:textColor="@color/colorPrimary"
                 android:textSize="24sp" />
 
             <EditText
@@ -278,6 +286,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/addPlayer_label"
+                android:textColor="@color/colorPrimary"
                 android:textSize="24sp" />
 
             <EditText
@@ -309,6 +318,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/addPlayer_label"
+                android:textColor="@color/colorPrimary"
                 android:textSize="24sp" />
 
             <EditText
@@ -340,6 +350,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/addPlayer_label"
+                android:textColor="@color/colorPrimary"
                 android:textSize="24sp" />
 
             <EditText

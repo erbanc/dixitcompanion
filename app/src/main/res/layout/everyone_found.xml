@@ -13,6 +13,7 @@
         android:layout_marginTop="32dp"
         android:gravity="center"
         android:text="@string/everyoneFoundTitle"
+        android:textColor="@color/colorPrimary"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,14 +21,15 @@
 
     <Button
         android:id="@+id/everyoneFoundYes"
+        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#3BD33F"
+        android:onClick="clickYes"
         android:text="@string/everyoneFoundYesLabel"
         android:textAllCaps="true"
         android:textColor="#FFFFFF"
+        android:textColorLink="@color/colorPrimary"
         android:textSize="36sp"
-        android:onClick="clickYes"
         app:layout_constraintBottom_toTopOf="@+id/everyoneFoundNo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,9 +37,9 @@
 
     <Button
         android:id="@+id/everyoneFoundNo"
+        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#FCB31C21"
         android:text="@string/everyoneFoundNoLabel"
         android:textColor="#FFFFFF"
         android:textSize="36sp"

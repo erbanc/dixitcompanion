@@ -15,6 +15,7 @@
         android:gravity="center"
         android:singleLine="false"
         android:text="@string/pointsToWinTitle"
+        android:textColor="@color/colorPrimary"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,13 +28,14 @@
         android:ems="10"
         android:gravity="center"
         android:hint="@string/PointsToWinDefaultValue"
+        android:importantForAutofill="no"
         android:inputType="number"
+        android:textColor="@color/colorPrimary"
         android:textSize="50sp"
         app:layout_constraintBottom_toTopOf="@+id/SelectNumberPointsContinueButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pointsToWinTitle"
-        android:importantForAutofill="no" />
+        app:layout_constraintTop_toBottomOf="@+id/pointsToWinTitle" />
 
     <Button
         android:id="@+id/SelectNumberPointsContinueButton"
