@@ -20,4 +20,5 @@
     <string name="everyoneFoundNoLabel">Non</string>
     <string name="endTurnTitle">Fin du tour !</string>
     <string name="whoDidNotFindLabel">Qui n\'a pas trouvé ?</string>
+    <string name="turnNumberPrefix">Tour n°</string>
 </resources>

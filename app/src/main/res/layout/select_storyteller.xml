@@ -15,7 +15,7 @@
         android:gravity="center"
         android:singleLine="true"
         android:text="@string/labelStoryTellerChoice"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@android:color/black"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,14 +33,26 @@
 
     <Button
         android:id="@+id/SelectPlayersContinueButton"
-        style="@style/Widget.AppCompat.Button.Colored"
+        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="153dp"
         android:layout_height="62dp"
-        android:text="@string/btnContinue"
+        android:layout_marginBottom="32dp"
+        android:background="@color/colorAccent"
         android:onClick="continueToTurnResults"
-        android:clickable="false"
+        android:text="@string/btnContinue"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/turnNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

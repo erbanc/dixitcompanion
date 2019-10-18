@@ -16,7 +16,7 @@
         android:gravity="center"
         android:singleLine="true"
         android:text="@string/HomescreenTitle"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@android:color/black"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,13 +24,16 @@
 
     <Button
         android:id="@+id/CreateNewGameButton"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="153dp"
-        android:layout_height="62dp"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="173dp"
+        android:layout_height="81dp"
+        android:background="@color/colorAccent"
+        android:ellipsize="none"
         android:onClick="startNewGame"
         android:text="@string/BtnNewGame"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/HomeScreenTitle" />
 </androidx.constraintlayout.widget.ConstraintLayout>

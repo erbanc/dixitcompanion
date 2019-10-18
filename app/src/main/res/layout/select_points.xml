@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".game.SelectNumberPointsActivity">
+    tools:context=".game.activity.SelectNumberPointsActivity">
 
     <TextView
         android:id="@+id/pointsToWinTitle"
@@ -15,7 +15,7 @@
         android:gravity="center"
         android:singleLine="false"
         android:text="@string/pointsToWinTitle"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@android:color/black"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +30,7 @@
         android:hint="@string/PointsToWinDefaultValue"
         android:importantForAutofill="no"
         android:inputType="number"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@android:color/black"
         android:textSize="50sp"
         app:layout_constraintBottom_toTopOf="@+id/SelectNumberPointsContinueButton"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,12 +39,14 @@
 
     <Button
         android:id="@+id/SelectNumberPointsContinueButton"
-        style="@style/Widget.AppCompat.Button.Colored"
+        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="153dp"
         android:layout_height="62dp"
         android:layout_marginBottom="32dp"
-        android:text="@string/btnContinue"
+        android:background="@color/colorAccent"
         android:onClick="continueToFirstTurn"
+        android:text="@string/btnContinue"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

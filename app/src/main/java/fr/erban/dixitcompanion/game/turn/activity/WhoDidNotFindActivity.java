@@ -1,10 +1,7 @@
 package fr.erban.dixitcompanion.game.turn.activity;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
@@ -16,7 +13,7 @@ import fr.erban.dixitcompanion.game.Game;
 import fr.erban.dixitcompanion.game.player.Player;
 import fr.erban.dixitcompanion.game.turn.Turn;
 
-public class WhoDidNotFindActivity extends AppCompatActivity {
+public class WhoDidNotFindActivity extends Activity {
 
     private Turn turn;
 
@@ -35,9 +32,12 @@ public class WhoDidNotFindActivity extends AppCompatActivity {
             for (Player player : players) {
                 if (!player.getName().equals(turn.getStoryTeller().getName())) {
                     final ChipGroup chipGroup = findViewById(R.id.WhoDidNotFindChipGroup);
-                    Chip playerChip = new Chip(this);
-                    playerChip.setText(player.getName());
-                    chipGroup.addView(playerChip);
+                    Chip chip = new Chip(this);
+                    chip.setText(player.getName());
+                    chip.setChipBackgroundColorResource(R.color.colorPrimary);
+                    chip.setTextAppearanceResource(R.style.ChipTextStyle);
+
+                    chipGroup.addView(chip);
                 }
             }
         }

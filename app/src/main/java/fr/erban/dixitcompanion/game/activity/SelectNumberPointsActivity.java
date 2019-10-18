@@ -1,16 +1,16 @@
-package fr.erban.dixitcompanion.game;
+package fr.erban.dixitcompanion.game.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import fr.erban.dixitcompanion.R;
+import fr.erban.dixitcompanion.game.Game;
 import fr.erban.dixitcompanion.game.turn.activity.SelectStoryTellerActivity;
 
-public class SelectNumberPointsActivity extends AppCompatActivity {
+public class SelectNumberPointsActivity extends Activity {
 
     final static String DEFAULT_POINTS_TO_WIN = "30";
 

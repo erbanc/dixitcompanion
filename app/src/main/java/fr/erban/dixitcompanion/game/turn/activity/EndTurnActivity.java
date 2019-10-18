@@ -1,8 +1,11 @@
 package fr.erban.dixitcompanion.game.turn.activity;
 
+import android.app.Activity;
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,10 +14,12 @@ import java.util.Map;
 import fr.erban.dixitcompanion.R;
 import fr.erban.dixitcompanion.game.Game;
 import fr.erban.dixitcompanion.game.player.Player;
+import fr.erban.dixitcompanion.game.turn.CustomListAdapter;
+import fr.erban.dixitcompanion.game.turn.ScoreRow;
 import fr.erban.dixitcompanion.game.turn.Turn;
 import fr.erban.dixitcompanion.game.turn.bean.VoteBean;
 
-public class EndTurnActivity extends AppCompatActivity {
+public class EndTurnActivity extends Activity {
 
     private Turn turn;
 
@@ -38,6 +43,17 @@ public class EndTurnActivity extends AppCompatActivity {
             }
 
             game.setPlayers(playersWithUpdatedScores);
+
+            final ListView listView = findViewById(R.id.listViewEndTurn);
+
+            List<ScoreRow> scores = new ArrayList<>();
+
+            for (Player player : playersWithUpdatedScores) {
+                scores.add(ScoreRow.builder().name(player.getName()).score(String.valueOf(player.getCurrentScore())).build());
+            }
+
+            CustomListAdapter adapter = new CustomListAdapter(this, scores);
+            listView.setAdapter(adapter);
         }
     }
 
@@ -77,7 +93,7 @@ public class EndTurnActivity extends AppCompatActivity {
 
         int pointsGranted = 0;
 
-        if (turn.getStoryTeller().equals(player)) {
+        if (turn.getStoryTeller().getName().equals(player.getName())) {
 
             if (turn.isNoOneFound() || turn.isEverybodyFound()) {
                 pointsGranted = 0;
@@ -95,5 +111,9 @@ public class EndTurnActivity extends AppCompatActivity {
         }
 
         return pointsGranted;
+    }
+
+    public void continueToSelectStoryTeller(View view) {
+
     }
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".game.SelectPlayersActivity">
+    tools:context=".game.activity.SelectPlayersActivity">
 
     <TextView
         android:id="@+id/whoDidNotFindTitle"
@@ -15,7 +15,7 @@
         android:gravity="center"
         android:singleLine="true"
         android:text="@string/whoDidNotFindLabel"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@android:color/black"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +23,7 @@
 
     <Button
         android:id="@+id/WhoDidNotFindContinueButton"
-        style="@style/Widget.AppCompat.Button.Colored"
+        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="153dp"
         android:layout_height="62dp"
         android:text="@string/btnContinue"

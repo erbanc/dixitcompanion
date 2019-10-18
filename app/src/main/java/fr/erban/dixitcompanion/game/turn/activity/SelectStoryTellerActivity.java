@@ -1,10 +1,12 @@
 package fr.erban.dixitcompanion.game.turn.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,7 +18,7 @@ import fr.erban.dixitcompanion.game.Game;
 import fr.erban.dixitcompanion.game.player.Player;
 import fr.erban.dixitcompanion.game.turn.Turn;
 
-public class SelectStoryTellerActivity extends AppCompatActivity {
+public class SelectStoryTellerActivity extends Activity {
 
     private Turn turn;
 
@@ -34,8 +36,14 @@ public class SelectStoryTellerActivity extends AppCompatActivity {
         final Spinner spinner = findViewById(R.id.selectStorytellerDropdown);
 
         if (game != null) {
+            game.setCurrentTurn(game.getCurrentTurn() + 1);
             addPlayerNames(game, spinner);
         }
+
+        final TextView turnNumber = findViewById(R.id.turnNumber);
+        final String turnNumberComplete = getString(R.string.turnNumberPrefix) + game.getCurrentTurn();
+        turnNumber.setText(turnNumberComplete);
+
     }
 
     private void addPlayerNames(Game game, Spinner spinner) {

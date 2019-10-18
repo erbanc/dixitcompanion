@@ -1,5 +1,6 @@
 package fr.erban.dixitcompanion.game.turn.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,7 +11,7 @@ import fr.erban.dixitcompanion.R;
 import fr.erban.dixitcompanion.game.Game;
 import fr.erban.dixitcompanion.game.turn.Turn;
 
-public class EveryoneFoundActivity extends AppCompatActivity {
+public class EveryoneFoundActivity extends Activity {
 
     private Turn turn;
 
