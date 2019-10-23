@@ -1,4 +1,4 @@
-package fr.erban.dixitcompanion.game.activity;
+package fr.erban.dxitcompanion.game.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,9 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-import fr.erban.dixitcompanion.R;
-import fr.erban.dixitcompanion.game.Game;
-import fr.erban.dixitcompanion.game.turn.activity.SelectStoryTellerActivity;
+import fr.erban.dxitcompanion.R;
+import fr.erban.dxitcompanion.game.Game;
+import fr.erban.dxitcompanion.game.turn.activity.SelectStoryTellerActivity;
 
 public class SelectNumberPointsActivity extends Activity {
 

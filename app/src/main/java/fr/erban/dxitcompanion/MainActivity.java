@@ -1,11 +1,11 @@
-package fr.erban.dixitcompanion;
+package fr.erban.dxitcompanion;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import fr.erban.dixitcompanion.game.activity.SelectPlayersActivity;
+import fr.erban.dxitcompanion.game.activity.SelectPlayersActivity;
 
 public class MainActivity extends Activity {
 

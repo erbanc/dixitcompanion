@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DixitCompanion</string>
+    <string name="app_name">DxitCompanion</string>
     <string name="BtnNewGame">Nouvelle partie</string>
     <string name="labelPlayerChoice">Choix des joueurs</string>
     <string name="add_player_shadowInput">Name</string>
@@ -15,10 +15,10 @@
     <string name="noOneFoundText">Personne n\'a trouvé ?</string>
     <string name="noOneFoundLabel">Personne n\'a trouvé ?</string>
     <string name="everyOneFoundLabel">Tout le monde a trouvé ?</string>
-    <string name="whoFoundLabel">Qui a trouvé ?</string>
     <string name="everyoneFoundYesLabel">OUI</string>
-    <string name="everyoneFoundNoLabel">Non</string>
+    <string name="everyoneFoundNoLabel">NON</string>
     <string name="endTurnTitle">Fin du tour !</string>
-    <string name="whoDidNotFindLabel">Qui n\'a pas trouvé ?</string>
+    <string name="whoDidFindLabel">Qui a trouvé la bonne carte ?</string>
     <string name="turnNumberPrefix">Tour n°</string>
+    <string name="nextPlayer">Joueur suivant</string>
 </resources>

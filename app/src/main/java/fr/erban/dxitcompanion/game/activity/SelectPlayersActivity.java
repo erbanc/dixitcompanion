@@ -1,4 +1,4 @@
-package fr.erban.dixitcompanion.game.activity;
+package fr.erban.dxitcompanion.game.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,10 +10,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import fr.erban.dixitcompanion.MainActivity;
-import fr.erban.dixitcompanion.R;
-import fr.erban.dixitcompanion.game.Game;
-import fr.erban.dixitcompanion.game.player.Player;
+import fr.erban.dxitcompanion.MainActivity;
+import fr.erban.dxitcompanion.R;
+import fr.erban.dxitcompanion.game.Game;
+import fr.erban.dxitcompanion.game.player.Player;
 
 public class SelectPlayersActivity extends Activity {
 

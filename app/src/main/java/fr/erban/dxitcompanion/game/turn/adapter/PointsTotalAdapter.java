@@ -1,4 +1,4 @@
-package fr.erban.dixitcompanion.game.turn;
+package fr.erban.dxitcompanion.game.turn.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,9 +9,10 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import fr.erban.dixitcompanion.R;
+import fr.erban.dxitcompanion.R;
+import fr.erban.dxitcompanion.game.turn.ScoreRow;
 
-public class CustomListAdapter extends BaseAdapter {
+public class PointsTotalAdapter extends BaseAdapter {
 
     private Context mContext;
     private LayoutInflater inflater;
@@ -19,7 +20,7 @@ public class CustomListAdapter extends BaseAdapter {
 
 
 
-    public CustomListAdapter(Context context, List<ScoreRow> itemsItems) {
+    public PointsTotalAdapter(Context context, List<ScoreRow> itemsItems) {
         this.mContext = context;
         this.itemsItems = itemsItems;
 

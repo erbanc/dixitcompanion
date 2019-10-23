@@ -1,4 +1,4 @@
-package fr.erban.dixitcompanion;
+package fr.erban.dxitcompanion;
 
 import org.junit.Test;
 

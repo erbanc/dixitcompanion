@@ -19,6 +19,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/turnNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ListView
         android:id="@+id/listViewEndTurn"
         android:layout_width="384dp"
@@ -39,7 +49,7 @@
         android:layout_height="62dp"
         android:layout_marginBottom="32dp"
         android:background="@color/colorAccent"
-        android:onClick="continueToSelectStoryTeller"
+        android:onClick="continueToEndOrNewTurn"
         android:text="@string/btnContinue"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"

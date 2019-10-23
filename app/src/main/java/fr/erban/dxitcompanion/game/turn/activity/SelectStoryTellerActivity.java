@@ -1,4 +1,4 @@
-package fr.erban.dixitcompanion.game.turn.activity;
+package fr.erban.dxitcompanion.game.turn.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,15 +8,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.erban.dixitcompanion.R;
-import fr.erban.dixitcompanion.game.Game;
-import fr.erban.dixitcompanion.game.player.Player;
-import fr.erban.dixitcompanion.game.turn.Turn;
+import fr.erban.dxitcompanion.R;
+import fr.erban.dxitcompanion.game.Game;
+import fr.erban.dxitcompanion.game.player.Player;
+import fr.erban.dxitcompanion.game.turn.Turn;
 
 public class SelectStoryTellerActivity extends Activity {
 

@@ -1,10 +1,10 @@
-package fr.erban.dixitcompanion.game.turn;
+package fr.erban.dxitcompanion.game.turn;
 
 import java.io.Serializable;
 import java.util.List;
 
-import fr.erban.dixitcompanion.game.player.Player;
-import fr.erban.dixitcompanion.game.turn.bean.VoteBean;
+import fr.erban.dxitcompanion.game.player.Player;
+import fr.erban.dxitcompanion.game.turn.bean.VoteBean;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;

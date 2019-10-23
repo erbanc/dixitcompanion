@@ -1,15 +1,14 @@
-package fr.erban.dixitcompanion.game.turn.activity;
+package fr.erban.dxitcompanion.game.turn.activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import fr.erban.dixitcompanion.R;
-import fr.erban.dixitcompanion.game.Game;
-import fr.erban.dixitcompanion.game.turn.Turn;
+import fr.erban.dxitcompanion.R;
+import fr.erban.dxitcompanion.game.Game;
+import fr.erban.dxitcompanion.game.turn.Turn;
 
 public class EveryoneFoundActivity extends Activity {
 
@@ -24,9 +23,10 @@ public class EveryoneFoundActivity extends Activity {
 
         this.turn = (Turn) getIntent().getSerializableExtra("Turn");
         this.game = (Game) getIntent().getSerializableExtra("Game");
-        if (game != null) {
-            game.setCurrentTurn(game.getCurrentTurn() + 1);
-        }
+
+        final TextView turnNumber = findViewById(R.id.turnNumber);
+        final String turnNumberComplete = getString(R.string.turnNumberPrefix) + game.getCurrentTurn();
+        turnNumber.setText(turnNumberComplete);
     }
 
     public void clickYes(View view) {
@@ -36,11 +36,11 @@ public class EveryoneFoundActivity extends Activity {
 
     public void clickNo(View view) {
         this.turn.setEverybodyFound(false);
-        toWhoDidNotFind();
+        toWhoDidFind();
     }
 
-    private void toWhoDidNotFind() {
-        Intent intent = new Intent(EveryoneFoundActivity.this, WhoDidNotFindActivity.class);
+    private void toWhoDidFind() {
+        Intent intent = new Intent(EveryoneFoundActivity.this, WhoDidFindActivity.class);
         intent.putExtra("Game", game);
         intent.putExtra("Turn", turn);
         EveryoneFoundActivity.this.startActivity(intent);

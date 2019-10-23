@@ -1,9 +1,9 @@
-package fr.erban.dixitcompanion.game.turn.activity;
+package fr.erban.dxitcompanion.game.turn.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -11,19 +11,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import fr.erban.dixitcompanion.R;
-import fr.erban.dixitcompanion.game.Game;
-import fr.erban.dixitcompanion.game.player.Player;
-import fr.erban.dixitcompanion.game.turn.CustomListAdapter;
-import fr.erban.dixitcompanion.game.turn.ScoreRow;
-import fr.erban.dixitcompanion.game.turn.Turn;
-import fr.erban.dixitcompanion.game.turn.bean.VoteBean;
+import fr.erban.dxitcompanion.R;
+import fr.erban.dxitcompanion.game.Game;
+import fr.erban.dxitcompanion.game.player.Player;
+import fr.erban.dxitcompanion.game.turn.adapter.PointsTotalAdapter;
+import fr.erban.dxitcompanion.game.turn.ScoreRow;
+import fr.erban.dxitcompanion.game.turn.Turn;
+import fr.erban.dxitcompanion.game.turn.bean.VoteBean;
 
 public class EndTurnActivity extends Activity {
 
     private Turn turn;
 
     private Game game;
+
+    private boolean scoreLimitReached = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +54,21 @@ public class EndTurnActivity extends Activity {
                 scores.add(ScoreRow.builder().name(player.getName()).score(String.valueOf(player.getCurrentScore())).build());
             }
 
-            CustomListAdapter adapter = new CustomListAdapter(this, scores);
+            PointsTotalAdapter adapter = new PointsTotalAdapter(this, scores);
             listView.setAdapter(adapter);
+
+            final TextView turnNumber = findViewById(R.id.turnNumber);
+            final String turnNumberComplete = getString(R.string.turnNumberPrefix) + game.getCurrentTurn();
+            turnNumber.setText(turnNumberComplete);
+
+            for (Player player : game.getPlayers()) {
+                if (player.getCurrentScore() >= game.getPointsToWin()) {
+                    final TextView textPlayerWins = findViewById(R.id.endTurn);
+                    final String playerHasWon = player.getName() + " a remporté la partie !";
+                    textPlayerWins.setText(playerHasWon);
+                    scoreLimitReached = true;
+                }
+            }
         }
     }
 
@@ -113,7 +128,25 @@ public class EndTurnActivity extends Activity {
         return pointsGranted;
     }
 
-    public void continueToSelectStoryTeller(View view) {
+    public void continueToEndOrNewTurn(View view) {
+        if(scoreLimitReached) {
+            continueToEndGame();
+        } else {
+            continueToNewTurn();
+        }
+    }
 
+    private void continueToEndGame() {
+
+        Intent intent = new Intent(EndTurnActivity.this, SelectStoryTellerActivity.class);
+        intent.putExtra("Game", game);
+        EndTurnActivity.this.startActivity(intent);
+    }
+
+    private void continueToNewTurn() {
+
+        Intent intent = new Intent(EndTurnActivity.this, SelectStoryTellerActivity.class);
+        intent.putExtra("Game", game);
+        EndTurnActivity.this.startActivity(intent);
     }
 }

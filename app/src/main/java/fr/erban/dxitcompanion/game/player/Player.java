@@ -1,9 +1,9 @@
-package fr.erban.dixitcompanion.game.player;
+package fr.erban.dxitcompanion.game.player;
 
 import java.io.Serializable;
 import java.util.Map;
 
-import fr.erban.dixitcompanion.game.color.ColorEnum;
+import fr.erban.dxitcompanion.game.color.ColorEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

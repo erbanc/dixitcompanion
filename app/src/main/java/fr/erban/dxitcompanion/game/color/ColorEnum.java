@@ -1,4 +1,4 @@
-package fr.erban.dixitcompanion.game.color;
+package fr.erban.dxitcompanion.game.color;
 
 public enum ColorEnum {
     RED("#DC3730"),

@@ -1,4 +1,4 @@
-package fr.erban.dixitcompanion;
+package fr.erban.dxitcompanion;
 
 import android.content.Context;
 import androidx.test.platform.app.InstrumentationRegistry;

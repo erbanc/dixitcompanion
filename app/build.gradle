@@ -4,7 +4,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId "fr.erban.dixitcompanion"
+        applicationId "fr.erban.dxitcompanion"
         minSdkVersion 14
         targetSdkVersion 29
         versionCode 1
@@ -15,6 +15,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            debuggable = false
         }
     }
 }

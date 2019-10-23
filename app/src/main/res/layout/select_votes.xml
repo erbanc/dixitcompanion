@@ -4,17 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".game.turn.activity.SelectStoryTellerActivity">
+    tools:context=".game.turn.activity.SelectVotesActivity">
 
     <TextView
-        android:id="@+id/selectStoryTellerTitle"
-        android:layout_width="293dp"
-        android:layout_height="70dp"
+        android:id="@+id/selectVotesTitle"
+        android:layout_width="326dp"
+        android:layout_height="69dp"
         android:layout_marginTop="32dp"
         android:clickable="false"
         android:gravity="center"
         android:singleLine="true"
-        android:text="@string/labelStoryTellerChoice"
         android:textColor="@android:color/black"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,25 +31,38 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
-        android:id="@+id/selectStorytellerDropdown"
-        android:layout_width="231dp"
-        android:layout_height="99dp"
+        android:id="@+id/selectVoteDropdown"
+        android:layout_width="249dp"
+        android:layout_height="154dp"
         android:theme="@android:style/Widget.ListView.DropDown"
-        app:layout_constraintBottom_toTopOf="@+id/SelectPlayersContinueButton"
+        app:layout_constraintBottom_toTopOf="@+id/nextPlayerButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/selectStoryTellerTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/selectVotesTitle" />
 
     <Button
-        android:id="@+id/SelectPlayersContinueButton"
+        android:id="@+id/nextPlayerButton"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:background="@color/colorAccent"
+        android:onClick="nextPlayer"
+        android:text="@string/nextPlayer"
+        app:layout_constraintBottom_toTopOf="@+id/selectVotesContinueBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/selectVotesContinueBtn"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="153dp"
         android:layout_height="62dp"
         android:layout_marginBottom="32dp"
+        android:enabled="false"
         android:background="@color/colorAccent"
-        android:onClick="continueToTurnResults"
+        android:onClick="continueToEndTurn"
         android:text="@string/btnContinue"
-        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
