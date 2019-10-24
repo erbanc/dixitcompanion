@@ -1,8 +1,9 @@
 package fr.erban.dxitcompanion.game.turn.bean;
 
+import fr.erban.dxitcompanion.game.player.Player;
+
 import java.io.Serializable;
 
-import fr.erban.dxitcompanion.game.player.Player;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

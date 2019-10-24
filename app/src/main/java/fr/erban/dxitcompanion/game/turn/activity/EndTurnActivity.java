@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import fr.erban.dxitcompanion.game.player.Player;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +16,6 @@ import java.util.Map;
 import fr.erban.dxitcompanion.MainActivity;
 import fr.erban.dxitcompanion.R;
 import fr.erban.dxitcompanion.game.Game;
-import fr.erban.dxitcompanion.game.player.Player;
 import fr.erban.dxitcompanion.game.turn.adapter.PointsTotalAdapter;
 import fr.erban.dxitcompanion.game.turn.ScoreRow;
 import fr.erban.dxitcompanion.game.turn.Turn;

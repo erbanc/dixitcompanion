@@ -9,19 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="fr.erban.dxitcompanion.MainActivity" >
+        <activity android:name=".MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="fr.erban.dxitcompanion.game.activity.SelectPlayersActivity" />
-        <activity android:name="fr.erban.dxitcompanion.game.activity.SelectNumberPointsActivity" />
-        <activity android:name="fr.erban.dxitcompanion.game.turn.activity.SelectStoryTellerActivity" />
-        <activity android:name="fr.erban.dxitcompanion.game.turn.activity.EveryoneFoundActivity" />
-        <activity android:name="fr.erban.dxitcompanion.game.turn.activity.EndTurnActivity" />
-        <activity android:name="fr.erban.dxitcompanion.game.turn.activity.WhoDidFindActivity" />
-        <activity android:name="fr.erban.dxitcompanion.game.turn.activity.SelectVotesActivity" />
+        <activity android:name=".game.activity.SelectPlayersActivity" />
+        <activity android:name=".game.activity.SelectNumberPointsActivity" />
+        <activity android:name=".game.turn.activity.SelectStoryTellerActivity" />
+        <activity android:name=".game.turn.activity.EveryoneFoundActivity" />
+        <activity android:name=".game.turn.activity.EndTurnActivity" />
+        <activity android:name=".game.turn.activity.WhoDidFindActivity" />
+        <activity android:name=".game.turn.activity.SelectVotesActivity" />
     </application>
 
 </manifest>

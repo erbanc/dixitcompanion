@@ -8,12 +8,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import fr.erban.dxitcompanion.game.player.Player;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import fr.erban.dxitcompanion.R;
 import fr.erban.dxitcompanion.game.Game;
-import fr.erban.dxitcompanion.game.player.Player;
 import fr.erban.dxitcompanion.game.turn.Turn;
 
 public class SelectStoryTellerActivity extends Activity {

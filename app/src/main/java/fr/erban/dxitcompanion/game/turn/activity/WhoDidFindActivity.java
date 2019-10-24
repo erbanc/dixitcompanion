@@ -9,18 +9,19 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import fr.erban.dxitcompanion.game.player.Player;
+import fr.erban.dxitcompanion.game.turn.SelectPlayerRow;
+import fr.erban.dxitcompanion.game.turn.adapter.PlayerSelectionAdapter;
+import fr.erban.dxitcompanion.game.turn.bean.VotesBean;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import fr.erban.dxitcompanion.R;
 import fr.erban.dxitcompanion.game.Game;
-import fr.erban.dxitcompanion.game.player.Player;
-import fr.erban.dxitcompanion.game.turn.SelectPlayerRow;
 import fr.erban.dxitcompanion.game.turn.Turn;
-import fr.erban.dxitcompanion.game.turn.adapter.PlayerSelectionAdapter;
 import fr.erban.dxitcompanion.game.turn.bean.VoteBean;
-import fr.erban.dxitcompanion.game.turn.bean.VotesBean;
 
 public class WhoDidFindActivity extends Activity {
 

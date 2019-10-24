@@ -9,15 +9,16 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import fr.erban.dxitcompanion.R;
 import fr.erban.dxitcompanion.game.Game;
 import fr.erban.dxitcompanion.game.player.Player;
 import fr.erban.dxitcompanion.game.turn.Turn;
 import fr.erban.dxitcompanion.game.turn.bean.VoteBean;
 import fr.erban.dxitcompanion.game.turn.bean.VotesBean;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import fr.erban.dxitcompanion.R;
 
 public class SelectVotesActivity extends Activity {
 

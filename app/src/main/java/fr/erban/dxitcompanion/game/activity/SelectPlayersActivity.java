@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import fr.erban.dxitcompanion.MainActivity;
 import fr.erban.dxitcompanion.R;
 import fr.erban.dxitcompanion.game.Game;
 import fr.erban.dxitcompanion.game.player.Player;
