@@ -34,12 +34,6 @@ public class SelectPlayersActivity extends Activity {
         SelectPlayersActivity.this.startActivity(intent);
     }
 
-    public void returnToPreviousActivity(View view) {
-
-        Intent intent = new Intent(SelectPlayersActivity.this, MainActivity.class);
-        SelectPlayersActivity.this.startActivity(intent);
-    }
-
     /**
      * Get the names and the colors of the players
      *

@@ -43,7 +43,7 @@
         app:layout_constraintTop_toBottomOf="@+id/endTurn" />
 
     <Button
-        android:id="@+id/SelectPlayersContinueButton"
+        android:id="@+id/EndTurnContinueButton"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="153dp"
         android:layout_height="62dp"

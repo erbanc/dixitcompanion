@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import fr.erban.dxitcompanion.MainActivity;
 import fr.erban.dxitcompanion.R;
 import fr.erban.dxitcompanion.game.Game;
 import fr.erban.dxitcompanion.game.player.Player;
@@ -68,6 +69,11 @@ public class EndTurnActivity extends Activity {
                     textPlayerWins.setText(playerHasWon);
                     scoreLimitReached = true;
                 }
+            }
+
+            if (scoreLimitReached) {
+                final TextView continueButton = findViewById(R.id.EndTurnContinueButton);
+                continueButton.setText(R.string.EndGameButtonText);
             }
         }
     }
@@ -137,14 +143,11 @@ public class EndTurnActivity extends Activity {
     }
 
     private void continueToEndGame() {
-
-        Intent intent = new Intent(EndTurnActivity.this, SelectStoryTellerActivity.class);
-        intent.putExtra("Game", game);
+        Intent intent = new Intent(EndTurnActivity.this, MainActivity.class);
         EndTurnActivity.this.startActivity(intent);
     }
 
     private void continueToNewTurn() {
-
         Intent intent = new Intent(EndTurnActivity.this, SelectStoryTellerActivity.class);
         intent.putExtra("Game", game);
         EndTurnActivity.this.startActivity(intent);

@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/selectVotesTitle"
-        android:layout_width="326dp"
-        android:layout_height="69dp"
+        android:layout_width="313dp"
+        android:layout_height="188dp"
         android:layout_marginTop="32dp"
         android:clickable="false"
         android:gravity="center"

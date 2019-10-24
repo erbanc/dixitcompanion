@@ -21,4 +21,5 @@
     <string name="whoDidFindLabel">Qui a trouvé la bonne carte ?</string>
     <string name="turnNumberPrefix">Tour n°</string>
     <string name="nextPlayer">Joueur suivant</string>
+    <string name="EndGameButtonText">Fin de la partie</string>
 </resources>
