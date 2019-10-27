@@ -29,6 +29,8 @@ public class EndTurnActivity extends Activity {
 
     private boolean scoreLimitReached = false;
 
+    private Player winner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,14 +67,17 @@ public class EndTurnActivity extends Activity {
 
             for (Player player : game.getPlayers()) {
                 if (player.getCurrentScore() >= game.getPointsToWin()) {
-                    final TextView textPlayerWins = findViewById(R.id.endTurn);
-                    final String playerHasWon = player.getName() + " a remporté la partie !";
-                    textPlayerWins.setText(playerHasWon);
-                    scoreLimitReached = true;
+                    if (winner == null || player.getCurrentScore() > winner.getCurrentScore()) {
+                        winner = player;
+                        scoreLimitReached = true;
+                    }
                 }
             }
 
             if (scoreLimitReached) {
+                final TextView textPlayerWins = findViewById(R.id.endTurn);
+                final String playerHasWon = winner.getName() + " a remporté la partie !";
+                textPlayerWins.setText(playerHasWon);
                 final TextView continueButton = findViewById(R.id.EndTurnContinueButton);
                 continueButton.setText(R.string.EndGameButtonText);
             }
@@ -136,7 +141,7 @@ public class EndTurnActivity extends Activity {
     }
 
     public void continueToEndOrNewTurn(View view) {
-        if(scoreLimitReached) {
+        if (scoreLimitReached) {
             continueToEndGame();
         } else {
             continueToNewTurn();
