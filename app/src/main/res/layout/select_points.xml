@@ -50,8 +50,8 @@
     <Button
         android:id="@+id/SelectNumberPointsContinueButton"
         style="@style/Widget.MaterialComponents.Button"
-        android:layout_width="153dp"
-        android:layout_height="62dp"
+        android:layout_width="174dp"
+        android:layout_height="77dp"
         android:layout_marginBottom="32dp"
         android:background="@color/colorAccent"
         android:onClick="continueToFirstTurn"

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DxitCompanion</string>
+    <string name="app_name">Dixit Companion</string>
     <string name="BtnNewGame">Nouvelle partie</string>
     <string name="labelPlayerChoice">Choix des joueurs</string>
     <string name="add_player_shadowInput">Name</string>
