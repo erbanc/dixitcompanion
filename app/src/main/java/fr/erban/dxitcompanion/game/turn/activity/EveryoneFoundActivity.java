@@ -18,6 +18,7 @@ public class EveryoneFoundActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.everyone_found);
 
@@ -30,16 +31,19 @@ public class EveryoneFoundActivity extends Activity {
     }
 
     public void clickYes(View view) {
+
         this.turn.setEverybodyFound(true);
         endTurn();
     }
 
     public void clickNo(View view) {
+
         this.turn.setEverybodyFound(false);
         toWhoDidFind();
     }
 
     private void toWhoDidFind() {
+
         Intent intent = new Intent(EveryoneFoundActivity.this, WhoDidFindActivity.class);
         intent.putExtra("Game", game);
         intent.putExtra("Turn", turn);
@@ -47,6 +51,7 @@ public class EveryoneFoundActivity extends Activity {
     }
 
     private void endTurn() {
+
         Intent intent = new Intent(EveryoneFoundActivity.this, EndTurnActivity.class);
         intent.putExtra("Game", game);
         intent.putExtra("Turn", turn);

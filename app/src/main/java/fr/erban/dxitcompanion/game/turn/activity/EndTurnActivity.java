@@ -7,8 +7,6 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import fr.erban.dxitcompanion.game.player.Player;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -16,9 +14,10 @@ import java.util.Map;
 import fr.erban.dxitcompanion.MainActivity;
 import fr.erban.dxitcompanion.R;
 import fr.erban.dxitcompanion.game.Game;
-import fr.erban.dxitcompanion.game.turn.adapter.PointsTotalAdapter;
+import fr.erban.dxitcompanion.game.player.Player;
 import fr.erban.dxitcompanion.game.turn.ScoreRow;
 import fr.erban.dxitcompanion.game.turn.Turn;
+import fr.erban.dxitcompanion.game.turn.adapter.PointsTotalAdapter;
 import fr.erban.dxitcompanion.game.turn.bean.VoteBean;
 
 public class EndTurnActivity extends Activity {
@@ -33,6 +32,7 @@ public class EndTurnActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.end_turn);
 
@@ -55,7 +55,10 @@ public class EndTurnActivity extends Activity {
             List<ScoreRow> scores = new ArrayList<>();
 
             for (Player player : playersWithUpdatedScores) {
-                scores.add(ScoreRow.builder().name(player.getName()).score(String.valueOf(player.getCurrentScore())).build());
+                scores.add(ScoreRow.builder()
+                        .name(player.getName())
+                        .score(String.valueOf(player.getCurrentScore()))
+                        .build());
             }
 
             PointsTotalAdapter adapter = new PointsTotalAdapter(this, scores);
@@ -92,16 +95,24 @@ public class EndTurnActivity extends Activity {
 
         if (votes != null) {
             for (VoteBean vote : votes) {
-                if (vote.getElected().getName().equals(player.getName())) {
+                if (vote.getElected()
+                        .getName()
+                        .equals(player.getName())) {
                     votesForCard++;
                 }
-                if (vote.getVoter().getName().equals(player.getName())
-                        && vote.getElected().getName().equals(turn.getStoryTeller().getName())) {
+                if (vote.getVoter()
+                        .getName()
+                        .equals(player.getName()) && vote.getElected()
+                        .getName()
+                        .equals(turn.getStoryTeller()
+                                .getName())) {
                     hasFoundCard = true;
                 }
             }
             // if no one has voted for the storyteller card
-            if (player.getName().equals(turn.getStoryTeller().getName()) && votesForCard == 0) {
+            if (player.getName()
+                    .equals(turn.getStoryTeller()
+                            .getName()) && votesForCard == 0) {
                 turn.setNoOneFound(true);
             }
         }
@@ -110,7 +121,6 @@ public class EndTurnActivity extends Activity {
 
         Map<Integer, Integer> newScoreSheet = player.getScoreSheet();
         newScoreSheet.put(game.getCurrentTurn(), updatedScore);
-
 
         return Player.builder()
                 .color(player.getColor())
@@ -124,7 +134,9 @@ public class EndTurnActivity extends Activity {
 
         int pointsGranted = 0;
 
-        if (turn.getStoryTeller().getName().equals(player.getName())) {
+        if (turn.getStoryTeller()
+                .getName()
+                .equals(player.getName())) {
 
             if (turn.isNoOneFound() || turn.isEverybodyFound()) {
                 pointsGranted = 0;
@@ -145,6 +157,7 @@ public class EndTurnActivity extends Activity {
     }
 
     public void continueToEndOrNewTurn(View view) {
+
         if (scoreLimitReached) {
             continueToEndGame();
         } else {
@@ -153,11 +166,13 @@ public class EndTurnActivity extends Activity {
     }
 
     private void continueToEndGame() {
+
         Intent intent = new Intent(EndTurnActivity.this, MainActivity.class);
         EndTurnActivity.this.startActivity(intent);
     }
 
     private void continueToNewTurn() {
+
         Intent intent = new Intent(EndTurnActivity.this, SelectStoryTellerActivity.class);
         intent.putExtra("Game", game);
         EndTurnActivity.this.startActivity(intent);

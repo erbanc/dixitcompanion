@@ -16,12 +16,13 @@ import fr.erban.dxitcompanion.game.turn.SelectPlayerRow;
 public class PlayerSelectionAdapter extends BaseAdapter {
 
     private Context mContext;
+
     private LayoutInflater inflater;
+
     private List<SelectPlayerRow> itemsItems;
 
-
-
     public PlayerSelectionAdapter(Context context, List<SelectPlayerRow> itemsItems) {
+
         this.mContext = context;
         this.itemsItems = itemsItems;
 
@@ -29,21 +30,25 @@ public class PlayerSelectionAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
+
         return itemsItems.size();
     }
 
     @Override
     public Object getItem(int location) {
+
         return itemsItems.get(location);
     }
 
     @Override
     public long getItemId(int position) {
+
         return position;
     }
 
     @Override
     public View getView(int position, View playerSelectionView, ViewGroup parent) {
+
         ViewHolder holder;
         if (inflater == null) {
             inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -72,6 +77,7 @@ public class PlayerSelectionAdapter extends BaseAdapter {
     static class ViewHolder {
 
         TextView name;
+
         CheckBox checked;
 
     }

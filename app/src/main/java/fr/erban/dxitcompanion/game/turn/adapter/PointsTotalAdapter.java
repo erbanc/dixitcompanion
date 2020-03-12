@@ -15,12 +15,13 @@ import fr.erban.dxitcompanion.game.turn.ScoreRow;
 public class PointsTotalAdapter extends BaseAdapter {
 
     private Context mContext;
+
     private LayoutInflater inflater;
+
     private List<ScoreRow> itemsItems;
 
-
-
     public PointsTotalAdapter(Context context, List<ScoreRow> itemsItems) {
+
         this.mContext = context;
         this.itemsItems = itemsItems;
 
@@ -28,21 +29,25 @@ public class PointsTotalAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
+
         return itemsItems.size();
     }
 
     @Override
     public Object getItem(int location) {
+
         return itemsItems.get(location);
     }
 
     @Override
     public long getItemId(int position) {
+
         return position;
     }
 
     @Override
     public View getView(int position, View scoreView, ViewGroup parent) {
+
         ViewHolder holder;
         if (inflater == null) {
             inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -74,6 +79,7 @@ public class PointsTotalAdapter extends BaseAdapter {
     static class ViewHolder {
 
         TextView name;
+
         TextView score;
 
     }

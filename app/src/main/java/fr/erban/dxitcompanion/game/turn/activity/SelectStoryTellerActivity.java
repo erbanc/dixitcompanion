@@ -8,13 +8,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import fr.erban.dxitcompanion.game.player.Player;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import fr.erban.dxitcompanion.R;
 import fr.erban.dxitcompanion.game.Game;
+import fr.erban.dxitcompanion.game.player.Player;
 import fr.erban.dxitcompanion.game.turn.Turn;
 
 public class SelectStoryTellerActivity extends Activity {
@@ -25,10 +24,12 @@ public class SelectStoryTellerActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.select_storyteller);
 
-        turn = Turn.builder().build();
+        turn = Turn.builder()
+                .build();
 
         this.game = (Game) getIntent().getSerializableExtra("Game");
 
@@ -46,6 +47,7 @@ public class SelectStoryTellerActivity extends Activity {
     }
 
     private void addPlayerNames(Game game, Spinner spinner) {
+
         List<Player> players = game.getPlayers();
 
         List<String> playerNames = new ArrayList<>();
@@ -54,8 +56,8 @@ public class SelectStoryTellerActivity extends Activity {
             playerNames.add(player.getName());
         }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(SelectStoryTellerActivity.this,
-                android.R.layout.simple_spinner_item, playerNames);
+        ArrayAdapter<String> adapter =
+                new ArrayAdapter<>(SelectStoryTellerActivity.this, android.R.layout.simple_spinner_item, playerNames);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }
@@ -64,12 +66,14 @@ public class SelectStoryTellerActivity extends Activity {
 
         final Spinner spinner = findViewById(R.id.selectStorytellerDropdown);
 
-        final String selectedPlayer = spinner.getSelectedItem().toString();
+        final String selectedPlayer = spinner.getSelectedItem()
+                .toString();
 
         final List<Player> players = game.getPlayers();
 
         for (Player player : players) {
-            if (player.getName().equals(selectedPlayer)) {
+            if (player.getName()
+                    .equals(selectedPlayer)) {
                 turn.setStoryTeller(player);
             }
         }

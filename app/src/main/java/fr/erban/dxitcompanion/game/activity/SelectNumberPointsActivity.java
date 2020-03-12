@@ -16,6 +16,7 @@ public class SelectNumberPointsActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.select_points);
 
@@ -31,7 +32,8 @@ public class SelectNumberPointsActivity extends Activity {
         final Game game = (Game) getIntent().getSerializableExtra("Game");
 
         if (game != null) {
-            game.setPointsToWin(Integer.parseInt(pointsToWin.getText().toString()));
+            game.setPointsToWin(Integer.parseInt(pointsToWin.getText()
+                    .toString()));
         }
 
         Intent intent = new Intent(SelectNumberPointsActivity.this, SelectStoryTellerActivity.class);

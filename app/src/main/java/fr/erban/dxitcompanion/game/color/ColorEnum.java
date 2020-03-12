@@ -15,6 +15,7 @@ public enum ColorEnum {
     String hexa;
 
     private ColorEnum(String hexa) {
+
         this.hexa = hexa;
     }
 }

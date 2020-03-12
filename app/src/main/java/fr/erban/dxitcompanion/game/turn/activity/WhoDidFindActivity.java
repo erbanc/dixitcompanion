@@ -9,19 +9,18 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import fr.erban.dxitcompanion.game.player.Player;
-import fr.erban.dxitcompanion.game.turn.SelectPlayerRow;
-import fr.erban.dxitcompanion.game.turn.adapter.PlayerSelectionAdapter;
-import fr.erban.dxitcompanion.game.turn.bean.VotesBean;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import fr.erban.dxitcompanion.R;
 import fr.erban.dxitcompanion.game.Game;
+import fr.erban.dxitcompanion.game.player.Player;
+import fr.erban.dxitcompanion.game.turn.SelectPlayerRow;
 import fr.erban.dxitcompanion.game.turn.Turn;
+import fr.erban.dxitcompanion.game.turn.adapter.PlayerSelectionAdapter;
 import fr.erban.dxitcompanion.game.turn.bean.VoteBean;
+import fr.erban.dxitcompanion.game.turn.bean.VotesBean;
 
 public class WhoDidFindActivity extends Activity {
 
@@ -33,6 +32,7 @@ public class WhoDidFindActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.who_did_find);
 
@@ -46,8 +46,13 @@ public class WhoDidFindActivity extends Activity {
         List<Player> players = game.getPlayers();
 
         for (Player player : players) {
-            if (!player.getName().equals(turn.getStoryTeller().getName())) {
-                scores.add(SelectPlayerRow.builder().name(player.getName()).checked(false).build());
+            if (!player.getName()
+                    .equals(turn.getStoryTeller()
+                            .getName())) {
+                scores.add(SelectPlayerRow.builder()
+                        .name(player.getName())
+                        .checked(false)
+                        .build());
             }
         }
 
@@ -69,8 +74,10 @@ public class WhoDidFindActivity extends Activity {
         TextView name = (TextView) relativeLayout.getChildAt(0);
 
         if (checkBox.isChecked()) {
-            for (Player player1: game.getPlayers()) {
-                if (player1.getName().equals(name.getText().toString())) {
+            for (Player player1 : game.getPlayers()) {
+                if (player1.getName()
+                        .equals(name.getText()
+                                .toString())) {
                     playersWhoFound.add(player1);
                 }
             }
@@ -78,15 +85,20 @@ public class WhoDidFindActivity extends Activity {
             Iterator<Player> iter = playersWhoFound.iterator();
             while (iter.hasNext()) {
                 Player p = iter.next();
-                if (p.getName().equals(name.getText().toString())) iter.remove();
+                if (p.getName()
+                        .equals(name.getText()
+                                .toString())) {
+                    iter.remove();
+                }
             }
         }
     }
 
     public void continueToNumberPoints(View view) {
+
         List<VoteBean> votes = new ArrayList<>();
 
-        for (Player player: playersWhoFound) {
+        for (Player player : playersWhoFound) {
             final VoteBean vote = VoteBean.builder()
                     .elected(turn.getStoryTeller())
                     .voter(player)
@@ -98,7 +110,9 @@ public class WhoDidFindActivity extends Activity {
         Intent intent = new Intent(WhoDidFindActivity.this, SelectVotesActivity.class);
         intent.putExtra("Game", game);
         intent.putExtra("Turn", turn);
-        intent.putExtra("Votes", VotesBean.builder().votes(votes).build());
+        intent.putExtra("Votes", VotesBean.builder()
+                .votes(votes)
+                .build());
         WhoDidFindActivity.this.startActivity(intent);
     }
 }

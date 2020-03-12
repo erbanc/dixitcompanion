@@ -18,6 +18,7 @@ public class SelectPlayersActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.select_players);
     }
@@ -26,7 +27,10 @@ public class SelectPlayersActivity extends Activity {
 
         final List<Player> players = retrievePlayers();
 
-        final Game game = Game.builder().players(players).currentTurn(0).build();
+        final Game game = Game.builder()
+                .players(players)
+                .currentTurn(0)
+                .build();
 
         Intent intent = new Intent(SelectPlayersActivity.this, SelectNumberPointsActivity.class);
         intent.putExtra("Game", game);
@@ -39,6 +43,7 @@ public class SelectPlayersActivity extends Activity {
      * @return the list of the players
      */
     private List<Player> retrievePlayers() {
+
         List<Player> players = new ArrayList<>();
 
         final EditText player1 = findViewById(R.id.Player1Name);
@@ -85,9 +90,14 @@ public class SelectPlayersActivity extends Activity {
     }
 
     private void addPlayerIfNotEmpty(final EditText player, final List<Player> players) {
-        if (player.getText() != null && !player.getText().toString().trim().isEmpty()) {
+
+        if (player.getText() != null && !player.getText()
+                .toString()
+                .trim()
+                .isEmpty()) {
             players.add(Player.builder()
-                    .name(player.getText().toString())
+                    .name(player.getText()
+                            .toString())
                     .currentScore(0)
                     .scoreSheet(new HashMap<Integer, Integer>())
                     .build());

@@ -1,12 +1,13 @@
 package fr.erban.dxitcompanion.game.player;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+
 import java.io.Serializable;
 import java.util.Map;
 
 import fr.erban.dxitcompanion.game.color.ColorEnum;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
 
 @Getter
 @Builder

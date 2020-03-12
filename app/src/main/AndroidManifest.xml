@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="fr.erban.dxitcompanion">
+          package="fr.erban.dxitcompanion">
 
     <application
-        android:allowBackup="true"
-        android:icon="@mipmap/logo"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/logo_v2"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" >
+            android:allowBackup="true"
+            android:icon="@mipmap/logo"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/logo_v2"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".game.activity.SelectPlayersActivity" />
-        <activity android:name=".game.activity.SelectNumberPointsActivity" />
-        <activity android:name=".game.turn.activity.SelectStoryTellerActivity" />
-        <activity android:name=".game.turn.activity.EveryoneFoundActivity" />
-        <activity android:name=".game.turn.activity.EndTurnActivity" />
-        <activity android:name=".game.turn.activity.WhoDidFindActivity" />
-        <activity android:name=".game.turn.activity.SelectVotesActivity" />
+        <activity android:name=".game.activity.SelectPlayersActivity"/>
+        <activity android:name=".game.activity.SelectNumberPointsActivity"/>
+        <activity android:name=".game.turn.activity.SelectStoryTellerActivity"/>
+        <activity android:name=".game.turn.activity.EveryoneFoundActivity"/>
+        <activity android:name=".game.turn.activity.EndTurnActivity"/>
+        <activity android:name=".game.turn.activity.WhoDidFindActivity"/>
+        <activity android:name=".game.turn.activity.SelectVotesActivity"/>
     </application>
 
 </manifest>

@@ -1,14 +1,14 @@
 package fr.erban.dxitcompanion.game.turn;
 
-import fr.erban.dxitcompanion.game.player.Player;
-import fr.erban.dxitcompanion.game.turn.bean.VoteBean;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.List;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import fr.erban.dxitcompanion.game.player.Player;
+import fr.erban.dxitcompanion.game.turn.bean.VoteBean;
 
 @Getter
 @Setter

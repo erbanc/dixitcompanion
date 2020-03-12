@@ -1,13 +1,13 @@
 package fr.erban.dxitcompanion.game;
 
-import fr.erban.dxitcompanion.game.player.Player;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.List;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import fr.erban.dxitcompanion.game.player.Player;
 
 @Getter
 @Setter

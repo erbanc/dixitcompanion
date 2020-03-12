@@ -9,16 +9,15 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import fr.erban.dxitcompanion.R;
 import fr.erban.dxitcompanion.game.Game;
 import fr.erban.dxitcompanion.game.player.Player;
 import fr.erban.dxitcompanion.game.turn.Turn;
 import fr.erban.dxitcompanion.game.turn.bean.VoteBean;
 import fr.erban.dxitcompanion.game.turn.bean.VotesBean;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import fr.erban.dxitcompanion.R;
 
 public class SelectVotesActivity extends Activity {
 
@@ -34,6 +33,7 @@ public class SelectVotesActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.select_votes);
 
@@ -42,13 +42,17 @@ public class SelectVotesActivity extends Activity {
         this.votes = (VotesBean) getIntent().getSerializableExtra("Votes");
 
         alreadyVoted = new ArrayList<>();
-        alreadyVoted.add(turn.getStoryTeller().getName());
+        alreadyVoted.add(turn.getStoryTeller()
+                .getName());
         for (VoteBean vote : votes.getVotes()) {
-            alreadyVoted.add(vote.getVoter().getName());
+            alreadyVoted.add(vote.getVoter()
+                    .getName());
         }
 
         if (votes == null) {
-            votes = VotesBean.builder().votes(new ArrayList<VoteBean>()).build();
+            votes = VotesBean.builder()
+                    .votes(new ArrayList<VoteBean>())
+                    .build();
         }
 
         final TextView turnNumber = findViewById(R.id.turnNumber);
@@ -59,12 +63,14 @@ public class SelectVotesActivity extends Activity {
     }
 
     private void reinitActivity() {
+
         List<Player> players = game.getPlayers();
 
         for (Player player : players) {
             boolean hasVoted = false;
             for (String voted : alreadyVoted) {
-                if (player.getName().equals(voted)) {
+                if (player.getName()
+                        .equals(voted)) {
                     hasVoted = true;
                 }
             }
@@ -89,6 +95,7 @@ public class SelectVotesActivity extends Activity {
     }
 
     private void addPlayerNames(Game game) {
+
         Spinner spinner = findViewById(R.id.selectVoteDropdown);
 
         List<Player> players = game.getPlayers();
@@ -96,18 +103,21 @@ public class SelectVotesActivity extends Activity {
         List<String> playerNames = new ArrayList<>();
 
         for (Player player : players) {
-            if (!player.getName().equals(turn.getStoryTeller().getName()) && !player.getName().equals(voter.getName())) {
+            if (!player.getName()
+                    .equals(turn.getStoryTeller()
+                            .getName()) && !player.getName()
+                    .equals(voter.getName())) {
                 playerNames.add(player.getName());
             }
         }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(SelectVotesActivity.this,
-                android.R.layout.simple_spinner_item, playerNames);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(SelectVotesActivity.this, android.R.layout.simple_spinner_item, playerNames);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }
 
     public void nextPlayer(View view) {
+
         alreadyVoted.add(voter.getName());
 
         ajouterVoteEnCours();
@@ -115,25 +125,28 @@ public class SelectVotesActivity extends Activity {
         reinitActivity();
     }
 
-
     private void ajouterVoteEnCours() {
+
         final VoteBean vote = new VoteBean();
 
         final Spinner spinner = findViewById(R.id.selectVoteDropdown);
 
-        final String selectedPlayer = spinner.getSelectedItem().toString();
+        final String selectedPlayer = spinner.getSelectedItem()
+                .toString();
 
         final List<Player> players = game.getPlayers();
 
         for (Player player : players) {
-            if (player.getName().equals(selectedPlayer)) {
+            if (player.getName()
+                    .equals(selectedPlayer)) {
                 vote.setElected(player);
             }
         }
 
         vote.setVoter(voter);
 
-        votes.getVotes().add(vote);
+        votes.getVotes()
+                .add(vote);
     }
 
     public void continueToEndTurn(View view) {
