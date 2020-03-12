@@ -100,6 +100,10 @@ public class EndTurnActivity extends Activity {
                     hasFoundCard = true;
                 }
             }
+            // if no one has voted for the storyteller card
+            if (player.getName().equals(turn.getStoryTeller().getName()) && votesForCard == 0) {
+                turn.setNoOneFound(true);
+            }
         }
 
         int updatedScore = player.getCurrentScore() + getPointsForTheTurn(player, votesForCard, hasFoundCard, turn);
