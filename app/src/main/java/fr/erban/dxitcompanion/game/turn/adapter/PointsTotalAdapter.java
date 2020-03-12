@@ -49,12 +49,16 @@ public class PointsTotalAdapter extends BaseAdapter {
         }
         if (scoreView == null) {
 
-            scoreView = inflater.inflate(R.layout.score_row, parent, false);
+            if (inflater != null) {
+                scoreView = inflater.inflate(R.layout.score_row, parent, false);
+            }
             holder = new ViewHolder();
-            holder.name = (TextView) scoreView.findViewById(R.id.name);
-            holder.score = (TextView) scoreView.findViewById(R.id.score);
+            if (scoreView != null) {
+                holder.name = scoreView.findViewById(R.id.name);
+                holder.score = scoreView.findViewById(R.id.score);
 
-            scoreView.setTag(holder);
+                scoreView.setTag(holder);
+            }
 
         } else {
             holder = (ViewHolder) scoreView.getTag();
