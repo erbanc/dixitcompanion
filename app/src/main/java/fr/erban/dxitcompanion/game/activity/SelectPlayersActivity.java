@@ -1,10 +1,12 @@
 package fr.erban.dxitcompanion.game.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,6 +28,15 @@ public class SelectPlayersActivity extends Activity {
     public void continueToNumberPoints(View view) {
 
         final List<Player> players = retrievePlayers();
+
+        if (players.size() < 3) {
+            final Context context = getApplicationContext();
+            final String message = getString(R.string.notEnoughPlayers);
+            int duration = Toast.LENGTH_SHORT;
+            final Toast toast = Toast.makeText(context, message, duration);
+            toast.show();
+            return;
+        }
 
         final Game game = Game.builder()
                 .players(players)
