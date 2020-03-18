@@ -8,12 +8,11 @@
 
     <TextView
         android:id="@+id/selectStoryTellerTitle"
-        android:layout_width="293dp"
-        android:layout_height="70dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:clickable="false"
         android:gravity="center"
-        android:singleLine="true"
         android:text="@string/labelStoryTellerChoice"
         android:textColor="@android:color/black"
         android:textSize="30sp"

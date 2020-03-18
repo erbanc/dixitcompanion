@@ -13,18 +13,21 @@
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
+        android:layout_toStartOf="@+id/checked"
+        android:layout_toLeftOf="@+id/checked"
         android:textColor="#222222"
-        android:textSize="16dp" />
+        android:textSize="16sp" />
 
     <CheckBox
         android:id="@+id/checked"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="8dp"
         android:onClick="clickCheckbox"
         android:textColor="#222222"
-        android:textSize="14dp" />
+        android:textSize="14sp"
+        android:layout_alignParentEnd="true"/>
 
 </RelativeLayout>

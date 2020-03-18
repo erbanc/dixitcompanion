@@ -83,9 +83,9 @@ public class SelectVotesActivity extends Activity {
 
                 if (alreadyVoted.size() == players.size() - 1) {
                     Button nextPlayerBtn = findViewById(R.id.nextPlayerButton);
-                    nextPlayerBtn.setEnabled(false);
+                    nextPlayerBtn.setVisibility(View.INVISIBLE);
                     Button continueBtn = findViewById(R.id.selectVotesContinueBtn);
-                    continueBtn.setEnabled(true);
+                    continueBtn.setVisibility(View.VISIBLE);
                 }
 
                 addPlayerNames(game);

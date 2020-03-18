@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/selectVotesTitle"
-        android:layout_width="336dp"
-        android:layout_height="90dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:clickable="false"
         android:gravity="center"
@@ -32,12 +32,10 @@
 
     <ListView
         android:id="@+id/listViewSelectPlayer"
-        android:layout_width="384dp"
-        android:layout_height="380dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:cacheColorHint="#FFFFFF"
         android:clipToPadding="false"
-        android:dividerHeight="1dp"
-        android:paddingBottom="5dp"
         app:layout_constraintBottom_toTopOf="@+id/WhoDidNotFindContinueButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,12 +45,12 @@
     <Button
         android:id="@+id/WhoDidNotFindContinueButton"
         style="@style/Widget.MaterialComponents.Button"
-        android:layout_width="153dp"
-        android:layout_height="62dp"
-        android:layout_marginBottom="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/backgroundButtonColor"
         android:onClick="continueToNumberPoints"
         android:text="@string/btnContinue"
+        android:textSize="24sp"
         android:textColor="@color/textButtonColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
