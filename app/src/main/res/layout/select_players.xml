@@ -1,400 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                   xmlns:tools="http://schemas.android.com/tools"
-                                                   android:layout_width="match_parent"
-                                                   android:layout_height="match_parent"
-                                                   tools:context=".game.activity.SelectPlayersActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".game.activity.SelectPlayersActivity">
 
     <TextView
-            android:id="@+id/selectPlayersTitle"
-            android:layout_width="253dp"
-            android:layout_height="69dp"
-            android:layout_marginTop="32dp"
-            android:clickable="false"
-            android:gravity="center"
-            android:singleLine="true"
-            android:text="@string/labelPlayerChoice"
-            android:textColor="@android:color/black"
-            android:textSize="30sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+        android:id="@+id/selectPlayersTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:clickable="false"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="@string/labelPlayerChoice"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-            android:id="@+id/turnNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+        android:id="@+id/turnNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/SelectPlayersContinueButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectPlayersTitle">
+
+        <View
+            android:id="@+id/invisiblePlayerChoiceAdjusterLeft"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:visibility="invisible"/>
+
+
+        <LinearLayout
             android:id="@+id/linearLayoutParent"
-            android:layout_width="305dp"
-            android:layout_height="509dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_weight="3"
+            app:layout_constraintBottom_toTopOf="@+id/SelectPlayersContinueButton"
             app:layout_constraintTop_toBottomOf="@+id/selectPlayersTitle">
 
-        <LinearLayout
-                android:id="@+id/linearLayoutChildren"
-                android:layout_width="280dp"
-                android:layout_height="49dp"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/selectPlayersTitle">
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/addPlayer_label"
-                    android:textColor="@android:color/black"
-                    android:textSize="24sp"/>
+            <EditText
+                android:id="@+id/Player1Name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:drawable/editbox_background"
+                android:hint="@string/addPlayer_hint"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:maxLength="12"
+                android:textColor="@android:color/black" />
 
             <EditText
-                    android:id="@+id/Player1Name"
-                    android:layout_width="132dp"
-                    android:maxLength="12"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginLeft="30dp"
-                    android:background="@android:drawable/editbox_background"
-                    android:hint="@string/addPlayer_hint"
-                    android:importantForAutofill="no"
-                    android:inputType="text"
-                    android:textColor="@android:color/black"/>
+                android:id="@+id/Player2Name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:drawable/editbox_background"
+                android:hint="@string/addPlayer_hint"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:maxLength="12"
+                android:textColor="@android:color/black" />
+
+            <EditText
+                android:id="@+id/Player3Name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:drawable/editbox_background"
+                android:hint="@string/addPlayer_hint"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:maxLength="12"
+                android:textColor="@android:color/black" />
+
+            <EditText
+                android:id="@+id/Player4Name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:drawable/editbox_background"
+                android:hint="@string/addPlayer_hint"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:maxLength="12"
+                android:textColor="@android:color/black" />
+
+            <EditText
+                android:id="@+id/Player5Name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:drawable/editbox_background"
+                android:hint="@string/addPlayer_hint"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:maxLength="12"
+                android:textColor="@android:color/black" />
+
+            <EditText
+                android:id="@+id/Player6Name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:drawable/editbox_background"
+                android:hint="@string/addPlayer_hint"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:maxLength="12"
+                android:textColor="@android:color/black" />
+
+            <EditText
+                android:id="@+id/Player7Name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:drawable/editbox_background"
+                android:hint="@string/addPlayer_hint"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:maxLength="12"
+                android:textColor="@android:color/black" />
+
+            <EditText
+                android:id="@+id/Player8Name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:drawable/editbox_background"
+                android:hint="@string/addPlayer_hint"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:maxLength="12"
+                android:textColor="@android:color/black" />
+
+            <EditText
+                android:id="@+id/Player9Name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:drawable/editbox_background"
+                android:hint="@string/addPlayer_hint"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:maxLength="12"
+                android:textColor="@android:color/black" />
+
+            <EditText
+                android:id="@+id/Player10Name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:drawable/editbox_background"
+                android:hint="@string/addPlayer_hint"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:maxLength="12"
+                android:textColor="@android:color/black" />
 
         </LinearLayout>
 
-        <LinearLayout
-                android:id="@+id/linearLayoutChildren2"
-                android:layout_width="280dp"
-                android:layout_height="49dp"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/selectPlayersTitle">
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/addPlayer_label"
-                    android:textColor="@android:color/black"
-                    android:textSize="24sp"/>
-
-            <EditText
-                    android:id="@+id/Player2Name"
-                    android:layout_width="132dp"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="30dp"
-                    android:maxLength="12"
-                    android:layout_marginLeft="30dp"
-                    android:background="@android:drawable/editbox_background"
-                    android:hint="@string/addPlayer_hint"
-                    android:importantForAutofill="no"
-                    android:inputType="text"
-                    android:textColor="@android:color/black"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-                android:id="@+id/linearLayoutChildren3"
-                android:layout_width="280dp"
-                android:layout_height="49dp"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/selectPlayersTitle">
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/addPlayer_label"
-                    android:textColor="@android:color/black"
-                    android:textSize="24sp"/>
-
-            <EditText
-                    android:id="@+id/Player3Name"
-                    android:layout_width="132dp"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="30dp"
-                    android:maxLength="12"
-                    android:layout_marginLeft="30dp"
-                    android:background="@android:drawable/editbox_background"
-                    android:hint="@string/addPlayer_hint"
-                    android:importantForAutofill="no"
-                    android:inputType="text"
-                    android:textColor="@android:color/black"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-                android:id="@+id/linearLayoutChildren4"
-                android:layout_width="280dp"
-                android:layout_height="49dp"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/selectPlayersTitle">
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/addPlayer_label"
-                    android:textColor="@android:color/black"
-                    android:textSize="24sp"/>
-
-            <EditText
-                    android:id="@+id/Player4Name"
-                    android:layout_width="132dp"
-                    android:maxLength="12"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginLeft="30dp"
-                    android:background="@android:drawable/editbox_background"
-                    android:hint="@string/addPlayer_hint"
-                    android:importantForAutofill="no"
-                    android:inputType="text"
-                    android:textColor="@android:color/black"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-                android:id="@+id/linearLayoutChildren5"
-                android:layout_width="280dp"
-                android:layout_height="49dp"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/selectPlayersTitle">
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/addPlayer_label"
-                    android:textColor="@android:color/black"
-                    android:textSize="24sp"/>
-
-            <EditText
-                    android:id="@+id/Player5Name"
-                    android:layout_width="132dp"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="30dp"
-                    android:maxLength="12"
-                    android:layout_marginLeft="30dp"
-                    android:background="@android:drawable/editbox_background"
-                    android:hint="@string/addPlayer_hint"
-                    android:importantForAutofill="no"
-                    android:inputType="text"
-                    android:textColor="@android:color/black"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-                android:id="@+id/linearLayoutChildren6"
-                android:layout_width="280dp"
-                android:layout_height="49dp"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/selectPlayersTitle">
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/addPlayer_label"
-                    android:textColor="@android:color/black"
-                    android:textSize="24sp"/>
-
-            <EditText
-                    android:id="@+id/Player6Name"
-                    android:layout_width="132dp"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="30dp"
-                    android:maxLength="12"
-                    android:layout_marginLeft="30dp"
-                    android:background="@android:drawable/editbox_background"
-                    android:hint="@string/addPlayer_hint"
-                    android:importantForAutofill="no"
-                    android:inputType="text"
-                    android:textColor="@android:color/black"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-                android:id="@+id/linearLayoutChildren7"
-                android:layout_width="280dp"
-                android:layout_height="49dp"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/selectPlayersTitle">
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/addPlayer_label"
-                    android:textColor="@android:color/black"
-                    android:textSize="24sp"/>
-
-            <EditText
-                    android:id="@+id/Player7Name"
-                    android:layout_width="132dp"
-                    android:layout_height="48dp"
-                    android:maxLength="12"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginLeft="30dp"
-                    android:background="@android:drawable/editbox_background"
-                    android:hint="@string/addPlayer_hint"
-                    android:importantForAutofill="no"
-                    android:inputType="text"
-                    android:textColor="@android:color/black"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-                android:id="@+id/linearLayoutChildren8"
-                android:layout_width="280dp"
-                android:layout_height="49dp"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/selectPlayersTitle">
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/addPlayer_label"
-                    android:textColor="@android:color/black"
-                    android:textSize="24sp"/>
-
-            <EditText
-                    android:id="@+id/Player8Name"
-                    android:layout_width="132dp"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="30dp"
-                    android:maxLength="12"
-                    android:layout_marginLeft="30dp"
-                    android:background="@android:drawable/editbox_background"
-                    android:hint="@string/addPlayer_hint"
-                    android:importantForAutofill="no"
-                    android:inputType="text"
-                    android:textColor="@android:color/black"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-                android:id="@+id/linearLayoutChildren9"
-                android:layout_width="280dp"
-                android:layout_height="49dp"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/selectPlayersTitle">
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/addPlayer_label"
-                    android:textColor="@android:color/black"
-                    android:textSize="24sp"/>
-
-            <EditText
-                    android:id="@+id/Player9Name"
-                    android:layout_width="132dp"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginLeft="30dp"
-                    android:background="@android:drawable/editbox_background"
-                    android:hint="@string/addPlayer_hint"
-                    android:maxLength="12"
-                    android:importantForAutofill="no"
-                    android:inputType="text"
-                    android:textColor="@android:color/black"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-                android:id="@+id/linearLayoutChildren10"
-                android:layout_width="280dp"
-                android:layout_height="49dp"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/selectPlayersTitle">
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/addPlayer_label"
-                    android:textColor="@android:color/black"
-                    android:textSize="24sp"/>
-
-            <EditText
-                    android:id="@+id/Player10Name"
-                    android:layout_width="132dp"
-                    android:layout_height="48dp"
-                    android:maxLength="12"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginLeft="30dp"
-                    android:background="@android:drawable/editbox_background"
-                    android:hint="@string/addPlayer_hint"
-                    android:importantForAutofill="no"
-                    android:inputType="text"
-                    android:textColor="@android:color/black"/>
-
-        </LinearLayout>
+        <View
+            android:id="@+id/invisiblePlayerChoiceAdjusterRight"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:visibility="invisible"/>
 
     </LinearLayout>
 
     <Button
-            android:id="@+id/SelectPlayersContinueButton"
-            style="@style/Widget.MaterialComponents.Button"
-            android:layout_width="153dp"
-            android:layout_height="62dp"
-            android:background="@color/colorAccent"
-            android:onClick="continueToNumberPoints"
-            android:text="@string/btnContinue"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayoutParent"/>
+        android:id="@+id/SelectPlayersContinueButton"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/backgroundButtonColor"
+        android:onClick="continueToNumberPoints"
+        android:text="@string/btnContinue"
+        android:textColor="@color/textButtonColor"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
