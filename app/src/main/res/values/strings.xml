@@ -23,4 +23,5 @@
     <string name="nextPlayer">Joueur suivant</string>
     <string name="EndGameButtonText">Fin de la partie</string>
     <string name="notEnoughPlayers">Il faut au moins être trois pour jouer à Dixit !</string>
+    <string name="wonTheGame"> a gagné la partie !</string>
 </resources>

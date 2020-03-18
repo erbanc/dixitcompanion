@@ -8,6 +8,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -48,6 +50,12 @@ public class EndTurnActivity extends Activity {
                 playersWithUpdatedScores.add(playerWithUpdatedScore);
             }
 
+            // Sort by score
+            final Comparator<Player> playerComparatorByScore =
+                    (Player player1, Player player2) ->
+                            Integer.compare(player2.getCurrentScore(), player1.getCurrentScore());
+            Collections.sort(playersWithUpdatedScores, playerComparatorByScore);
+
             game.setPlayers(playersWithUpdatedScores);
 
             final ListView listView = findViewById(R.id.listViewEndTurn);
@@ -79,7 +87,7 @@ public class EndTurnActivity extends Activity {
 
             if (scoreLimitReached) {
                 final TextView textPlayerWins = findViewById(R.id.endTurn);
-                final String playerHasWon = winner.getName() + " a remporté la partie !";
+                final String playerHasWon = winner.getName() + getString(R.string.wonTheGame);
                 textPlayerWins.setText(playerHasWon);
                 final TextView continueButton = findViewById(R.id.EndTurnContinueButton);
                 continueButton.setText(R.string.EndGameButtonText);
