@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/endTurn"
-        android:layout_width="287dp"
-        android:layout_height="158dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:gravity="center"
         android:text="@string/endTurnTitle"
@@ -31,12 +31,11 @@
 
     <ListView
         android:id="@+id/listViewEndTurn"
-        android:layout_width="384dp"
-        android:layout_height="380dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:cacheColorHint="#FFFFFF"
         android:clipToPadding="false"
         android:dividerHeight="1dp"
-        android:paddingBottom="5dp"
         app:layout_constraintBottom_toTopOf="@+id/EndTurnContinueButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
