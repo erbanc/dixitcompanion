@@ -1,2 +1,2 @@
-include ':app'
+include ':dixit-companion'
 rootProject.name='DxitCompanion'
