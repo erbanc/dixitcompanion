@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="BtnNewGame">New game</string>
+    <string name="labelPlayerChoice">Choose the players</string>
+    <string name="addPlayer_hint">Name</string>
+    <string name="btnContinue">Continue</string>
+    <string name="pointsToWinTitle">Number of points to win</string>
+    <string name="labelStoryTellerChoice">Who is the Storyteller ?</string>
+    <string name="everyoneFoundTitle">Did everyone find the right card ?</string>
+    <string name="everyoneFoundYesLabel">YES</string>
+    <string name="everyoneFoundNoLabel">NO</string>
+    <string name="endTurnTitle">End of turn !</string>
+    <string name="whoDidFindLabel">Who found the right card ?</string>
+    <string name="turnNumberPrefix">Turn n°</string>
+    <string name="nextPlayer">Next player</string>
+    <string name="EndGameButtonText">End of the game</string>
+    <string name="notEnoughPlayers">You need at least 3 players to play Dixit !</string>
+    <string name="wonTheGame">" won the game !"</string>
+    <string name="duplicatedName">Please name players differently :)</string>
+</resources>
