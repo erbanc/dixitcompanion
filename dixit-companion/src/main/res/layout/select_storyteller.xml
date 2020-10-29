@@ -44,8 +44,8 @@
     <Button
         android:id="@+id/SelectPlayersContinueButton"
         style="@style/Widget.MaterialComponents.Button"
-        android:layout_width="153dp"
-        android:layout_height="62dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:hapticFeedbackEnabled="true"
         android:background="@color/backgroundButtonColor"
