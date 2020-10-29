@@ -14,8 +14,9 @@
         android:clickable="false"
         android:gravity="center"
         android:text="@string/labelStoryTellerChoice"
+        android:fontFamily="@font/write_me_a_song"
         android:textColor="@color/backgroundTextColor"
-        android:textSize="30sp"
+        android:textSize="60sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -50,8 +51,9 @@
         android:background="@color/backgroundButtonColor"
         android:onClick="continueToTurnResults"
         android:text="@string/btnContinue"
+        android:fontFamily="@font/write_me_a_song"
         android:textColor="@color/textButtonColor"
-        android:textSize="18sp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".game.activity.SelectPlayersActivity">
+    tools:context=".game.turn.activity.WhoDidFindActivity">
 
     <TextView
         android:id="@+id/selectVotesTitle"
@@ -15,7 +15,8 @@
         android:gravity="center"
         android:text="@string/whoDidFindLabel"
         android:textColor="@color/backgroundTextColor"
-        android:textSize="30sp"
+        android:fontFamily="@font/write_me_a_song"
+        android:textSize="60sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -51,7 +52,8 @@
         android:background="@color/backgroundButtonColor"
         android:onClick="continueToSelectVotes"
         android:text="@string/btnContinue"
-        android:textSize="24sp"
+        android:fontFamily="@font/write_me_a_song"
+        android:textSize="30sp"
         android:textColor="@color/textButtonColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

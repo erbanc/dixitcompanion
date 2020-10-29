@@ -16,7 +16,8 @@
         android:singleLine="true"
         android:textColor="@color/backgroundTextColor"
         android:text="@string/labelPlayerChoice"
-        android:textSize="30sp"
+        android:textSize="50sp"
+        android:fontFamily="@font/write_me_a_song"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -188,7 +189,8 @@
         android:onClick="continueToNumberPoints"
         android:text="@string/btnContinue"
         android:textColor="@color/textButtonColor"
-        android:textSize="24sp"
+        android:fontFamily="@font/write_me_a_song"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

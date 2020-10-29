@@ -2,6 +2,7 @@ package fr.erban.dxitcompanion.game.turn.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -81,6 +82,9 @@ public class SelectVotesActivity extends Activity {
                 TextView title = findViewById(R.id.selectVotesTitle);
                 String text = "Pour qui a voté " + player.getName() + " ?";
                 title.setText(text);
+                Typeface typeface = getResources().getFont(R.font.write_me_a_song);
+                title.setTypeface(typeface);
+                title.setTextSize(60);
 
                 if (alreadyVoted.size() == players.size() - 1) {
                     Button nextPlayerBtn = findViewById(R.id.nextPlayerButton);

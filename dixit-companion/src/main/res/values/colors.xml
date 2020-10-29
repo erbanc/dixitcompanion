@@ -4,4 +4,6 @@
     <color name="backgroundButtonColor">#3E3844</color>
     <color name="backgroundScreenColor">#F6B131</color>
     <color name="backgroundTextColor">#3E3844</color>
+    <color name="YesButtonColor">#5BAD59</color>
+    <color name="NoButtonColor">#AD1414</color>
 </resources>
