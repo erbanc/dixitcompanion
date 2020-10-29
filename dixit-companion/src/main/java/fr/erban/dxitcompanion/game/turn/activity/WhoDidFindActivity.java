@@ -41,7 +41,7 @@ public class WhoDidFindActivity extends Activity {
 
         final ListView listView = findViewById(R.id.listViewSelectPlayer);
 
-        List<SelectPlayerRow> scores = new ArrayList<>();
+        List<SelectPlayerRow> playerRows = new ArrayList<>();
 
         List<Player> players = game.getPlayers();
 
@@ -49,14 +49,14 @@ public class WhoDidFindActivity extends Activity {
             if (!player.getName()
                     .equals(turn.getStoryTeller()
                             .getName())) {
-                scores.add(SelectPlayerRow.builder()
+                playerRows.add(SelectPlayerRow.builder()
                         .name(player.getName())
                         .checked(false)
                         .build());
             }
         }
 
-        PlayerSelectionAdapter adapter = new PlayerSelectionAdapter(this, scores);
+        PlayerSelectionAdapter adapter = new PlayerSelectionAdapter(this, playerRows);
         listView.setAdapter(adapter);
 
         final TextView turnNumber = findViewById(R.id.turnNumber);
@@ -94,7 +94,7 @@ public class WhoDidFindActivity extends Activity {
         }
     }
 
-    public void continueToNumberPoints(View view) {
+    public void continueToSelectVotes(View view) {
 
         List<VoteBean> votes = new ArrayList<>();
 
@@ -105,6 +105,11 @@ public class WhoDidFindActivity extends Activity {
                     .build();
 
             votes.add(vote);
+        }
+
+        if (playersWhoFound.isEmpty()) {
+            // If no one found the card
+            turn.setNoOneFound(true);
         }
 
         Intent intent = new Intent(WhoDidFindActivity.this, SelectVotesActivity.class);

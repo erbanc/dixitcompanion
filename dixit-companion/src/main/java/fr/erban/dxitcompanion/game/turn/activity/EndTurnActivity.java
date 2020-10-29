@@ -130,12 +130,6 @@ public class EndTurnActivity extends Activity {
                     hasFoundCard = true;
                 }
             }
-            // if no one has voted for the storyteller card
-            if (player.getName()
-                    .equals(turn.getStoryTeller()
-                            .getName()) && votesForCard == 0) {
-                turn.setNoOneFound(true);
-            }
         }
 
         int updatedScore = player.getCurrentScore() + getPointsForTheTurn(player, votesForCard, hasFoundCard, turn);
@@ -159,14 +153,18 @@ public class EndTurnActivity extends Activity {
                 .equals(player.getName())) {
 
             if (turn.isNoOneFound() || turn.isEverybodyFound()) {
+                // If no one or every one found, the storyteller has no points
                 pointsGranted = 0;
             } else {
+                // else, he receives 3 points
                 pointsGranted = 3;
             }
         } else {
             if (turn.isNoOneFound() || turn.isEverybodyFound()) {
+                // If no one found or everybody found, the player receives 2 points
                 pointsGranted += 2;
             } else if (hasFoundCard) {
+                // else, he receives 3 if he found the card
                 pointsGranted += 3;
             }
 
