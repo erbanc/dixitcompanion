@@ -6,7 +6,7 @@
     <string name="btnContinue">Continuer</string>
     <string name="pointsToWinTitle">Nombre de points pour gagner</string>
     <string name="PointsToWinDefaultValue" translatable="false">30</string>
-    <string name="HomescreenTitle" translatable="false">Dixit Companion</string>
+    <string name="HomescreenTitle" translatable="false">Dixit \n Companion</string>
     <string name="labelStoryTellerChoice">Qui est le conteur ?</string>
     <string name="everyoneFoundTitle">Tout le monde a trouvé la bonne carte ?</string>
     <string name="everyoneFoundYesLabel">OUI</string>
