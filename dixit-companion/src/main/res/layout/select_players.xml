@@ -181,6 +181,7 @@
     <Button
         android:id="@+id/SelectPlayersContinueButton"
         style="@style/Widget.MaterialComponents.Button"
+        android:hapticFeedbackEnabled="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/backgroundButtonColor"

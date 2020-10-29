@@ -47,6 +47,7 @@
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hapticFeedbackEnabled="true"
         android:background="@color/backgroundButtonColor"
         android:onClick="continueToSelectVotes"
         android:text="@string/btnContinue"

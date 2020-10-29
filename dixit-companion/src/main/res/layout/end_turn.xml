@@ -43,6 +43,7 @@
 
     <Button
         android:id="@+id/EndTurnContinueButton"
+        android:hapticFeedbackEnabled="true"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="153dp"
         android:layout_height="62dp"
