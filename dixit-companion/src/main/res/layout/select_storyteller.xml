@@ -7,6 +7,17 @@
     tools:context=".game.turn.activity.SelectStoryTellerActivity">
 
     <TextView
+            android:id="@+id/turnNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/backgroundTextColor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/selectStoryTellerTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,25 +32,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/turnNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:textColor="@color/backgroundTextColor"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constrainedWidth="true"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintBottom_toTopOf="@+id/SelectPlayersContinueButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/selectStoryTellerTitle"
+            app:layout_constraintStart_toStartOf="parent">
 
-    <Spinner
-        android:id="@+id/selectStorytellerDropdown"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/SelectPlayersContinueButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/selectStoryTellerTitle" />
+        <RadioGroup
+                android:id="@+id/radioGroupChooseStoryteller"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+        </RadioGroup>
+    </ScrollView>
 
     <Button
         android:id="@+id/SelectPlayersContinueButton"

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.core.content.res.ResourcesCompat;
 import fr.erban.dxitcompanion.R;
 import fr.erban.dxitcompanion.game.Game;
 import fr.erban.dxitcompanion.game.player.Player;
@@ -82,7 +83,7 @@ public class SelectVotesActivity extends Activity {
                 TextView title = findViewById(R.id.selectVotesTitle);
                 String text = "Pour qui a voté " + player.getName() + " ?";
                 title.setText(text);
-                Typeface typeface = getResources().getFont(R.font.write_me_a_song);
+                final Typeface typeface = ResourcesCompat.getFont(this, R.font.write_me_a_song);
                 title.setTypeface(typeface);
                 title.setTextSize(60);
 
