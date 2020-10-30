@@ -96,6 +96,14 @@ public class WhoDidFindActivity extends Activity {
 
     public void continueToSelectVotes(View view) {
 
+        if (playersWhoFound.size() == game.getPlayers().size() -1) {
+            continueToEndTurn();
+        } else {
+            continueToSelectVotes();
+        }
+    }
+
+    private void continueToSelectVotes() {
         List<VoteBean> votes = new ArrayList<>();
 
         for (Player player : playersWhoFound) {
@@ -118,6 +126,14 @@ public class WhoDidFindActivity extends Activity {
         intent.putExtra("Votes", VotesBean.builder()
                 .votes(votes)
                 .build());
+        WhoDidFindActivity.this.startActivity(intent);
+    }
+
+    private void continueToEndTurn() {
+        turn.setEverybodyFound(true);
+        Intent intent = new Intent(WhoDidFindActivity.this, EndTurnActivity.class);
+        intent.putExtra("Game", game);
+        intent.putExtra("Turn", turn);
         WhoDidFindActivity.this.startActivity(intent);
     }
 }

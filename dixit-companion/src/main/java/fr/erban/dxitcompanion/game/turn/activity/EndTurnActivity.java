@@ -20,10 +20,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import fr.erban.dxitcompanion.MainActivity;
 import fr.erban.dxitcompanion.R;
 import fr.erban.dxitcompanion.db.CollectionsEnum;
 import fr.erban.dxitcompanion.game.Game;
+import fr.erban.dxitcompanion.game.activity.ScoresResultActivity;
 import fr.erban.dxitcompanion.game.player.Player;
 import fr.erban.dxitcompanion.game.player.TurnScore;
 import fr.erban.dxitcompanion.game.turn.ScoreRow;
@@ -102,8 +102,6 @@ public class EndTurnActivity extends Activity {
                 final TextView textPlayerWins = findViewById(R.id.endTurn);
                 final String playerHasWon = winner.getName() + getString(R.string.wonTheGame);
                 textPlayerWins.setText(playerHasWon);
-                final TextView continueButton = findViewById(R.id.EndTurnContinueButton);
-                continueButton.setText(R.string.EndGameButtonText);
             }
         }
     }
@@ -187,7 +185,8 @@ public class EndTurnActivity extends Activity {
 
         updateGame(true);
 
-        Intent intent = new Intent(EndTurnActivity.this, MainActivity.class);
+        Intent intent = new Intent(EndTurnActivity.this, ScoresResultActivity.class);
+        intent.putExtra("Game", game);
         EndTurnActivity.this.startActivity(intent);
     }
 

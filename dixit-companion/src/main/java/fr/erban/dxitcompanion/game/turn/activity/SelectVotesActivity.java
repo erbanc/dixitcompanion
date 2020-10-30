@@ -110,9 +110,9 @@ public class SelectVotesActivity extends Activity {
                 }
             }
         }
+        radioGroup.clearCheck();
 
-        for (int i = 0, playersSize = players.size(); i < playersSize; i++) {
-                Player player = players.get(i);
+        for (Player player : players) {
             if (!player.getName()
                     .equals(turn.getStoryTeller()
                             .getName()) && !player.getName()
@@ -124,7 +124,7 @@ public class SelectVotesActivity extends Activity {
                 radioButton.setTypeface(font);
                 radioButton.setTextColor(R.color.backgroundTextColor);
                 radioGroup.addView(radioButton);
-                if (i == 0) {
+                if (radioGroup.getCheckedRadioButtonId() == -1) {
                     radioButton.setChecked(true);
                 }
             }

@@ -20,6 +20,7 @@
         </activity>
         <activity android:name=".game.activity.SelectPlayersActivity"/>
         <activity android:name=".game.activity.SelectNumberPointsActivity"/>
+        <activity android:name=".game.activity.ScoresResultActivity"/>
         <activity android:name=".game.turn.activity.SelectStoryTellerActivity"/>
         <activity android:name=".game.turn.activity.EveryoneFoundActivity"/>
         <activity android:name=".game.turn.activity.EndTurnActivity"/>
