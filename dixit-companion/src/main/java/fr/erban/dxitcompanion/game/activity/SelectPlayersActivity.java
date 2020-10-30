@@ -96,7 +96,7 @@ public class SelectPlayersActivity extends Activity {
         }
         final ChipGroup chipGroupPlayers = findViewById(R.id.addedPlayers);
 
-        chip.setText(playerName.getText().toString());
+        chip.setText(playerName.getText().toString().trim());
         chip.setCloseIconVisible(true);
         chip.setTextAppearanceResource(R.style.chipText);
         chip.setCheckable(false);

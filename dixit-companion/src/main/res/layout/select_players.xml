@@ -52,6 +52,7 @@
                     android:id="@+id/playerName"
                     android:gravity="start"
                     android:textSize="20sp"
+                    android:maxLength="15"
                     android:maxLines="1"
                     android:importantForAutofill="no"
                     android:inputType="textPersonName"/>
