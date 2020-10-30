@@ -5,10 +5,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.Spinner;
-import android.widget.TextView;
+import android.widget.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -102,24 +99,36 @@ public class SelectVotesActivity extends Activity {
 
     private void addPlayerNames(Game game) {
 
-        Spinner spinner = findViewById(R.id.selectVoteDropdown);
+        final List<Player> players = game.getPlayers();
+        final RadioGroup radioGroup = findViewById(R.id.radioGroupSelectVote);
+        int count = radioGroup.getChildCount();
+        if(count>0) {
+            for (int i=count-1;i>=0;i--) {
+                View o = radioGroup.getChildAt(i);
+                if (o instanceof RadioButton) {
+                    radioGroup.removeViewAt(i);
+                }
+            }
+        }
 
-        List<Player> players = game.getPlayers();
-
-        List<String> playerNames = new ArrayList<>();
-
-        for (Player player : players) {
+        for (int i = 0, playersSize = players.size(); i < playersSize; i++) {
+                Player player = players.get(i);
             if (!player.getName()
                     .equals(turn.getStoryTeller()
                             .getName()) && !player.getName()
                     .equals(voter.getName())) {
-                playerNames.add(player.getName());
+                RadioButton radioButton = new RadioButton(this);
+                radioButton.setText(player.getName());
+                radioButton.setTextSize(50);
+                final Typeface font = ResourcesCompat.getFont(this, R.font.write_me_a_song);
+                radioButton.setTypeface(font);
+                radioButton.setTextColor(R.color.backgroundTextColor);
+                radioGroup.addView(radioButton);
+                if (i == 0) {
+                    radioButton.setChecked(true);
+                }
             }
         }
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(SelectVotesActivity.this, android.R.layout.simple_spinner_item, playerNames);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
     }
 
     public void nextPlayer(View view) {
@@ -135,10 +144,13 @@ public class SelectVotesActivity extends Activity {
 
         final VoteBean vote = new VoteBean();
 
-        final Spinner spinner = findViewById(R.id.selectVoteDropdown);
+        final RadioGroup radioGroup = findViewById(R.id.radioGroupSelectVote);
 
-        final String selectedPlayer = spinner.getSelectedItem()
-                .toString();
+        final int selectedPlayerId = radioGroup.getCheckedRadioButtonId();
+        final View rb = radioGroup.findViewById(selectedPlayerId);
+        int idx = radioGroup.indexOfChild(rb);
+        final RadioButton radioButton = (RadioButton) radioGroup.getChildAt(idx);
+        final String selectedPlayer = radioButton.getText().toString();
 
         final List<Player> players = game.getPlayers();
 
