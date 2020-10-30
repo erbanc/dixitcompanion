@@ -1,198 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".game.activity.SelectPlayersActivity">
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   tools:context=".game.activity.SelectPlayersActivity"
+                                                   android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/selectPlayersTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:clickable="false"
-        android:gravity="center"
-        android:singleLine="true"
-        android:textColor="@color/backgroundTextColor"
-        android:text="@string/labelPlayerChoice"
-        android:textSize="50sp"
-        android:fontFamily="@font/write_me_a_song"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/turnNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/SelectPlayersContinueButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/selectPlayersTitle">
-
-        <View
-            android:id="@+id/invisiblePlayerChoiceAdjusterLeft"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
-            android:visibility="invisible"/>
-
-
-        <LinearLayout
-            android:id="@+id/linearLayoutParent"
-            android:layout_width="match_parent"
+            android:id="@+id/selectPlayersTitle"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:layout_weight="3"
-            app:layout_constraintBottom_toTopOf="@+id/SelectPlayersContinueButton"
-            app:layout_constraintTop_toBottomOf="@+id/selectPlayersTitle">
+            android:layout_marginTop="32dp"
+            android:clickable="false"
+            android:gravity="center"
+            android:textColor="@color/backgroundTextColor"
+            android:text="@string/labelPlayerChoice"
+            android:textSize="60sp"
+            android:fontFamily="@font/write_me_a_song"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-            <EditText
-                android:id="@+id/Player1Name"
+    <RelativeLayout android:layout_width="fill_parent"
+                    android:layout_marginTop="50dp"
+                    android:id="@+id/relativeLayout"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toTopOf="@+id/addedPlayers"
+                    app:layout_constraintTop_toBottomOf="@+id/selectPlayersTitle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="1.0">
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:drawable/editbox_background"
-                android:hint="@string/addPlayer_hint"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:maxLength="12"
-                android:textColor="@android:color/black" />
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/addPlayerButton"
+                android:layout_marginLeft="50dp"
+                app:boxBackgroundMode="filled"
+                app:boxBackgroundColor="@color/textButtonColor"
+                app:hintTextColor="@color/backgroundTextColor"
+                app:hintAnimationEnabled="true"
+                android:layout_marginStart="50dp"
+                android:enabled="true"
+                android:layout_toStartOf="@+id/addPlayerButton"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
 
-            <EditText
-                android:id="@+id/Player2Name"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:drawable/editbox_background"
-                android:hint="@string/addPlayer_hint"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:maxLength="12"
-                android:textColor="@android:color/black" />
+        <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:hint="@string/playerName"
+                    android:layout_height="match_parent"
+                    android:id="@+id/playerName"
+                    android:gravity="start"
+                    android:textSize="20sp"
+                    android:maxLines="1"
+                    android:importantForAutofill="no"
+                    android:inputType="textPersonName"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/small_round_button"
+                android:layout_marginRight="50dp"
+                android:hapticFeedbackEnabled="true"
+                android:textColor="@color/textButtonColor"
+                android:id="@+id/addPlayerButton"
+                android:text="@string/addPlayerButton"
+                android:onClick="onAddPlayer"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="50dp">
+        </Button>
+    </RelativeLayout>
 
-            <EditText
-                android:id="@+id/Player3Name"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:drawable/editbox_background"
-                android:hint="@string/addPlayer_hint"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:maxLength="12"
-                android:textColor="@android:color/black" />
-
-            <EditText
-                android:id="@+id/Player4Name"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:drawable/editbox_background"
-                android:hint="@string/addPlayer_hint"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:maxLength="12"
-                android:textColor="@android:color/black" />
-
-            <EditText
-                android:id="@+id/Player5Name"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:drawable/editbox_background"
-                android:hint="@string/addPlayer_hint"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:maxLength="12"
-                android:textColor="@android:color/black" />
-
-            <EditText
-                android:id="@+id/Player6Name"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:drawable/editbox_background"
-                android:hint="@string/addPlayer_hint"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:maxLength="12"
-                android:textColor="@android:color/black" />
-
-            <EditText
-                android:id="@+id/Player7Name"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:drawable/editbox_background"
-                android:hint="@string/addPlayer_hint"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:maxLength="12"
-                android:textColor="@android:color/black" />
-
-            <EditText
-                android:id="@+id/Player8Name"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:drawable/editbox_background"
-                android:hint="@string/addPlayer_hint"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:maxLength="12"
-                android:textColor="@android:color/black" />
-
-            <EditText
-                android:id="@+id/Player9Name"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:drawable/editbox_background"
-                android:hint="@string/addPlayer_hint"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:maxLength="12"
-                android:textColor="@android:color/black" />
-
-            <EditText
-                android:id="@+id/Player10Name"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:drawable/editbox_background"
-                android:hint="@string/addPlayer_hint"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:maxLength="12"
-                android:textColor="@android:color/black" />
-
-        </LinearLayout>
-
-        <View
-            android:id="@+id/invisiblePlayerChoiceAdjusterRight"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
-            android:visibility="invisible"/>
-
-    </LinearLayout>
+    <com.google.android.material.chip.ChipGroup
+            android:id="@+id/addedPlayers"
+            android:layout_width="wrap_content"
+            android:animateLayoutChanges="true"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/relativeLayout">
+    </com.google.android.material.chip.ChipGroup>
 
     <Button
-        android:id="@+id/SelectPlayersContinueButton"
-        style="@style/Widget.MaterialComponents.Button"
-        android:hapticFeedbackEnabled="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/backgroundButtonColor"
-        android:onClick="continueToNumberPoints"
-        android:text="@string/btnContinue"
-        android:textColor="@color/textButtonColor"
-        android:fontFamily="@font/write_me_a_song"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+            android:id="@+id/WhoDidNotFindContinueButton"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hapticFeedbackEnabled="true"
+            android:background="@color/backgroundButtonColor"
+            android:onClick="continueToNumberPoints"
+            android:text="@string/btnContinue"
+            android:fontFamily="@font/write_me_a_song"
+            android:textSize="30sp"
+            android:textColor="@color/textButtonColor"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

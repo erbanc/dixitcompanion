@@ -17,4 +17,7 @@
     <string name="notEnoughPlayers">You need at least 3 players to play Dixit !</string>
     <string name="wonTheGame">" won the game !"</string>
     <string name="duplicatedName">Please name players differently :)</string>
+    <string name="plus">+</string>
+    <string name="playerName">Player Name</string>
+    <string name="addPlayerButton">Add</string>
 </resources>

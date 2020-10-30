@@ -19,4 +19,9 @@
     <string name="notEnoughPlayers">Il faut au moins être trois pour jouer à Dixit !</string>
     <string name="wonTheGame"> a gagné la partie !</string>
     <string name="duplicatedName">Veuiller donner des noms différents aux joueurs :)</string>
+    <string name="plus">+</string>
+    <string name="playerName">Nom du joueur</string>
+    <string name="addPlayerButton">Ajouter</string>
+    <string name="emptyPlayer">Le nom ne peut être vide</string>
+    <string name="playerAlreadyExists">le joueur existe déjà</string>
 </resources>
