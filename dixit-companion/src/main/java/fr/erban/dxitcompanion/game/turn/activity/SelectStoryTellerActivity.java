@@ -1,25 +1,28 @@
 package fr.erban.dxitcompanion.game.turn.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.*;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import java.util.List;
 
-import androidx.core.content.res.ResourcesCompat;
 import fr.erban.dxitcompanion.R;
-import fr.erban.dxitcompanion.game.Game;
-import fr.erban.dxitcompanion.game.player.Player;
+import fr.erban.dxitcompanion.game.GameBean;
+import fr.erban.dxitcompanion.game.player.PlayerBean;
 import fr.erban.dxitcompanion.game.turn.Turn;
 
-public class SelectStoryTellerActivity extends Activity {
+public class SelectStoryTellerActivity extends AppCompatActivity {
 
     private Turn turn;
 
-    private Game game;
+    private GameBean gameBean;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,34 +33,34 @@ public class SelectStoryTellerActivity extends Activity {
         turn = Turn.builder()
                 .build();
 
-        this.game = (Game) getIntent().getSerializableExtra("Game");
+        this.gameBean = (GameBean) getIntent().getSerializableExtra("Game");
 
         final RadioGroup radioGroup = findViewById(R.id.radioGroupChooseStoryteller);
 
-        if (game != null) {
-            game.setCurrentTurn(game.getCurrentTurn() + 1);
-            addPlayerNames(game, radioGroup);
+        if (gameBean != null) {
+            gameBean.setCurrentTurn(gameBean.getCurrentTurn() + 1);
+            addPlayerNames(gameBean, radioGroup);
         }
 
         final TextView turnNumber = findViewById(R.id.turnNumber);
-        final String turnNumberComplete = getString(R.string.turnNumberPrefix) + game.getCurrentTurn();
+        final String turnNumberComplete = getString(R.string.turnNumberPrefix) + gameBean.getCurrentTurn();
         turnNumber.setText(turnNumberComplete);
 
     }
 
-    private void addPlayerNames(Game game, RadioGroup radioGroup) {
+    private void addPlayerNames(GameBean gameBean, RadioGroup radioGroup) {
 
-        final List<Player> players = game.getPlayers();
+        final List<PlayerBean> players = gameBean.getPlayers();
 
         for (int i = 0, playersSize = players.size(); i < playersSize; i++) {
-            Player player = players.get(i);
+            PlayerBean player = players.get(i);
             RadioButton radioButton = new RadioButton(this);
             radioButton.setText(player.getName());
             radioButton.setVisibility(View.VISIBLE);
             radioButton.setTextSize(50);
             final Typeface font = ResourcesCompat.getFont(this, R.font.write_me_a_song);
             radioButton.setTypeface(font);
-            radioButton.setTextColor(R.color.backgroundTextColor);
+            radioButton.setTextColor(getResources().getColor(R.color.backgroundTextColor));
 
             radioGroup.addView(radioButton);
 
@@ -77,9 +80,9 @@ public class SelectStoryTellerActivity extends Activity {
         final RadioButton radioButton = (RadioButton) radioGroup.getChildAt(idx);
         final String storyTellerName = radioButton.getText().toString();
 
-        final List<Player> players = game.getPlayers();
+        final List<PlayerBean> players = gameBean.getPlayers();
 
-        for (Player player : players) {
+        for (PlayerBean player : players) {
             if (player.getName()
                     .equals(storyTellerName)) {
                 turn.setStoryTeller(player);
@@ -87,7 +90,7 @@ public class SelectStoryTellerActivity extends Activity {
         }
 
         Intent intent = new Intent(SelectStoryTellerActivity.this, EveryoneFoundActivity.class);
-        intent.putExtra("Game", game);
+        intent.putExtra("Game", gameBean);
         intent.putExtra("Turn", turn);
         SelectStoryTellerActivity.this.startActivity(intent);
     }

@@ -1,32 +1,36 @@
 package fr.erban.dxitcompanion.game.turn.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.*;
+import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.core.content.res.ResourcesCompat;
 import fr.erban.dxitcompanion.R;
-import fr.erban.dxitcompanion.game.Game;
-import fr.erban.dxitcompanion.game.player.Player;
+import fr.erban.dxitcompanion.game.GameBean;
+import fr.erban.dxitcompanion.game.player.PlayerBean;
 import fr.erban.dxitcompanion.game.turn.Turn;
 import fr.erban.dxitcompanion.game.turn.bean.VoteBean;
 import fr.erban.dxitcompanion.game.turn.bean.VotesBean;
 
-public class SelectVotesActivity extends Activity {
+public class SelectVotesActivity extends AppCompatActivity {
 
     private Turn turn;
 
-    private Game game;
+    private GameBean gameBean;
 
     private VotesBean votes;
 
-    private Player voter;
+    private PlayerBean voter;
 
     private List<String> alreadyVoted;
 
@@ -37,7 +41,7 @@ public class SelectVotesActivity extends Activity {
         setContentView(R.layout.select_votes);
 
         this.turn = (Turn) getIntent().getSerializableExtra("Turn");
-        this.game = (Game) getIntent().getSerializableExtra("Game");
+        this.gameBean = (GameBean) getIntent().getSerializableExtra("Game");
         this.votes = (VotesBean) getIntent().getSerializableExtra("Votes");
 
         alreadyVoted = new ArrayList<>();
@@ -55,7 +59,7 @@ public class SelectVotesActivity extends Activity {
         }
 
         final TextView turnNumber = findViewById(R.id.turnNumber);
-        final String turnNumberComplete = getString(R.string.turnNumberPrefix) + game.getCurrentTurn();
+        final String turnNumberComplete = getString(R.string.turnNumberPrefix) + gameBean.getCurrentTurn();
         turnNumber.setText(turnNumberComplete);
 
         reinitActivity();
@@ -63,9 +67,9 @@ public class SelectVotesActivity extends Activity {
 
     private void reinitActivity() {
 
-        List<Player> players = game.getPlayers();
+        List<PlayerBean> players = gameBean.getPlayers();
 
-        for (Player player : players) {
+        for (PlayerBean player : players) {
             boolean hasVoted = false;
             for (String voted : alreadyVoted) {
                 if (player.getName()
@@ -91,19 +95,19 @@ public class SelectVotesActivity extends Activity {
                     continueBtn.setVisibility(View.VISIBLE);
                 }
 
-                addPlayerNames(game);
+                addPlayerNames(gameBean);
                 return;
             }
         }
     }
 
-    private void addPlayerNames(Game game) {
+    private void addPlayerNames(GameBean gameBean) {
 
-        final List<Player> players = game.getPlayers();
+        final List<PlayerBean> players = gameBean.getPlayers();
         final RadioGroup radioGroup = findViewById(R.id.radioGroupSelectVote);
         int count = radioGroup.getChildCount();
-        if(count>0) {
-            for (int i=count-1;i>=0;i--) {
+        if (count > 0) {
+            for (int i = count - 1; i >= 0; i--) {
                 View o = radioGroup.getChildAt(i);
                 if (o instanceof RadioButton) {
                     radioGroup.removeViewAt(i);
@@ -112,7 +116,7 @@ public class SelectVotesActivity extends Activity {
         }
         radioGroup.clearCheck();
 
-        for (Player player : players) {
+        for (PlayerBean player : players) {
             if (!player.getName()
                     .equals(turn.getStoryTeller()
                             .getName()) && !player.getName()
@@ -122,7 +126,7 @@ public class SelectVotesActivity extends Activity {
                 radioButton.setTextSize(50);
                 final Typeface font = ResourcesCompat.getFont(this, R.font.write_me_a_song);
                 radioButton.setTypeface(font);
-                radioButton.setTextColor(R.color.backgroundTextColor);
+                radioButton.setTextColor(getResources().getColor(R.color.backgroundTextColor));
                 radioGroup.addView(radioButton);
                 if (radioGroup.getCheckedRadioButtonId() == -1) {
                     radioButton.setChecked(true);
@@ -152,9 +156,9 @@ public class SelectVotesActivity extends Activity {
         final RadioButton radioButton = (RadioButton) radioGroup.getChildAt(idx);
         final String selectedPlayer = radioButton.getText().toString();
 
-        final List<Player> players = game.getPlayers();
+        final List<PlayerBean> players = gameBean.getPlayers();
 
-        for (Player player : players) {
+        for (PlayerBean player : players) {
             if (player.getName()
                     .equals(selectedPlayer)) {
                 vote.setElected(player);
@@ -174,7 +178,7 @@ public class SelectVotesActivity extends Activity {
         turn.setVotes(votes.getVotes());
 
         Intent intent = new Intent(SelectVotesActivity.this, EndTurnActivity.class);
-        intent.putExtra("Game", game);
+        intent.putExtra("Game", gameBean);
         intent.putExtra("Turn", turn);
         SelectVotesActivity.this.startActivity(intent);
     }

@@ -1,47 +1,45 @@
 package fr.erban.dxitcompanion.game.turn.activity;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.gson.Gson;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import fr.erban.dxitcompanion.R;
-import fr.erban.dxitcompanion.db.CollectionsEnum;
-import fr.erban.dxitcompanion.game.Game;
+import fr.erban.dxitcompanion.db.game.GameViewModel;
+import fr.erban.dxitcompanion.db.player.PlayerConverter;
+import fr.erban.dxitcompanion.db.player.PlayerViewModel;
+import fr.erban.dxitcompanion.game.GameBean;
 import fr.erban.dxitcompanion.game.activity.ScoresResultActivity;
-import fr.erban.dxitcompanion.game.player.Player;
+import fr.erban.dxitcompanion.game.player.PlayerBean;
 import fr.erban.dxitcompanion.game.player.TurnScore;
 import fr.erban.dxitcompanion.game.turn.ScoreRow;
 import fr.erban.dxitcompanion.game.turn.Turn;
 import fr.erban.dxitcompanion.game.turn.adapter.PointsTotalAdapter;
 import fr.erban.dxitcompanion.game.turn.bean.VoteBean;
 
-public class EndTurnActivity extends Activity {
+public class EndTurnActivity extends AppCompatActivity {
 
     private Turn turn;
 
-    private Game game;
+    private GameBean gameBean;
 
     private boolean scoreLimitReached = false;
 
-    private Player winner;
+    private PlayerBean winner;
 
-    private FirebaseFirestore db;
+    private GameViewModel gameViewModel;
+
+    private PlayerViewModel playerViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,33 +47,34 @@ public class EndTurnActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.end_turn);
 
-        db = FirebaseFirestore.getInstance();
+        playerViewModel = new ViewModelProvider(this).get(PlayerViewModel.class);
+        gameViewModel = new ViewModelProvider(this).get(GameViewModel.class);
 
         this.turn = (Turn) getIntent().getSerializableExtra("Turn");
-        this.game = (Game) getIntent().getSerializableExtra("Game");
+        this.gameBean = (GameBean) getIntent().getSerializableExtra("Game");
 
-        if (game != null) {
-            List<Player> players = game.getPlayers();
-            List<Player> playersWithUpdatedScores = new ArrayList<>();
+        if (gameBean != null) {
+            List<PlayerBean> players = gameBean.getPlayers();
+            List<PlayerBean> playersWithUpdatedScores = new ArrayList<>();
 
-            for (Player player : players) {
-                final Player playerWithUpdatedScore = getPlayerResults(player, turn.getVotes());
+            for (PlayerBean player : players) {
+                final PlayerBean playerWithUpdatedScore = getPlayerResults(player, turn.getVotes());
                 playersWithUpdatedScores.add(playerWithUpdatedScore);
             }
 
             // Sort by score
-            final Comparator<Player> playerComparatorByScore =
-                    (Player player1, Player player2) ->
+            final Comparator<PlayerBean> playerComparatorByScore =
+                    (PlayerBean player1, PlayerBean player2) ->
                             Integer.compare(player2.getCurrentScore(), player1.getCurrentScore());
             Collections.sort(playersWithUpdatedScores, playerComparatorByScore);
 
-            game.setPlayers(playersWithUpdatedScores);
+            gameBean.setPlayers(playersWithUpdatedScores);
 
             final ListView listView = findViewById(R.id.listViewEndTurn);
 
             List<ScoreRow> scores = new ArrayList<>();
 
-            for (Player player : playersWithUpdatedScores) {
+            for (PlayerBean player : playersWithUpdatedScores) {
                 scores.add(ScoreRow.builder()
                         .name(player.getName())
                         .score(String.valueOf(player.getCurrentScore()))
@@ -86,11 +85,11 @@ public class EndTurnActivity extends Activity {
             listView.setAdapter(adapter);
 
             final TextView turnNumber = findViewById(R.id.turnNumber);
-            final String turnNumberComplete = getString(R.string.turnNumberPrefix) + game.getCurrentTurn();
+            final String turnNumberComplete = getString(R.string.turnNumberPrefix) + gameBean.getCurrentTurn();
             turnNumber.setText(turnNumberComplete);
 
-            for (Player player : game.getPlayers()) {
-                if (player.getCurrentScore() >= game.getPointsToWin()) {
+            for (PlayerBean player : gameBean.getPlayers()) {
+                if (player.getCurrentScore() >= gameBean.getPointsToWin()) {
                     if (winner == null || player.getCurrentScore() > winner.getCurrentScore()) {
                         winner = player;
                         scoreLimitReached = true;
@@ -106,7 +105,7 @@ public class EndTurnActivity extends Activity {
         }
     }
 
-    private Player getPlayerResults(Player player, List<VoteBean> votes) {
+    private PlayerBean getPlayerResults(PlayerBean player, List<VoteBean> votes) {
 
         int votesForCard = 0;
 
@@ -133,16 +132,19 @@ public class EndTurnActivity extends Activity {
         int updatedScore = player.getCurrentScore() + getPointsForTheTurn(player, votesForCard, hasFoundCard, turn);
 
         List<TurnScore> scoresheet = player.getScoresheet();
-        scoresheet.add(TurnScore.builder().score(updatedScore).turn(game.getCurrentTurn()).build());
+        scoresheet.add(TurnScore.builder().score(updatedScore).turn(gameBean.getCurrentTurn()).build());
 
-        return Player.builder()
+        return PlayerBean.builder()
                 .currentScore(updatedScore)
                 .name(player.getName())
                 .scoresheet(scoresheet)
+                .nbGames(player.getNbGames())
+                .nbWins(player.getNbWins())
+                .persisted(player.isPersisted())
                 .build();
     }
 
-    private int getPointsForTheTurn(final Player player, final int numberOfVotes, final boolean hasFoundCard, final Turn turn) {
+    private int getPointsForTheTurn(final PlayerBean player, final int numberOfVotes, final boolean hasFoundCard, final Turn turn) {
 
         int pointsGranted = 0;
 
@@ -183,30 +185,41 @@ public class EndTurnActivity extends Activity {
 
     private void continueToEndGame() {
 
-        updateGame(true);
-
         Intent intent = new Intent(EndTurnActivity.this, ScoresResultActivity.class);
-        intent.putExtra("Game", game);
+        gameBean.setNameWinner(winner.getName());
+        updatePlayersForEndGame();
+        updateGameForEndGame();
+        saveGameAndPlayers();
+        intent.putExtra("Game", gameBean);
         EndTurnActivity.this.startActivity(intent);
     }
 
-    private void updateGame(boolean isItTheEnd) {
-        final SharedPreferences sharedPreferences = getSharedPreferences("DixitCompanionSettings", Context.MODE_PRIVATE);
-        final String currentGameId = sharedPreferences.getString("currentGameId", "noid");
-        final DocumentReference gameToUpdate = db.collection(CollectionsEnum.GAMES.toString().toLowerCase()).document(currentGameId);
-        final Map<String, Object> updatedGameToSave = new HashMap<>();
-        updatedGameToSave.put("currentTurn", game.getCurrentTurn());
-        updatedGameToSave.put("players", new Gson().toJson(game.getPlayers()));
-        updatedGameToSave.put("isFinished", isItTheEnd);
-        gameToUpdate.update(updatedGameToSave);
+    private void updateGameForEndGame() {
+        gameBean.setFinished(true);
+    }
+
+    private void updatePlayersForEndGame() {
+        for (PlayerBean playerBean : gameBean.getPlayers()) {
+            if (playerBean.getName().equals(winner.getName())) {
+                playerBean.setNbWins(playerBean.getNbWins() + 1);
+            }
+            playerBean.setNbGames(playerBean.getNbGames() + 1);
+        }
+    }
+
+    private void saveGameAndPlayers() {
+
+        // save the game
+        gameViewModel.insert(gameBean);
+
+        // saveThePlayers
+        playerViewModel.update(PlayerConverter.toEntities(gameBean.getPlayers()));
     }
 
     private void continueToNewTurn() {
 
-        updateGame(false);
-
         Intent intent = new Intent(EndTurnActivity.this, SelectStoryTellerActivity.class);
-        intent.putExtra("Game", game);
+        intent.putExtra("Game", gameBean);
         EndTurnActivity.this.startActivity(intent);
     }
 }

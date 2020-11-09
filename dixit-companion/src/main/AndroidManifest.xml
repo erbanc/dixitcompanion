@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="fr.erban.dxitcompanion">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
             android:icon="@mipmap/logo_v2"
@@ -26,6 +28,7 @@
         <activity android:name=".game.turn.activity.EndTurnActivity"/>
         <activity android:name=".game.turn.activity.WhoDidFindActivity"/>
         <activity android:name=".game.turn.activity.SelectVotesActivity"/>
+        <activity android:name=".stats.activity.StatsActivity" />
     </application>
 
 </manifest>

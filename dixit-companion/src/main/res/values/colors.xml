@@ -2,6 +2,7 @@
 <resources>
     <color name="textButtonColor">#F3D191</color>
     <color name="backgroundButtonColor">#3E3844</color>
+    <color name="backgroundButtonColorPushed">#50FFFFFF</color>
     <color name="backgroundScreenColor">#F6B131</color>
     <color name="backgroundTextColor">#3E3844</color>
     <color name="YesButtonColor">#5BAD59</color>

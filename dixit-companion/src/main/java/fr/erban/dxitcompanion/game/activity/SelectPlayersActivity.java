@@ -1,42 +1,52 @@
 package fr.erban.dxitcompanion.game.activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.textfield.TextInputLayout;
-import fr.erban.dxitcompanion.R;
-import fr.erban.dxitcompanion.game.Creator;
-import fr.erban.dxitcompanion.game.Game;
-import fr.erban.dxitcompanion.game.player.Player;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
-public class SelectPlayersActivity extends Activity {
+import fr.erban.dxitcompanion.R;
+import fr.erban.dxitcompanion.db.player.PlayerConverter;
+import fr.erban.dxitcompanion.db.player.PlayerEntity;
+import fr.erban.dxitcompanion.db.player.PlayerViewModel;
+import fr.erban.dxitcompanion.game.GameBean;
+import fr.erban.dxitcompanion.game.player.PlayerBean;
 
-    private Creator creator;
+public class SelectPlayersActivity extends AppCompatActivity {
+
+    private PlayerViewModel playerViewModel;
+
+    private List<String> playersAlreadyInDb;
+
+    private List<PlayerEntity> playerEntities;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        playerViewModel = new ViewModelProvider(this).get(PlayerViewModel.class);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.select_players);
 
-        creator = (Creator) getIntent().getSerializableExtra("Creator");
-
-        EditText myTextBox = findViewById(R.id.playerName);
+        AutoCompleteTextView myTextBox = findViewById(R.id.playerName);
         final ChipGroup chipGroupPlayers = findViewById(R.id.addedPlayers);
         final Button addPlayer = findViewById(R.id.addPlayerButton);
         addPlayer.setEnabled(false);
@@ -44,7 +54,7 @@ public class SelectPlayersActivity extends Activity {
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                if(s.toString().trim().isEmpty()) {
+                if (s.toString().trim().isEmpty()) {
                     addPlayer.setEnabled(false);
                 }
             }
@@ -52,38 +62,67 @@ public class SelectPlayersActivity extends Activity {
             @Override
             public void onTextChanged(CharSequence s, int start,
                                       int before, int count) {
-                if(s.toString().trim().isEmpty()) {
+                if (s.toString().trim().isEmpty()) {
                     addPlayer.setEnabled(false);
                 }
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                boolean isError = false;
-                TextInputLayout layout = findViewById(R.id.textInputLayout);
-                if (!s.toString().isEmpty() && s.toString().trim().isEmpty()) {
-                    layout.setError(getString(R.string.emptyPlayer));
-                    layout.setErrorEnabled(true);
-                    isError = true;
-                } else {
-                    for (int i=0; i<chipGroupPlayers.getChildCount();i++){
-                        Chip chip = (Chip)chipGroupPlayers.getChildAt(i);
-                        if (chip.getText().toString().equals(s.toString().trim())) {
-                            layout.setError(getString(R.string.playerAlreadyExists));
-                            layout.setErrorEnabled(true);
-                            isError = true;
-                        }
-                    }
-                }
-                if (!isError) {
-                    addPlayer.setEnabled(true);
-                    layout.setError("");
-                    layout.setErrorEnabled(false);
-                } else {
-                    addPlayer.setEnabled(false);
-                }
+                afterTextChangedVerify(s, chipGroupPlayers, addPlayer);
             }
         });
+
+        observePlayersInDbToSetSuggestions(myTextBox);
+    }
+
+    private void observePlayersInDbToSetSuggestions(AutoCompleteTextView myTextBox) {
+
+        final Observer<List<PlayerEntity>> playersInDbObserver = playersInDb -> {
+            // Update the UI, in this case, a TextView.
+            playerEntities = playersInDb;
+            final String[] nameSuggestions = new String[playersInDb.size()];
+            playersAlreadyInDb = new ArrayList<>();
+            for (int i = 0, playersInDbSize = playersInDb.size(); i < playersInDbSize; i++) {
+                PlayerEntity playerInDb = playersInDb.get(i);
+                nameSuggestions[i] = playerInDb.getName();
+                playersAlreadyInDb.add(playerInDb.getName());
+            }
+            if (!playersInDb.isEmpty()) {
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                        android.R.layout.simple_dropdown_item_1line, nameSuggestions);
+                myTextBox.setAdapter(adapter);
+
+            }
+        };
+
+        playerViewModel.getPlayers().observe(this, playersInDbObserver);
+    }
+
+    private void afterTextChangedVerify(Editable s, ChipGroup chipGroupPlayers, Button addPlayer) {
+        boolean isError = false;
+        TextInputLayout layout = findViewById(R.id.textInputLayout);
+        if (!s.toString().isEmpty() && s.toString().trim().isEmpty()) {
+            layout.setError(getString(R.string.emptyPlayer));
+            layout.setErrorEnabled(true);
+            isError = true;
+        } else {
+            for (int i = 0; i < chipGroupPlayers.getChildCount(); i++) {
+                Chip chip = (Chip) chipGroupPlayers.getChildAt(i);
+                if (chip.getText().toString().equals(s.toString().trim())) {
+                    layout.setError(getString(R.string.playerAlreadyExists));
+                    layout.setErrorEnabled(true);
+                    isError = true;
+                }
+            }
+        }
+        if (!isError) {
+            addPlayer.setEnabled(true);
+            layout.setError("");
+            layout.setErrorEnabled(false);
+        } else {
+            addPlayer.setEnabled(false);
+        }
     }
 
     public void onAddPlayer(View view) {
@@ -103,30 +142,41 @@ public class SelectPlayersActivity extends Activity {
         chip.setChecked(true);
         chip.setOnCloseIconClickListener(v -> chipGroupPlayers.removeView(chip));
         chip.setHapticFeedbackEnabled(true);
-
         chipGroupPlayers.addView(chip);
         playerName.setText("");
     }
 
     public void continueToNumberPoints(View view) {
 
-        final List<Player> players = retrievePlayers();
+        final List<PlayerBean> players = retrievePlayersFromChips();
 
         if (verifyNumberOfPlayers(players)) return;
 
-        final Game game = Game.builder()
+        final GameBean gameBean = GameBean.builder()
                 .players(players)
                 .currentTurn(0)
-                .creator(creator)
-                .uuid(UUID.randomUUID().toString())
+                .finished(false)
                 .build();
 
+        createNewPlayersInDatabase(players);
+
         Intent intent = new Intent(SelectPlayersActivity.this, SelectNumberPointsActivity.class);
-        intent.putExtra("Game", game);
+        intent.putExtra("Game", gameBean);
         SelectPlayersActivity.this.startActivity(intent);
     }
 
-    private boolean verifyNumberOfPlayers(List<Player> players) {
+    private void createNewPlayersInDatabase(List<PlayerBean> players) {
+
+        for (PlayerBean player : players) {
+            if (!player.isPersisted()) {
+                // each new player is persisted in database
+                playerViewModel.insert(PlayerConverter.toEntity(player));
+                player.setPersisted(true);
+            }
+        }
+    }
+
+    private boolean verifyNumberOfPlayers(List<PlayerBean> players) {
         if (players.size() < 3) {
             final Context context = getApplicationContext();
             final String message = getString(R.string.notEnoughPlayers);
@@ -141,19 +191,37 @@ public class SelectPlayersActivity extends Activity {
     /**
      * Get the names of the players
      *
-     * @return the list of the players
+     * @return the list of {@link PlayerBean}
      */
-    private List<Player> retrievePlayers() {
+    private List<PlayerBean> retrievePlayersFromChips() {
 
-        final List<Player> players = new ArrayList<>();
+        final List<PlayerBean> players = new ArrayList<>();
         final ChipGroup chipGroupPlayers = findViewById(R.id.addedPlayers);
-        for (int i=0; i<chipGroupPlayers.getChildCount();i++){
-            Chip chip = (Chip)chipGroupPlayers.getChildAt(i);
-            if (chip.getText() != null && !chip.getText().toString().trim().isEmpty()) {
-                players.add(Player.builder()
+        for (int i = 0; i < chipGroupPlayers.getChildCount(); i++) {
+            Chip chip = (Chip) chipGroupPlayers.getChildAt(i);
+            final String playerName = chip.getText().toString();
+
+            if (playersAlreadyInDb.contains(playerName)) {
+                // if it is an existing player, the bean is converted from the entity
+                PlayerEntity entity = new PlayerEntity();
+                for (PlayerEntity playerEntity : playerEntities) {
+                    if (playerEntity
+                            .getName()
+                            .equals(playerName)) {
+                        entity = playerEntity;
+                        break;
+                    }
+                }
+                players.add(PlayerConverter.toBean(entity));
+            } else {
+                // if not, we create it from scratch
+                players.add(PlayerBean.builder()
                         .currentScore(0)
                         .name(chip.getText().toString())
                         .scoresheet(new ArrayList<>())
+                        .persisted(false)
+                        .nbWins(0)
+                        .nbGames(0)
                         .build());
             }
         }

@@ -20,4 +20,15 @@
     <string name="plus">+</string>
     <string name="playerName">Player Name</string>
     <string name="addPlayerButton">Add</string>
+    <string name="emptyPlayer">Player name cannot be empty</string>
+    <string name="playerAlreadyExists">Player already exists</string>
+    <string name="scoresEvolution">Scores recap</string>
+    <string name="statsTitle">Statistiques</string>
+    <string name="playernameheader">Nom</string>
+    <string name="nbgamesheader">Games played</string>
+    <string name="nbwinsheader">Games won</string>
+    <string name="winPercentageHeader">% Wins</string>
+    <string name="enterANumberOfPointsToWin">Please provide a number in the box :)</string>
+    <string name="BtnStats">Stats</string>
+    <string name="whitespace" />
 </resources>

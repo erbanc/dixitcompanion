@@ -25,4 +25,12 @@
     <string name="emptyPlayer">Le nom ne peut être vide</string>
     <string name="playerAlreadyExists">le joueur existe déjà</string>
     <string name="scoresEvolution">Évolution des scores</string>
+    <string name="statsTitle">Statistiques</string>
+    <string name="playernameheader">Nom</string>
+    <string name="nbgamesheader">Parties jouées</string>
+    <string name="nbwinsheader">Parties gagnées</string>
+    <string name="BtnStats">Stats</string>
+    <string name="winPercentageHeader">% Victoires</string>
+    <string name="enterANumberOfPointsToWin">Veuillez entrer un nombre de points :)</string>
+    <string name="whitespace" />
 </resources>

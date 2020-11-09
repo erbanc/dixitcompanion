@@ -1,20 +1,28 @@
 package fr.erban.dxitcompanion.game.player;
 
+import java.io.Serializable;
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-
-import java.io.Serializable;
-import java.util.List;
+import lombok.Setter;
 
 @Getter
 @Builder
 @AllArgsConstructor
-public class Player implements Serializable {
+@Setter
+public class PlayerBean implements Serializable {
 
     private String name;
 
     private int currentScore;
 
     private List<TurnScore> scoresheet;
+
+    private int nbGames;
+
+    private int nbWins;
+
+    private boolean persisted;
 }

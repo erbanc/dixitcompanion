@@ -1,0 +1,123 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "f5790c7bafdce79b9c2f70122ccce76e",
+    "entities": [
+      {
+        "tableName": "GameEntity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idGame` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `pointsToWin` INTEGER NOT NULL, `finished` INTEGER NOT NULL, `nameWinner` TEXT, `nbTurns` INTEGER NOT NULL, `scoreSheet` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "idGame",
+            "columnName": "idGame",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pointsToWin",
+            "columnName": "pointsToWin",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "finished",
+            "columnName": "finished",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nameWinner",
+            "columnName": "nameWinner",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "nbTurns",
+            "columnName": "nbTurns",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "scoreSheet",
+            "columnName": "scoreSheet",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "idGame"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "PlayerEntity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`name` TEXT NOT NULL, `nbGames` INTEGER NOT NULL, `nbWins` INTEGER NOT NULL, PRIMARY KEY(`name`))",
+        "fields": [
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nbGames",
+            "columnName": "nbGames",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nbWins",
+            "columnName": "nbWins",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "name"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "GamePlayerCrossRefEntity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idGame` INTEGER NOT NULL, `name` TEXT NOT NULL, PRIMARY KEY(`idGame`, `name`))",
+        "fields": [
+          {
+            "fieldPath": "idGame",
+            "columnName": "idGame",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "idGame",
+            "name"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f5790c7bafdce79b9c2f70122ccce76e')"
+    ]
+  }
+}
