@@ -51,12 +51,13 @@
 
     <Button
         android:id="@+id/SelectPlayersContinueButton"
-        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:hapticFeedbackEnabled="true"
-        android:background="@color/backgroundButtonColor"
+        android:background="@drawable/small_round_button"
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp"
         android:onClick="continueToTurnResults"
         android:text="@string/btnContinue"
         android:fontFamily="@font/write_me_a_song"

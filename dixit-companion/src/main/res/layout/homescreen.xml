@@ -33,10 +33,11 @@
     <Button
         android:id="@+id/CreateNewGameButton"
         android:textAllCaps="false"
-        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/small_round_button"
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp"
         android:onClick="startNewGame"
         android:text="@string/BtnNewGame"
         android:textColor="@color/textButtonColor"
@@ -49,9 +50,10 @@
 
     <Button
         android:id="@+id/GoToStatsButton"
-        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/small_round_button"
         android:hapticFeedbackEnabled="true"

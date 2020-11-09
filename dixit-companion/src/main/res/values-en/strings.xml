@@ -23,7 +23,7 @@
     <string name="emptyPlayer">Player name cannot be empty</string>
     <string name="playerAlreadyExists">Player already exists</string>
     <string name="scoresEvolution">Scores recap</string>
-    <string name="statsTitle">Statistiques</string>
+    <string name="statsTitle">Statistics</string>
     <string name="playernameheader">Nom</string>
     <string name="nbgamesheader">Games played</string>
     <string name="nbwinsheader">Games won</string>

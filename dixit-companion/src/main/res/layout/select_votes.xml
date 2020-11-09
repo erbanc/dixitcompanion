@@ -50,13 +50,14 @@
 
     <Button
         android:id="@+id/nextPlayerButton"
-        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hapticFeedbackEnabled="true"
         android:fontFamily="@font/write_me_a_song"
         android:layout_marginBottom="32dp"
-        android:background="@color/backgroundButtonColor"
+        android:background="@drawable/small_round_button"
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp"
         android:textColor="@color/textButtonColor"
         android:textSize="30sp"
         android:onClick="nextPlayer"
@@ -67,11 +68,12 @@
 
     <Button
         android:id="@+id/selectVotesContinueBtn"
-        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hapticFeedbackEnabled="true"
-        android:background="@color/backgroundButtonColor"
+        android:background="@drawable/small_round_button"
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp"
         android:visibility="invisible"
         android:onClick="continueToEndTurn"
         android:text="@string/btnContinue"

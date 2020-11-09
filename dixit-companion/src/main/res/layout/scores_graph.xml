@@ -1,46 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                   xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-                                                   android:layout_height="match_parent"
-                                                   xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
     <TextView
-            android:id="@+id/endTurn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:gravity="center"
-            android:fontFamily="@font/write_me_a_song"
-            android:text="@string/scoresEvolution"
-            android:textColor="@color/backgroundTextColor"
-            android:textSize="60sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/endTurn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/write_me_a_song"
+        android:gravity="center"
+        android:text="@string/scoresEvolution"
+        android:textColor="@color/backgroundTextColor"
+        android:textSize="60sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.jjoe64.graphview.GraphView
-            android:layout_width="match_parent"
-            android:layout_height="400dip"
-            android:id="@+id/graph"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/endTurn"
-            tools:layout_editor_absoluteX="0dp"
-            app:layout_constraintVertical_bias="0.154"/>
+        android:id="@+id/graph"
+        android:layout_width="match_parent"
+        android:layout_height="400dip"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/endTurn"
+        app:layout_constraintVertical_bias="0.154"
+        tools:layout_editor_absoluteX="0dp" />
 
     <Button
-            android:id="@+id/ScoreResultsContinueButton"
-            style="@style/Widget.MaterialComponents.Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
-            android:background="@color/backgroundButtonColor"
-            android:hapticFeedbackEnabled="true"
-            android:onClick="continueToHomescreen"
-            android:fontFamily="@font/write_me_a_song"
-            android:text="@string/EndGameButtonText"
-            android:textColor="@color/textButtonColor"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+        android:id="@+id/ScoreResultsContinueButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/small_round_button"
+        android:fontFamily="@font/write_me_a_song"
+        android:hapticFeedbackEnabled="true"
+        android:onClick="continueToHomescreen"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:text="@string/EndGameButtonText"
+        android:textColor="@color/textButtonColor"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
