@@ -32,33 +32,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/selectPlayersTitle">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+        <AutoCompleteTextView
+            android:id="@+id/playerName"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="50dp"
             android:layout_toStartOf="@+id/addPlayerButton"
-            android:enabled="true"
+            android:background="@drawable/background_et"
+            android:cursorVisible="true"
+            android:gravity="center_vertical"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
             android:hint="@string/playerName"
-            app:boxBackgroundColor="@color/textButtonColor"
-            app:boxBackgroundMode="filled"
-            app:hintTextColor="@color/backgroundTextColor">
-
-            <AutoCompleteTextView
-                android:id="@+id/playerName"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:elegantTextHeight="true"
-                android:gravity="bottom"
-                android:hint="@string/playerName"
-                android:importantForAutofill="no"
-                android:inputType="textPersonName"
-                android:maxLength="15"
-                android:maxLines="1"
-                android:textSize="20sp" />
-        </com.google.android.material.textfield.TextInputLayout>
+            android:maxLength="15"
+            android:maxLines="1"
+            android:minWidth="40dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:layout_marginStart="50dp"
+            android:textSize="20sp"/>
 
         <Button
             android:id="@+id/addPlayerButton"

@@ -101,28 +101,17 @@ public class SelectPlayersActivity extends AppCompatActivity {
 
     private void afterTextChangedVerify(Editable s, ChipGroup chipGroupPlayers, Button addPlayer) {
         boolean isError = false;
-        TextInputLayout layout = findViewById(R.id.textInputLayout);
         if (!s.toString().isEmpty() && s.toString().trim().isEmpty()) {
-            layout.setError(getString(R.string.emptyPlayer));
-            layout.setErrorEnabled(true);
             isError = true;
         } else {
             for (int i = 0; i < chipGroupPlayers.getChildCount(); i++) {
                 Chip chip = (Chip) chipGroupPlayers.getChildAt(i);
-                if (chip.getText().toString().equals(s.toString().trim())) {
-                    layout.setError(getString(R.string.playerAlreadyExists));
-                    layout.setErrorEnabled(true);
+                if (chip.getText().toString().toLowerCase().equals(s.toString().trim().toLowerCase())) {
                     isError = true;
                 }
             }
         }
-        if (!isError) {
-            addPlayer.setEnabled(true);
-            layout.setError("");
-            layout.setErrorEnabled(false);
-        } else {
-            addPlayer.setEnabled(false);
-        }
+        addPlayer.setEnabled(!isError);
     }
 
     public void onAddPlayer(View view) {
