@@ -32,5 +32,32 @@
     <string name="BtnStats">Stats</string>
     <string name="winPercentageHeader">% Victoires</string>
     <string name="enterANumberOfPointsToWin">Veuillez entrer un nombre de points :)</string>
-    <string name="whitespace" />
+    <string name="whitespace"> </string>
+    <string name="howToPlay">Comment jouer ?</string>
+    <string name="rules"><b><u>Matériel nécessaire :</u></b>  Des cartes Dixit, et des joueurs &#128521; \n
+        \n
+        <b><u>Déroulement d\'une partie :</u></b> \n
+        \n
+        \t• Commencez par entrer les joueurs participant à la partie, puis le nombre de points nécessaires pour gagner.\n
+        \t• Distribuez 5 cartes à chaque joueur.\n
+        \t• Pour le premier tour de jeu, le premier joueur à avoir une idée de mot(s) pour une de ses cartes se manifeste, il est désigné premier compteur.\n
+        \t• Sélectionnez son nom dans l\'application.\n
+        \t• Le compteur met sa carte au milieu de la table et énon un mot ou une phrase.\n
+        \t• Chaque joueur choisit ensuite une de ses cartes correspondant au(x) mot(s) du compteur, il la met au centre avec les autres cartes.\n
+        \t• Une fois que tous les joueurs ont placé leur carte au centre, le compteur les mélange soigneusement, puis les étale sur la table.\n
+        \t• Les joeurs doivent à présent retrouver la carte du compteur, personne n\'a le droit de parler pour ne pas influencer les choix.\n
+        \t• Quand le choix d\'une personne est fait, elle lève son doigt pour signifier aux autres qu\'elle est prête.\n
+        \t• Quand tous les doigts sont levés, le compteur fait un décompte (3, 2, 1), puis les joueurs pointent immédiatement la carte de leur choix.\n
+        \t• Reprenez le téléphone, puis entrez les choix de chacun.\n
+        \t• Les scores sont décomptés comme suit :\n
+            \t• Si personne ou tout le monde trouve, le compteur n\'a pas de point et les autres en ont 2.\n
+            \t• Si au moins une personne a trouvé la réponse, le compteur a 3 points et les personnes ayant trouvé également.\n
+            \t• Un point est ajouté au score de chacun pour chaque personne ayant voté pour sa carte.\n
+        \t• L\'application calcule automatiquement les scores, et classe les joueurs dans l\'ordre de leurs points.\n
+        \t• Une fois qu\'un tour est terminé, on passe au tour suivant, tout le monde pioche une carte et le compteur devient le joueur à gauche de l\'ancien compteur.\n
+        \t• Le gagnant est le premier joueur à atteindre le score choisi au début. Si deux joueurs sont à égalité la partie continue.\n
+        &#127881; &#127881; Amusez-vous bien !! &#127881; &#127881; \n
+        \n
+        <i>P.S. : Merci d\'avoir téléchargé l\'application, toute suggestion d\'amélioration est la bienvenue, merci de le faire sur la page du Play Store ;)</i>
+    </string>
 </resources>

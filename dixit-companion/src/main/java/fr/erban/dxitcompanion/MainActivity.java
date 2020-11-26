@@ -7,6 +7,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import fr.erban.dxitcompanion.game.activity.SelectPlayersActivity;
+import fr.erban.dxitcompanion.rules.activity.RulesActivity;
 import fr.erban.dxitcompanion.stats.activity.StatsActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,6 +30,13 @@ public class MainActivity extends AppCompatActivity {
 
         // see the stats
         Intent intent = new Intent(MainActivity.this, StatsActivity.class);
+        MainActivity.this.startActivity(intent);
+    }
+
+    public void goToRules(View view) {
+
+        // see the rules
+        Intent intent = new Intent(MainActivity.this, RulesActivity.class);
         MainActivity.this.startActivity(intent);
     }
 }

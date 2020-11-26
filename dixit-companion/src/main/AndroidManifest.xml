@@ -29,6 +29,7 @@
         <activity android:name=".game.turn.activity.WhoDidFindActivity" />
         <activity android:name=".game.turn.activity.SelectVotesActivity" />
         <activity android:name=".stats.activity.StatsActivity" />
+        <activity android:name=".rules.activity.RulesActivity" />
     </application>
 
 </manifest>

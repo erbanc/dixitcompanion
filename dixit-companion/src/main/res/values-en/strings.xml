@@ -30,5 +30,31 @@
     <string name="winPercentageHeader">% Wins</string>
     <string name="enterANumberOfPointsToWin">Please provide a number in the box :)</string>
     <string name="BtnStats">Stats</string>
-    <string name="whitespace" />
+    <string name="whitespace"> </string>
+    <string name="howToPlay">How to play ?</string>
+    <string name="rules"><b><u>What you need to play :</u></b>  Dixit cards, and players &#128521; \n
+        \n
+        <b><u>How to play :</u></b>\n \n
+            \t• Select the players in the app, then choose the number of points to win.\n
+            \t• Give five cards to each player.\n
+            \t• For the first turn, the first player that has an idea is the storyteller.\n
+            \t• Choose his name in the app.\n
+            \t• The storyteller chooses a card in his hand and says a (or some) word(s) in relation to this card, he puts the card in the middle (hidden).\n
+            \t• Each player then selects a card in his hand matching what the storyteller said and puts it in the middle.\n
+            \t• When every player has selected a card, the storyteller collects them all and shuffles them. Then he puts them on the table (artwork visible).\n
+            \t• Players now need to find the card of the storyteller, everyone should keep quiet in order to not influence others.\n
+            \t• When a player has made his choice, he raises his finger, meaning his decision is made.\n
+            \t• When all the fingers are raised, the storytelles counts down from 3 to 1, and then everyone points at his elected card.\n
+            \t• In the app, enter the choice of every player.\n
+            \t• Scores are automatically updated using these rules :\n
+                    \t\t• If no-one or everyone has found, the storyteller has 0 points and the players have 2 points.\n
+                    \t\t• If at least one player has found the card of the storyteller, the storyteller and the players who found have 3 points.\n
+                    \t\t• 1 additional point is granted at a player for each people who has voted for his card.\n
+            \t• Then, the turn is over, and the players are sorted according to their scores.\n
+            \t• When a turn is over, the new storyteller is the player at the left of the former storyteller, everyone draws a new card and a new turn begins.\n
+            \t• The winner is the first player to reach the number of points to win, in case of draw, the game continues.\n
+        &#127881; &#127881; Have fun !! &#127881; &#127881; \n
+        \n
+        <i>P.S.: Thanks for downloading the app, don\'t forget to rate it and post some update suggestions in the Play Store ;)</i>
+    </string>
 </resources>
