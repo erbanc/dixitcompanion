@@ -33,7 +33,7 @@ public class EndTurnActivity extends AppCompatActivity {
 
     private GameBean gameBean;
 
-    private boolean scoreLimitReached = false;
+    private boolean endGameReached = false;
 
     private PlayerBean winner;
 
@@ -92,14 +92,16 @@ public class EndTurnActivity extends AppCompatActivity {
                 if (player.getCurrentScore() >= gameBean.getPointsToWin()) {
                     if (winner == null || player.getCurrentScore() > winner.getCurrentScore()) {
                         winner = player;
-                        scoreLimitReached = true;
+                        endGameReached = true;
+                    } else if (winner != null && player.getCurrentScore() == winner.getCurrentScore()) {
+                        endGameReached = false;
                     }
                 }
             }
 
-            if (scoreLimitReached) {
+            if (endGameReached) {
                 final TextView textPlayerWins = findViewById(R.id.endTurn);
-                final String playerHasWon = winner.getName() + getString(R.string.wonTheGame);
+                final String playerHasWon = winner.getName() + " " + getString(R.string.wonTheGame);
                 textPlayerWins.setText(playerHasWon);
             }
         }
@@ -176,7 +178,7 @@ public class EndTurnActivity extends AppCompatActivity {
 
     public void continueToEndOrNewTurn(View view) {
 
-        if (scoreLimitReached) {
+        if (endGameReached) {
             continueToEndGame();
         } else {
             continueToNewTurn();
