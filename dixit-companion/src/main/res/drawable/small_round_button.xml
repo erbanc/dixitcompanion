@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item android:state_pressed="true" >
-        <shape android:shape="rectangle"
-               android:paddingLeft="10dp"
-               android:paddingRight="10dp">
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape android:paddingLeft="10dp" android:paddingRight="10dp" android:shape="rectangle">
             <solid android:color="@color/backgroundButtonColorPushed" />
-            <corners android:radius="50dp"/>
+            <corners android:radius="50dp" />
         </shape>
     </item>
     <item android:state_pressed="false">
-        <shape android:shape="rectangle" android:paddingLeft="10dp" android:paddingRight="10dp">
+        <shape android:paddingLeft="10dp" android:paddingRight="10dp" android:shape="rectangle">
             <solid android:color="@color/backgroundButtonColor" />
             <corners android:radius="50dp" />
         </shape>

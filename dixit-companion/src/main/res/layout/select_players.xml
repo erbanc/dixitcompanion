@@ -36,20 +36,20 @@
             android:id="@+id/playerName"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginStart="50dp"
             android:layout_toStartOf="@+id/addPlayerButton"
             android:background="@drawable/background_et"
             android:cursorVisible="true"
             android:gravity="center_vertical"
+            android:hint="@string/playerName"
             android:importantForAutofill="no"
             android:inputType="textPersonName"
-            android:hint="@string/playerName"
             android:maxLength="15"
             android:maxLines="1"
             android:minWidth="40dp"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
-            android:layout_marginStart="50dp"
-            android:textSize="20sp"/>
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/addPlayerButton"

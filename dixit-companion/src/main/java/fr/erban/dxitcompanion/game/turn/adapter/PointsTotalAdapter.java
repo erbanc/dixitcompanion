@@ -15,10 +15,8 @@ import fr.erban.dxitcompanion.game.turn.ScoreRow;
 public class PointsTotalAdapter extends BaseAdapter {
 
     private final Context mContext;
-
-    private LayoutInflater inflater;
-
     private final List<ScoreRow> itemsItems;
+    private LayoutInflater inflater;
 
     public PointsTotalAdapter(Context context, List<ScoreRow> itemsItems) {
 

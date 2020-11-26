@@ -7,22 +7,22 @@
     tools:context=".game.turn.activity.EndTurnActivity">
 
     <TextView
-            android:id="@+id/turnNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/turnNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/endTurn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:gravity="center"
         android:fontFamily="@font/write_me_a_song"
+        android:gravity="center"
         android:text="@string/endTurnTitle"
         android:textColor="@color/backgroundTextColor"
         android:textSize="60sp"
@@ -44,17 +44,17 @@
 
     <Button
         android:id="@+id/EndTurnContinueButton"
-        android:hapticFeedbackEnabled="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:background="@drawable/small_round_button"
-        android:paddingEnd="20dp"
-        android:paddingStart="20dp"
+        android:fontFamily="@font/write_me_a_song"
+        android:hapticFeedbackEnabled="true"
         android:onClick="continueToEndOrNewTurn"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
         android:text="@string/btnContinue"
         android:textColor="@color/textButtonColor"
-        android:fontFamily="@font/write_me_a_song"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

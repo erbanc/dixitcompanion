@@ -16,10 +16,8 @@ import fr.erban.dxitcompanion.game.turn.SelectPlayerRow;
 public class PlayerSelectionAdapter extends BaseAdapter {
 
     private final Context mContext;
-
-    private LayoutInflater inflater;
-
     private final List<SelectPlayerRow> itemsItems;
+    private LayoutInflater inflater;
 
     public PlayerSelectionAdapter(Context context, List<SelectPlayerRow> itemsItems) {
 

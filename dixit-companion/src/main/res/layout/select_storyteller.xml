@@ -7,15 +7,14 @@
     tools:context=".game.turn.activity.SelectStoryTellerActivity">
 
     <TextView
-            android:id="@+id/turnNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:textColor="@color/backgroundTextColor"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/turnNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/backgroundTextColor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/selectStoryTellerTitle"
@@ -23,9 +22,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:clickable="false"
+        android:fontFamily="@font/write_me_a_song"
         android:gravity="center"
         android:text="@string/labelStoryTellerChoice"
-        android:fontFamily="@font/write_me_a_song"
         android:textColor="@color/backgroundTextColor"
         android:textSize="60sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,20 +32,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constrainedWidth="true"
-            app:layout_constrainedHeight="true"
-            app:layout_constraintBottom_toTopOf="@+id/SelectPlayersContinueButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/selectStoryTellerTitle"
-            app:layout_constraintStart_toStartOf="parent">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constrainedHeight="true"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toTopOf="@+id/SelectPlayersContinueButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectStoryTellerTitle">
 
         <RadioGroup
-                android:id="@+id/radioGroupChooseStoryteller"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-        </RadioGroup>
+            android:id="@+id/radioGroupChooseStoryteller"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></RadioGroup>
     </ScrollView>
 
     <Button
@@ -54,13 +52,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:hapticFeedbackEnabled="true"
         android:background="@drawable/small_round_button"
-        android:paddingEnd="20dp"
-        android:paddingStart="20dp"
-        android:onClick="continueToTurnResults"
-        android:text="@string/btnContinue"
         android:fontFamily="@font/write_me_a_song"
+        android:hapticFeedbackEnabled="true"
+        android:onClick="continueToTurnResults"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:text="@string/btnContinue"
         android:textColor="@color/textButtonColor"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"

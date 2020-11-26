@@ -24,44 +24,43 @@
         android:id="@+id/turnNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/backgroundTextColor"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
+        android:textColor="@color/backgroundTextColor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constrainedWidth="true"
-            app:layout_constrainedHeight="true"
-            app:layout_constraintBottom_toTopOf="@+id/nextPlayerButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/selectVotesTitle"
-            app:layout_constraintStart_toStartOf="parent">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constrainedHeight="true"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toTopOf="@+id/nextPlayerButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectVotesTitle">
 
         <RadioGroup
-                android:id="@+id/radioGroupSelectVote"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-        </RadioGroup>
+            android:id="@+id/radioGroupSelectVote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></RadioGroup>
     </ScrollView>
 
     <Button
         android:id="@+id/nextPlayerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hapticFeedbackEnabled="true"
-        android:fontFamily="@font/write_me_a_song"
         android:layout_marginBottom="32dp"
         android:background="@drawable/small_round_button"
-        android:paddingEnd="20dp"
+        android:fontFamily="@font/write_me_a_song"
+        android:hapticFeedbackEnabled="true"
+        android:onClick="nextPlayer"
         android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:text="@string/nextPlayer"
         android:textColor="@color/textButtonColor"
         android:textSize="30sp"
-        android:onClick="nextPlayer"
-        android:text="@string/nextPlayer"
         app:layout_constraintBottom_toTopOf="@+id/selectVotesContinueBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -70,16 +69,16 @@
         android:id="@+id/selectVotesContinueBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hapticFeedbackEnabled="true"
         android:background="@drawable/small_round_button"
-        android:paddingEnd="20dp"
-        android:paddingStart="20dp"
-        android:visibility="invisible"
-        android:onClick="continueToEndTurn"
-        android:text="@string/btnContinue"
         android:fontFamily="@font/write_me_a_song"
-        android:textSize="30sp"
+        android:hapticFeedbackEnabled="true"
+        android:onClick="continueToEndTurn"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:text="@string/btnContinue"
         android:textColor="@color/textButtonColor"
+        android:textSize="30sp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
