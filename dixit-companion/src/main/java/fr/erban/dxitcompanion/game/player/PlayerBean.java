@@ -18,6 +18,8 @@ public class PlayerBean implements Serializable {
 
     private int currentScore;
 
+    private int scoreLastTurn;
+
     private List<TurnScore> scoresheet;
 
     private int nbGames;

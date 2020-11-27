@@ -77,7 +77,7 @@ public class EndTurnActivity extends AppCompatActivity {
             for (PlayerBean player : playersWithUpdatedScores) {
                 scores.add(ScoreRow.builder()
                         .name(player.getName())
-                        .score(String.valueOf(player.getCurrentScore()))
+                        .score(player.getCurrentScore() + " (+" + player.getScoreLastTurn() + ")")
                         .build());
             }
 
@@ -131,12 +131,15 @@ public class EndTurnActivity extends AppCompatActivity {
             }
         }
 
-        int updatedScore = player.getCurrentScore() + getPointsForTheTurn(player, votesForCard, hasFoundCard, turn);
+        int lastTurnScore = getPointsForTheTurn(player, votesForCard, hasFoundCard, turn);
+
+        int updatedScore = player.getCurrentScore() + lastTurnScore;
 
         List<TurnScore> scoresheet = player.getScoresheet();
         scoresheet.add(TurnScore.builder().score(updatedScore).turn(gameBean.getCurrentTurn()).build());
 
         return PlayerBean.builder()
+                .scoreLastTurn(lastTurnScore)
                 .currentScore(updatedScore)
                 .name(player.getName())
                 .scoresheet(scoresheet)
