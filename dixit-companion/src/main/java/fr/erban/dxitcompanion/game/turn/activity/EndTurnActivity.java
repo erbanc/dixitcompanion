@@ -88,8 +88,14 @@ public class EndTurnActivity extends AppCompatActivity {
             final String turnNumberComplete = getString(R.string.turnNumberPrefix) + gameBean.getCurrentTurn();
             turnNumber.setText(turnNumberComplete);
 
+
+            boolean turnLimitReached = false;
+            if (gameBean.getCurrentTurn() >= gameBean.getMaxTurns()) {
+                turnLimitReached = true;
+            }
+
             for (PlayerBean player : gameBean.getPlayers()) {
-                if (player.getCurrentScore() >= gameBean.getPointsToWin()) {
+                if (player.getCurrentScore() >= gameBean.getPointsToWin() || turnLimitReached) {
                     if (winner == null || player.getCurrentScore() > winner.getCurrentScore()) {
                         winner = player;
                         endGameReached = true;

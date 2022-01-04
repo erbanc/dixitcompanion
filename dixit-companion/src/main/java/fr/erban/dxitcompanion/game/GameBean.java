@@ -22,6 +22,8 @@ public class GameBean implements Serializable {
 
     private int pointsToWin;
 
+    private int maxTurns;
+
     private boolean finished;
 
     private String nameWinner;

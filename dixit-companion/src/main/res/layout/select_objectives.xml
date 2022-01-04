@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".game.activity.SelectObjectivesActivity">
+
+    <TextView
+        android:id="@+id/pointsToWinTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:clickable="false"
+        android:fontFamily="@font/write_me_a_song"
+        android:gravity="center"
+        android:singleLine="false"
+        android:text="@string/selectObjectiveTitle"
+        android:textColor="@color/backgroundTextColor"
+        android:textSize="60sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/turnNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/backgroundTextColor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/SelectNumberPointsContinueButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pointsToWinTitle">
+
+        <LinearLayout
+            android:id="@+id/pointBasedLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="119dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/SelectNumberPointsContinueButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pointsToWinTitle">
+
+            <EditText
+                android:id="@+id/pointsToWin"
+                android:layout_width="152dp"
+                android:layout_height="119dp"
+                android:ems="10"
+                android:gravity="center"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal"
+                android:labelFor="@id/pointsToWin"
+                android:textColor="@color/backgroundTextColor"
+                android:textColorHint="@color/backgroundTextColor"
+                android:textSize="50sp"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/pointsToWin"
+                android:text="@string/points"
+                android:textSize="40sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/switchObjective"
+            android:layout_height="119dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:contentDescription="@string/switch_objectives"
+            app:srcCompat="@android:drawable/stat_notify_sync_noanim"
+            app:tint="@color/backgroundButtonColor"
+            android:layout_width="119dp"/>
+
+        <LinearLayout
+            android:id="@+id/turnBasedLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="119dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/SelectNumberPointsContinueButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pointsToWinTitle">
+
+            <EditText
+                android:id="@+id/turnsToWin"
+                android:layout_width="152dp"
+                android:layout_height="119dp"
+                android:ems="10"
+                android:gravity="center"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal"
+                android:labelFor="@id/turnsToWin"
+                android:textColor="@color/backgroundTextColor"
+                android:textColorHint="@color/backgroundTextColor"
+                android:textSize="50sp"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/turnsToWin"
+                android:text="@string/turns"
+                android:textSize="40sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/SelectNumberPointsContinueButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/small_round_button"
+        android:fontFamily="@font/write_me_a_song"
+        android:hapticFeedbackEnabled="true"
+        android:onClick="continueToFirstTurn"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:text="@string/btnContinue"
+        android:textColor="@color/textButtonColor"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

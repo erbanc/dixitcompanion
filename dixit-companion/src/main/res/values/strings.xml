@@ -4,7 +4,7 @@
     <string name="labelPlayerChoice">Choix des joueurs</string>
     <string name="addPlayer_hint">Nom</string>
     <string name="btnContinue">Continuer</string>
-    <string name="pointsToWinTitle">Nombre de points pour gagner</string>
+    <string name="selectObjectiveTitle">Objectifs de la partie</string>
     <string name="PointsToWinDefaultValue" translatable="false">30</string>
     <string name="HomescreenTitle" translatable="false">Dixit \n Companion</string>
     <string name="labelStoryTellerChoice">Qui est le conteur ?</string>
@@ -60,4 +60,8 @@
         \n
         <i>P.S. : Merci d\'avoir téléchargé l\'application, toute suggestion d\'amélioration est la bienvenue, merci de le faire sur la page du Play Store ;)</i>
     </string>
+    <string name="enterANumberOfTurnsToWin">Entrez un nombre de tours</string>
+    <string name="turns">tours</string>
+    <string name="switch_objectives">Switch objectives</string>
+    <string name="points">points</string>
 </resources>

@@ -56,10 +56,10 @@ public class ScoresResultActivity extends AppCompatActivity {
                 List<TurnScore> scorePerTurn = player.getScoresheet();
                 LineGraphSeries<DataPoint> playerSeries = new LineGraphSeries<>();
                 final DataPoint initialDp = new DataPoint(0, 0);
-                playerSeries.appendData(initialDp, true, gameBean.getPointsToWin());
+                playerSeries.appendData(initialDp, true, maxPoints);
                 for (TurnScore turnScore : scorePerTurn) {
                     DataPoint dataPoint = new DataPoint(turnScore.getTurn(), turnScore.getScore());
-                    playerSeries.appendData(dataPoint, true, gameBean.getPointsToWin());
+                    playerSeries.appendData(dataPoint, true, maxPoints);
                 }
                 playerSeries.setAnimated(true);
                 int color = Color.argb(255,

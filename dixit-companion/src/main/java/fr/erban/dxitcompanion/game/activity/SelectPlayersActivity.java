@@ -148,7 +148,7 @@ public class SelectPlayersActivity extends AppCompatActivity {
 
         createNewPlayersInDatabase(players);
 
-        Intent intent = new Intent(SelectPlayersActivity.this, SelectNumberPointsActivity.class);
+        Intent intent = new Intent(SelectPlayersActivity.this, SelectObjectivesActivity.class);
         intent.putExtra("Game", gameBean);
         SelectPlayersActivity.this.startActivity(intent);
     }

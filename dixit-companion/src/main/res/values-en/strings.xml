@@ -4,7 +4,7 @@
     <string name="labelPlayerChoice">Choose the players</string>
     <string name="addPlayer_hint">Name</string>
     <string name="btnContinue">Continue</string>
-    <string name="pointsToWinTitle">Number of points to win</string>
+    <string name="selectObjectiveTitle">Game objectives</string>
     <string name="labelStoryTellerChoice">Who is the Storyteller ?</string>
     <string name="everyoneFoundTitle">Did everyone find the right card ?</string>
     <string name="everyoneFoundYesLabel">YES</string>
@@ -57,4 +57,8 @@
         \n
         <i>P.S.: Thanks for downloading the app, don\'t forget to rate it and post some update suggestions in the Play Store ;)</i>
     </string>
+    <string name="enterANumberOfTurnsToWin">Enter a number of turns</string>
+    <string name="turns">turns</string>
+    <string name="switch_objectives">Switch objectives</string>
+    <string name="points">points</string>
 </resources>
