@@ -14,11 +14,10 @@ import fr.erban.dxitcompanion.db.player.PlayerViewModel
 import fr.erban.dxitcompanion.game.GameBean
 import fr.erban.dxitcompanion.game.activity.ScoresResultActivity
 import fr.erban.dxitcompanion.game.player.PlayerBean
-import fr.erban.dxitcompanion.game.player.TurnScore
 import fr.erban.dxitcompanion.game.turn.ScoreRow
+import fr.erban.dxitcompanion.game.turn.ScoringEngine
 import fr.erban.dxitcompanion.game.turn.Turn
 import fr.erban.dxitcompanion.game.turn.adapter.PointsTotalAdapter
-import fr.erban.dxitcompanion.game.turn.bean.VoteBean
 
 class EndTurnActivity : AppCompatActivity() {
 
@@ -42,7 +41,7 @@ class EndTurnActivity : AppCompatActivity() {
         gameBean = intent.parcelableExtra("Game")!!
 
         val updatedPlayers = gameBean.players
-            .map { getPlayerResults(it, turn.votes) }
+            .map { ScoringEngine.computeScore(it, turn, gameBean.currentTurn) }
             .sortedByDescending { it.currentScore }
 
         gameBean = gameBean.copy(players = updatedPlayers)
@@ -65,24 +64,6 @@ class EndTurnActivity : AppCompatActivity() {
         if (endGameReached) {
             binding.endTurn.text = "${winner!!.name} ${getString(R.string.wonTheGame)}"
         }
-    }
-
-    private fun getPlayerResults(player: PlayerBean, votes: List<VoteBean>): PlayerBean {
-        val votesForCard = votes.count { it.elected.name == player.name }
-        val hasFoundCard = votes.any { it.voter.name == player.name && it.elected.name == turn.storyTeller!!.name }
-
-        val lastTurnScore = when {
-            player.name == turn.storyTeller!!.name -> if (turn.noOneFound || turn.everybodyFound) 0 else 3
-            turn.noOneFound || turn.everybodyFound -> 2  // flat 2, no vote counting
-            else -> (if (hasFoundCard) 3 else 0) + votesForCard
-        }
-
-        val updatedScore = player.currentScore + lastTurnScore
-        return player.copy(
-            currentScore = updatedScore,
-            scoreLastTurn = lastTurnScore,
-            scoresheet = player.scoresheet + TurnScore(turn = gameBean.currentTurn, score = updatedScore)
-        )
     }
 
     fun continueToEndOrNewTurn(view: View) {
