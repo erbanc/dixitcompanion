@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="fr.erban.dxitcompanion">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -14,22 +13,24 @@
         android:roundIcon="@mipmap/logo_v2_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".game.activity.SelectPlayersActivity" />
-        <activity android:name=".game.activity.SelectObjectivesActivity" />
-        <activity android:name=".game.activity.ScoresResultActivity" />
-        <activity android:name=".game.turn.activity.SelectStoryTellerActivity" />
-        <activity android:name=".game.turn.activity.EveryoneFoundActivity" />
-        <activity android:name=".game.turn.activity.EndTurnActivity" />
-        <activity android:name=".game.turn.activity.WhoDidFindActivity" />
-        <activity android:name=".game.turn.activity.SelectVotesActivity" />
-        <activity android:name=".stats.activity.StatsActivity" />
-        <activity android:name=".rules.activity.RulesActivity" />
+        <activity android:name=".game.activity.SelectPlayersActivity" android:exported="false" />
+        <activity android:name=".game.activity.SelectObjectivesActivity" android:exported="false" />
+        <activity android:name=".game.activity.ScoresResultActivity" android:exported="false" />
+        <activity android:name=".game.turn.activity.SelectStoryTellerActivity" android:exported="false" />
+        <activity android:name=".game.turn.activity.EveryoneFoundActivity" android:exported="false" />
+        <activity android:name=".game.turn.activity.EndTurnActivity" android:exported="false" />
+        <activity android:name=".game.turn.activity.WhoDidFindActivity" android:exported="false" />
+        <activity android:name=".game.turn.activity.SelectVotesActivity" android:exported="false" />
+        <activity android:name=".stats.activity.StatsActivity" android:exported="false" />
+        <activity android:name=".rules.activity.RulesActivity" android:exported="false" />
     </application>
 
 </manifest>
