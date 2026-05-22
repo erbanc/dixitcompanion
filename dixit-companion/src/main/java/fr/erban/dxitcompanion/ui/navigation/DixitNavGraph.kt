@@ -1,5 +1,6 @@
 package fr.erban.dxitcompanion.ui.navigation
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -63,6 +64,8 @@ fun DixitNavGraph(
         }
 
         composable(Screen.SelectStoryteller.route) {
+            // Block back navigation during a game to avoid corrupting game state
+            BackHandler(enabled = true) { /* consume the back event, do nothing */ }
             SelectStoryTellerScreen(
                 players = gameState.game.players,
                 turnNumber = gameState.game.currentTurn
@@ -73,6 +76,7 @@ fun DixitNavGraph(
         }
 
         composable(Screen.EveryoneFound.route) {
+            BackHandler(enabled = true) { /* consume the back event, do nothing */ }
             EveryoneFoundScreen(
                 turnNumber = gameState.game.currentTurn,
                 storytellerName = gameState.turn.storyTeller?.name ?: ""
@@ -88,6 +92,7 @@ fun DixitNavGraph(
         }
 
         composable(Screen.WhoDidFind.route) {
+            BackHandler(enabled = true) { /* consume the back event, do nothing */ }
             val nonStorytellers = gameState.game.players.filter { it.name != gameState.turn.storyTeller?.name }
             WhoDidFindScreen(
                 players = nonStorytellers,
@@ -99,6 +104,7 @@ fun DixitNavGraph(
         }
 
         composable(Screen.SelectVotes.route) {
+            BackHandler(enabled = true) { /* consume the back event, do nothing */ }
             val storyteller = gameState.turn.storyTeller!!
             val nonStorytellers = gameState.game.players.filter { it.name != storyteller.name }
             SelectVotesScreen(
@@ -113,8 +119,9 @@ fun DixitNavGraph(
         }
 
         composable(Screen.EndTurn.route) {
-            val result = remember { gameState.computeEndTurn() }
-            val (updatedGame, endGame) = result
+            BackHandler(enabled = true) { /* consume the back event, do nothing */ }
+            val currentTurn = gameState.game.currentTurn
+            val (updatedGame, endGame) = remember(currentTurn) { gameState.computeEndTurn() }
             EndTurnScreen(
                 game = updatedGame,
                 turnNumber = updatedGame.currentTurn,
