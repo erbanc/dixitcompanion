@@ -21,16 +21,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".game.activity.SelectPlayersActivity" android:exported="false" />
-        <activity android:name=".game.activity.SelectObjectivesActivity" android:exported="false" />
-        <activity android:name=".game.activity.ScoresResultActivity" android:exported="false" />
-        <activity android:name=".game.turn.activity.SelectStoryTellerActivity" android:exported="false" />
-        <activity android:name=".game.turn.activity.EveryoneFoundActivity" android:exported="false" />
-        <activity android:name=".game.turn.activity.EndTurnActivity" android:exported="false" />
-        <activity android:name=".game.turn.activity.WhoDidFindActivity" android:exported="false" />
-        <activity android:name=".game.turn.activity.SelectVotesActivity" android:exported="false" />
-        <activity android:name=".stats.activity.StatsActivity" android:exported="false" />
-        <activity android:name=".rules.activity.RulesActivity" android:exported="false" />
     </application>
 
 </manifest>

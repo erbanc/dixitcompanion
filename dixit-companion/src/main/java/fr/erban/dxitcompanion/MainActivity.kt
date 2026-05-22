@@ -1,33 +1,27 @@
 package fr.erban.dxitcompanion
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import androidx.appcompat.app.AppCompatActivity
-import fr.erban.dxitcompanion.databinding.HomescreenBinding
-import fr.erban.dxitcompanion.game.activity.SelectPlayersActivity
-import fr.erban.dxitcompanion.rules.activity.RulesActivity
-import fr.erban.dxitcompanion.stats.activity.StatsActivity
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.compose.rememberNavController
+import fr.erban.dxitcompanion.db.game.GameViewModel
+import fr.erban.dxitcompanion.db.player.PlayerViewModel
+import fr.erban.dxitcompanion.ui.navigation.DixitNavGraph
+import fr.erban.dxitcompanion.ui.theme.DixitTheme
 
-class MainActivity : AppCompatActivity() {
-
-    private lateinit var binding: HomescreenBinding
-
+class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = HomescreenBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-    }
-
-    fun startNewGame(view: View) {
-        startActivity(Intent(this, SelectPlayersActivity::class.java))
-    }
-
-    fun goToStats(view: View) {
-        startActivity(Intent(this, StatsActivity::class.java))
-    }
-
-    fun goToRules(view: View) {
-        startActivity(Intent(this, RulesActivity::class.java))
+        enableEdgeToEdge()
+        val playerViewModel = ViewModelProvider(this)[PlayerViewModel::class.java]
+        val gameViewModel   = ViewModelProvider(this)[GameViewModel::class.java]
+        setContent {
+            DixitTheme {
+                val navController = rememberNavController()
+                DixitNavGraph(navController, playerViewModel, gameViewModel)
+            }
+        }
     }
 }
