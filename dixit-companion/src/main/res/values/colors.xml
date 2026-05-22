@@ -1,10 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="textButtonColor">#F3D191</color>
-    <color name="backgroundButtonColor">#3E3844</color>
-    <color name="backgroundButtonColorPushed">#50FFFFFF</color>
-    <color name="backgroundScreenColor">#F6B131</color>
-    <color name="backgroundTextColor">#3E3844</color>
-    <color name="YesButtonColor">#5BAD59</color>
-    <color name="NoButtonColor">#AD1414</color>
+    <!-- Dixit primary palette -->
+    <color name="colorPrimary">#5C3A9E</color>
+    <color name="colorPrimaryLight">#8B6FCE</color>
+    <color name="colorPrimaryDark">#3A2275</color>
+
+    <!-- Accent pastels (Dixit-inspired) -->
+    <color name="colorAccentGold">#ECA52E</color>
+    <color name="colorAccentCoral">#E5735D</color>
+    <color name="colorAccentMint">#5DBFB8</color>
+    <color name="colorAccentLavender">#A98DD4</color>
+    <color name="colorAccentPeach">#F0A05A</color>
+    <color name="colorAccentRose">#DF91A8</color>
+
+    <!-- Surfaces -->
+    <color name="colorBackground">#FEF6EB</color>
+    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorSurfaceVariant">#F0E8FA</color>
+
+    <!-- Text -->
+    <color name="colorText">#1E1133</color>
+    <color name="colorTextSecondary">#7A6592</color>
+    <color name="colorTextOnPrimary">#FEFBF6</color>
+    <color name="colorTextOnDark">#FEFBF6</color>
+
+    <!-- Legacy aliases (referenced in layouts/code) -->
+    <color name="textButtonColor">#FEFBF6</color>
+    <color name="backgroundButtonColor">#5C3A9E</color>
+    <color name="backgroundButtonColorPushed">#4A2E80</color>
+    <color name="backgroundScreenColor">#FEF6EB</color>
+    <color name="backgroundTextColor">#1E1133</color>
+    <color name="YesButtonColor">#5DBFB8</color>
+    <color name="NoButtonColor">#E5735D</color>
 </resources>

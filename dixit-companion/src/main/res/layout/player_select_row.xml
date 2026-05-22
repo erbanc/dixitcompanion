@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
+    android:background="@drawable/bg_score_row"
     android:descendantFocusability="blocksDescendants"
-    android:paddingLeft="5dp"
+    android:paddingStart="20dp"
+    android:paddingEnd="12dp"
     android:paddingTop="12dp"
-    android:paddingRight="5dp"
     android:paddingBottom="12dp">
 
     <TextView
@@ -13,20 +18,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
         android:layout_toStartOf="@+id/checked"
-        android:layout_toLeftOf="@+id/checked"
-        android:textColor="@color/backgroundTextColor"
-        android:textSize="16sp" />
+        android:fontFamily="@font/write_me_a_song"
+        android:textColor="@color/colorText"
+        android:textSize="20sp" />
 
     <CheckBox
         android:id="@+id/checked"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:onClick="clickCheckbox"
-        android:textColor="@color/backgroundTextColor"
-        android:textSize="14sp" />
+        android:layout_centerVertical="true"
+        android:buttonTint="@color/colorPrimary"
+        android:onClick="clickCheckbox" />
 
 </RelativeLayout>

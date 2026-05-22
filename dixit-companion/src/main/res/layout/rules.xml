@@ -4,46 +4,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     tools:context=".stats.activity.StatsActivity">
 
     <TextView
         android:id="@+id/HomeScreenTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:clickable="false"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/write_me_a_song"
         android:gravity="center"
-        android:singleLine="false"
         android:text="@string/howToPlay"
-        android:textColor="@color/backgroundTextColor"
-        android:textSize="60sp"
+        android:textColor="@color/colorText"
+        android:textSize="52sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Rules card -->
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/bg_card"
+        android:elevation="4dp"
         android:fadeScrollbars="false"
         android:scrollbars="vertical"
         app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/HomeScreenTitle">
+        app:layout_constraintTop_toBottomOf="@id/HomeScreenTitle">
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/write_me_a_song"
-            android:lineSpacingExtra="5dp"
-            android:scrollbars="vertical"
-            android:text="@string/rules"/>
+            android:lineSpacingExtra="6dp"
+            android:padding="24dp"
+            android:text="@string/rules"
+            android:textColor="@color/colorText"
+            android:textSize="16sp" />
     </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

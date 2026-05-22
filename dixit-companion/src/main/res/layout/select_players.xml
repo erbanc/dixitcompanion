@@ -4,40 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     tools:context=".game.activity.SelectPlayersActivity">
 
     <TextView
         android:id="@+id/selectPlayersTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:clickable="false"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/write_me_a_song"
         android:gravity="center"
         android:text="@string/labelPlayerChoice"
-        android:textColor="@color/backgroundTextColor"
-        android:textSize="60sp"
+        android:textColor="@color/colorText"
+        android:textSize="52sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="fill_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="50dp"
-        app:layout_constraintBottom_toTopOf="@+id/addedPlayers"
+    <!-- Input row card -->
+    <LinearLayout
+        android:id="@+id/inputCard"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/bg_card"
+        android:elevation="4dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/selectPlayersTitle">
+        app:layout_constraintTop_toBottomOf="@id/selectPlayersTitle">
 
         <AutoCompleteTextView
             android:id="@+id/playerName"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="50dp"
-            android:layout_toStartOf="@+id/addPlayerButton"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
             android:background="@drawable/background_et"
             android:cursorVisible="true"
             android:gravity="center_vertical"
@@ -46,45 +52,53 @@
             android:inputType="textCapSentences"
             android:maxLength="15"
             android:maxLines="1"
-            android:minWidth="40dp"
-            android:paddingStart="15dp"
-            android:paddingEnd="15dp"
-            android:textSize="20sp" />
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textColor="@color/colorText"
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/addPlayerButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="50dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="12dp"
             android:background="@drawable/small_round_button"
             android:hapticFeedbackEnabled="true"
             android:onClick="onAddPlayer"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
             android:text="@string/addPlayerButton"
-            android:textColor="@color/textButtonColor" />
-    </RelativeLayout>
+            android:textAllCaps="false"
+            android:textColor="@color/colorTextOnPrimary" />
 
+    </LinearLayout>
+
+    <!-- Player chips -->
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/addedPlayers"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="16dp"
         android:animateLayoutChanges="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/relativeLayout" />
+        app:layout_constraintTop_toBottomOf="@id/inputCard" />
 
+    <!-- Continue button -->
     <Button
         android:id="@+id/WhoDidNotFindContinueButton"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/backgroundButtonColor"
+        android:layout_height="64dp"
+        android:background="@color/colorPrimary"
         android:fontFamily="@font/write_me_a_song"
         android:hapticFeedbackEnabled="true"
         android:onClick="continueToNumberPoints"
         android:text="@string/btnContinue"
-        android:textColor="@color/textButtonColor"
-        android:textSize="30sp"
+        android:textAllCaps="false"
+        android:textColor="@color/colorTextOnPrimary"
+        android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

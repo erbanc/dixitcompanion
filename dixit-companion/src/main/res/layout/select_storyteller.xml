@@ -4,63 +4,78 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     tools:context=".game.turn.activity.SelectStoryTellerActivity">
 
+    <!-- Turn badge -->
     <TextView
         android:id="@+id/turnNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:textColor="@color/backgroundTextColor"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_turn_badge"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="13sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Title -->
     <TextView
         android:id="@+id/selectStoryTellerTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:clickable="false"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/write_me_a_song"
         android:gravity="center"
         android:text="@string/labelStoryTellerChoice"
-        android:textColor="@color/backgroundTextColor"
-        android:textSize="60sp"
+        android:textColor="@color/colorText"
+        android:textSize="52sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Players card -->
     <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/playersScrollCard"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_card"
+        android:elevation="4dp"
+        android:padding="16dp"
         app:layout_constrainedHeight="true"
-        app:layout_constrainedWidth="true"
-        app:layout_constraintBottom_toTopOf="@+id/SelectPlayersContinueButton"
+        app:layout_constraintBottom_toTopOf="@id/SelectPlayersContinueButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/selectStoryTellerTitle">
+        app:layout_constraintTop_toBottomOf="@id/selectStoryTellerTitle">
 
         <RadioGroup
             android:id="@+id/radioGroupChooseStoryteller"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></RadioGroup>
+            android:layout_height="wrap_content" />
     </ScrollView>
 
     <Button
         android:id="@+id/SelectPlayersContinueButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/small_round_button"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@color/colorPrimary"
         android:fontFamily="@font/write_me_a_song"
         android:hapticFeedbackEnabled="true"
         android:onClick="continueToTurnResults"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
         android:text="@string/btnContinue"
-        android:textColor="@color/textButtonColor"
-        android:textSize="30sp"
+        android:textAllCaps="false"
+        android:textColor="@color/colorTextOnPrimary"
+        android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
