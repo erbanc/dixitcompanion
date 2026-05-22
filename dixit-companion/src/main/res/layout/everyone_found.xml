@@ -4,62 +4,82 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     tools:context=".game.turn.activity.EveryoneFoundActivity">
 
-    <TextView
-        android:id="@+id/everyoneFoundActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:fontFamily="@font/write_me_a_song"
-        android:gravity="center"
-        android:text="@string/everyoneFoundTitle"
-        android:textColor="@color/backgroundTextColor"
-        android:textSize="60sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+    <!-- Turn badge -->
     <TextView
         android:id="@+id/turnNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_turn_badge"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="13sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Question title -->
+    <TextView
+        android:id="@+id/everyoneFoundActivity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="48dp"
+        android:fontFamily="@font/write_me_a_song"
+        android:gravity="center"
+        android:text="@string/everyoneFoundTitle"
+        android:textColor="@color/colorText"
+        android:textSize="52sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/everyoneFoundYes"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <!-- OUI button — teal, takes equal share of bottom half -->
     <Button
         android:id="@+id/everyoneFoundYes"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/YesButtonColor"
+        android:background="@drawable/btn_yes"
+        android:fontFamily="@font/write_me_a_song"
         android:hapticFeedbackEnabled="true"
         android:onClick="clickYes"
         android:text="@string/everyoneFoundYesLabel"
-        android:textAllCaps="true"
-        android:textColor="@android:color/white"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/everyoneFoundNo"
+        android:textAllCaps="false"
+        android:textColor="#FEFBF6"
+        android:textSize="48sp"
+        android:letterSpacing="0.05"
+        app:layout_constraintBottom_toTopOf="@id/everyoneFoundNo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/everyoneFoundActivity" />
+        app:layout_constraintTop_toBottomOf="@id/everyoneFoundActivity" />
 
+    <!-- NON button — coral, takes equal share -->
     <Button
         android:id="@+id/everyoneFoundNo"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/NoButtonColor"
+        android:background="@drawable/btn_no"
+        android:fontFamily="@font/write_me_a_song"
         android:hapticFeedbackEnabled="true"
         android:onClick="clickNo"
         android:text="@string/everyoneFoundNoLabel"
-        android:textColor="@android:color/white"
-        android:textSize="36sp"
+        android:textAllCaps="false"
+        android:textColor="#FEFBF6"
+        android:textSize="48sp"
+        android:letterSpacing="0.05"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/everyoneFoundYes" />
-
+        app:layout_constraintTop_toBottomOf="@id/everyoneFoundYes" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

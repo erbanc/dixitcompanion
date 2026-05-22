@@ -1,34 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
+    android:background="@drawable/bg_score_row"
     android:descendantFocusability="blocksDescendants"
-    android:paddingLeft="5dp"
-    android:paddingTop="12dp"
-    android:paddingRight="5dp"
-    android:paddingBottom="12dp">
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp"
+    android:paddingTop="14dp"
+    android:paddingBottom="14dp">
 
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_toStartOf="@+id/score"
-        android:layout_toLeftOf="@+id/score"
-        android:textColor="@color/backgroundTextColor"
-        android:textSize="16sp" />
+        android:fontFamily="@font/write_me_a_song"
+        android:textColor="@color/colorText"
+        android:textSize="22sp" />
 
     <TextView
         android:id="@+id/score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:textColor="@color/backgroundTextColor"
-        android:textSize="14sp" />
-
+        android:fontFamily="@font/write_me_a_song"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

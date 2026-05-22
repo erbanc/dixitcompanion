@@ -4,58 +4,74 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     tools:context=".game.turn.activity.EndTurnActivity">
 
+    <!-- Turn badge -->
     <TextView
         android:id="@+id/turnNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_turn_badge"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="13sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Title / winner announcement -->
     <TextView
         android:id="@+id/endTurn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/write_me_a_song"
         android:gravity="center"
         android:text="@string/endTurnTitle"
-        android:textColor="@color/backgroundTextColor"
-        android:textSize="60sp"
+        android:textColor="@color/colorText"
+        android:textSize="52sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Score list in a card -->
     <ListView
         android:id="@+id/listViewEndTurn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:cacheColorHint="#FFFFFF"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_card"
         android:clipToPadding="false"
+        android:divider="@color/colorSurfaceVariant"
         android:dividerHeight="1dp"
-        app:layout_constraintBottom_toTopOf="@+id/EndTurnContinueButton"
+        android:elevation="4dp"
+        android:padding="8dp"
+        app:layout_constraintBottom_toTopOf="@id/EndTurnContinueButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/endTurn" />
+        app:layout_constraintTop_toBottomOf="@id/endTurn" />
 
     <Button
         android:id="@+id/EndTurnContinueButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/small_round_button"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@color/colorPrimary"
         android:fontFamily="@font/write_me_a_song"
         android:hapticFeedbackEnabled="true"
         android:onClick="continueToEndOrNewTurn"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
         android:text="@string/btnContinue"
-        android:textColor="@color/textButtonColor"
-        android:textSize="30sp"
+        android:textAllCaps="false"
+        android:textColor="@color/colorTextOnPrimary"
+        android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
