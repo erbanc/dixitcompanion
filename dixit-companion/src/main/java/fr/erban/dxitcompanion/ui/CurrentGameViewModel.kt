@@ -26,7 +26,9 @@ class CurrentGameViewModel : ViewModel() {
     }
 
     fun setEveryoneFound(everybodyFound: Boolean) {
-        turn = turn.copy(everybodyFound = everybodyFound, noOneFound = !everybodyFound)
+        // noOneFound is determined by WhoDidFindScreen when everybodyFound=false;
+        // when everybodyFound=true we go directly to EndTurn, so noOneFound must be false.
+        turn = turn.copy(everybodyFound = everybodyFound, noOneFound = false)
     }
 
     fun setWhoFound(found: List<PlayerBean>) {

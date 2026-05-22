@@ -35,6 +35,7 @@ import fr.erban.dxitcompanion.ui.theme.Gold
 import fr.erban.dxitcompanion.ui.theme.Mint
 import fr.erban.dxitcompanion.ui.theme.Purple
 import fr.erban.dxitcompanion.ui.theme.PurpleContainer
+import kotlinx.coroutines.delay
 
 @Composable
 fun EndTurnScreen(
@@ -57,7 +58,7 @@ fun EndTurnScreen(
             itemsIndexed(game.players) { index, player ->
                 var visible by remember { mutableStateOf(false) }
                 LaunchedEffect(Unit) {
-                    kotlinx.coroutines.delay(index * 100L)
+                    delay(index * 100L)
                     visible = true
                 }
                 AnimatedVisibility(
@@ -88,11 +89,11 @@ fun EndTurnScreen(
                                     color = Purple,
                                     fontWeight = FontWeight.Bold
                                 )
-                                player.scoreLastTurn?.let {
+                                player.scoreLastTurn?.let { delta ->
                                     Text(
-                                        "+$it ce tour",
+                                        "+$delta ce tour",
                                         style = MaterialTheme.typography.labelMedium,
-                                        color = Mint
+                                        color = if (delta > 0) Mint else MaterialTheme.colorScheme.onSurfaceVariant
                                     )
                                 }
                             }

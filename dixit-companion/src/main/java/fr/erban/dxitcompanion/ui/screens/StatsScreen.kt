@@ -1,6 +1,7 @@
 package fr.erban.dxitcompanion.ui.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,6 +16,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -31,65 +33,79 @@ fun StatsScreen(playerViewModel: PlayerViewModel) {
     val players by playerViewModel.players.observeAsState(initial = emptyList())
 
     DixitScaffold(title = "Statistiques") {
-        Card(
-            Modifier
-                .fillMaxSize()
-                .padding(16.dp),
-            elevation = CardDefaults.cardElevation(4.dp)
-        ) {
-            Column {
-                Row(
-                    Modifier
-                        .fillMaxWidth()
-                        .background(Purple)
-                        .padding(vertical = 12.dp)
-                ) {
-                    listOf("Joueur", "Parties", "Victoires", "%").forEach { h ->
-                        Text(
-                            h,
-                            modifier = Modifier.weight(1f),
-                            fontWeight = FontWeight.Bold,
-                            color = Color.White,
-                            style = MaterialTheme.typography.labelLarge,
-                            textAlign = TextAlign.Center
-                        )
-                    }
-                }
-                LazyColumn {
-                    itemsIndexed(players) { i, player ->
-                        val pct = if (player.nbGames > 0) (player.nbWins * 100 / player.nbGames) else 0
-                        Row(
-                            Modifier
-                                .fillMaxWidth()
-                                .background(
-                                    if (i % 2 == 0) Color.White else PurpleContainer.copy(alpha = 0.3f)
-                                )
-                                .padding(vertical = 12.dp)
-                        ) {
+        if (players.isEmpty()) {
+            Box(
+                Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    "Aucune partie jouée pour l'instant",
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    textAlign = TextAlign.Center
+                )
+            }
+        } else {
+            Card(
+                Modifier
+                    .fillMaxSize()
+                    .padding(16.dp),
+                elevation = CardDefaults.cardElevation(4.dp)
+            ) {
+                Column {
+                    Row(
+                        Modifier
+                            .fillMaxWidth()
+                            .background(Purple)
+                            .padding(vertical = 12.dp)
+                    ) {
+                        listOf("Joueur", "Parties", "Victoires", "%").forEach { h ->
                             Text(
-                                player.name,
-                                Modifier.weight(1f),
-                                color = Purple,
+                                h,
+                                modifier = Modifier.weight(1f),
                                 fontWeight = FontWeight.Bold,
-                                textAlign = TextAlign.Center
-                            )
-                            Text(
-                                "${player.nbGames}",
-                                Modifier.weight(1f),
-                                textAlign = TextAlign.Center
-                            )
-                            Text(
-                                "${player.nbWins}",
-                                Modifier.weight(1f),
-                                textAlign = TextAlign.Center
-                            )
-                            Text(
-                                "$pct%",
-                                Modifier.weight(1f),
+                                color = Color.White,
+                                style = MaterialTheme.typography.labelLarge,
                                 textAlign = TextAlign.Center
                             )
                         }
-                        HorizontalDivider(color = PurpleContainer)
+                    }
+                    LazyColumn {
+                        itemsIndexed(players) { i, player ->
+                            val pct = if (player.nbGames > 0) (player.nbWins * 100 / player.nbGames) else 0
+                            Row(
+                                Modifier
+                                    .fillMaxWidth()
+                                    .background(
+                                        if (i % 2 == 0) Color.White else PurpleContainer.copy(alpha = 0.3f)
+                                    )
+                                    .padding(vertical = 12.dp)
+                            ) {
+                                Text(
+                                    player.name,
+                                    Modifier.weight(1f),
+                                    color = Purple,
+                                    fontWeight = FontWeight.Bold,
+                                    textAlign = TextAlign.Center
+                                )
+                                Text(
+                                    "${player.nbGames}",
+                                    Modifier.weight(1f),
+                                    textAlign = TextAlign.Center
+                                )
+                                Text(
+                                    "${player.nbWins}",
+                                    Modifier.weight(1f),
+                                    textAlign = TextAlign.Center
+                                )
+                                Text(
+                                    "$pct%",
+                                    Modifier.weight(1f),
+                                    textAlign = TextAlign.Center
+                                )
+                            }
+                            HorizontalDivider(color = PurpleContainer)
+                        }
                     }
                 }
             }
