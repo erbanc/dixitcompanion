@@ -45,12 +45,11 @@ class ScoresResultActivity : AppCompatActivity() {
                 player.scoresheet.forEach { ts ->
                     appendData(DataPoint(ts.turn.toDouble(), ts.score.toDouble()), true, maxPoints)
                 }
-                isAnimated = true
                 color = Color.argb(255, Random.nextInt(256), Random.nextInt(256), Random.nextInt(256))
                 title = player.name
                 thickness = 8
             }
-            addSeries(series)
+            binding.graph.addSeries(series)
         }
     }
 
