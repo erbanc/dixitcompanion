@@ -40,9 +40,16 @@ android {
         viewBinding true
     }
 
-    room {
-        schemaDirectory "$projectDir/schemas"
+    testOptions {
+        unitTests {
+            returnDefaultValues = true
+            includeAndroidResources = true
+        }
     }
+}
+
+ksp {
+    arg("room.schemaLocation", "$projectDir/schemas")
 }
 
 dependencies {
