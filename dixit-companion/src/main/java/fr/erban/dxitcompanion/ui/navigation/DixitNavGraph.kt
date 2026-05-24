@@ -17,6 +17,7 @@ import fr.erban.dxitcompanion.ui.CurrentGameViewModel
 import fr.erban.dxitcompanion.ui.screens.EndTurnScreen
 import fr.erban.dxitcompanion.ui.screens.EveryoneFoundScreen
 import fr.erban.dxitcompanion.ui.screens.HomeScreen
+import fr.erban.dxitcompanion.ui.screens.PlayerDraft
 import fr.erban.dxitcompanion.ui.screens.RulesScreen
 import fr.erban.dxitcompanion.ui.screens.ScoresResultScreen
 import fr.erban.dxitcompanion.ui.screens.SelectObjectivesScreen
@@ -45,11 +46,27 @@ fun DixitNavGraph(
 
         composable(Screen.SelectPlayers.route) {
             val existingPlayers by playerViewModel.players.observeAsState(initial = emptyList())
-            SelectPlayersScreen { names ->
-                val players = names.map { name ->
-                    val entity = existingPlayers.find { it.name == name }
-                    if (entity != null) PlayerConverter.toBean(entity)
-                    else PlayerBean(name = name)
+            val rematchSeed = gameState.rematchTemplate
+            val initial = remember(rematchSeed) {
+                rematchSeed?.map { PlayerDraft(it.name, it.emoji, it.colorHex) } ?: emptyList()
+            }
+            // Consume the template once shown
+            remember(rematchSeed) {
+                gameState.consumeRematchTemplate()
+                Unit
+            }
+            SelectPlayersScreen(initialPlayers = initial) { drafts ->
+                val players = drafts.map { draft ->
+                    val entity = existingPlayers.find { it.name.equals(draft.name, true) }
+                    if (entity != null) PlayerConverter.toBean(entity).copy(
+                        emoji = draft.emoji,
+                        colorHex = draft.colorHex
+                    )
+                    else PlayerBean(
+                        name = draft.name,
+                        emoji = draft.emoji,
+                        colorHex = draft.colorHex
+                    )
                 }
                 gameState.startGame(players, Int.MAX_VALUE, Int.MAX_VALUE)
                 navController.navigate(Screen.SelectObjectives.route)
@@ -64,7 +81,6 @@ fun DixitNavGraph(
         }
 
         composable(Screen.SelectStoryteller.route) {
-            // Block back navigation during a game to avoid corrupting game state
             BackHandler(enabled = true) { /* consume the back event, do nothing */ }
             SelectStoryTellerScreen(
                 players = gameState.game.players,
@@ -79,7 +95,7 @@ fun DixitNavGraph(
             BackHandler(enabled = true) { /* consume the back event, do nothing */ }
             EveryoneFoundScreen(
                 turnNumber = gameState.game.currentTurn,
-                storytellerName = gameState.turn.storyTeller?.name ?: ""
+                storyteller = gameState.turn.storyTeller
             ) { everybodyFound ->
                 if (everybodyFound) {
                     gameState.setEveryoneFound(true)
@@ -93,7 +109,8 @@ fun DixitNavGraph(
 
         composable(Screen.WhoDidFind.route) {
             BackHandler(enabled = true) { /* consume the back event, do nothing */ }
-            val nonStorytellers = gameState.game.players.filter { it.name != gameState.turn.storyTeller?.name }
+            val nonStorytellers = gameState.game.players
+                .filter { it.name != gameState.turn.storyTeller?.name }
             WhoDidFindScreen(
                 players = nonStorytellers,
                 turnNumber = gameState.game.currentTurn
@@ -106,7 +123,8 @@ fun DixitNavGraph(
         composable(Screen.SelectVotes.route) {
             BackHandler(enabled = true) { /* consume the back event, do nothing */ }
             val storyteller = gameState.turn.storyTeller!!
-            val nonStorytellers = gameState.game.players.filter { it.name != storyteller.name }
+            val nonStorytellers = gameState.game.players
+                .filter { it.name != storyteller.name }
             SelectVotesScreen(
                 voters = nonStorytellers,
                 storyteller = storyteller,
@@ -144,16 +162,26 @@ fun DixitNavGraph(
         }
 
         composable(Screen.ScoresResult.route) {
-            ScoresResultScreen(game = gameState.game) {
-                gameState.resetGame()
-                navController.navigate(Screen.Home.route) {
-                    popUpTo(Screen.Home.route) { inclusive = true }
+            ScoresResultScreen(
+                game = gameState.game,
+                onHome = {
+                    gameState.resetGame()
+                    navController.navigate(Screen.Home.route) {
+                        popUpTo(Screen.Home.route) { inclusive = true }
+                    }
+                },
+                onRematch = {
+                    // Keep rematchTemplate so SelectPlayers can pre-fill the roster;
+                    // startGame() inside SelectPlayers will overwrite the current game state.
+                    navController.navigate(Screen.SelectPlayers.route) {
+                        popUpTo(Screen.Home.route)
+                    }
                 }
-            }
+            )
         }
 
         composable(Screen.Stats.route) {
-            StatsScreen(playerViewModel)
+            StatsScreen(playerViewModel, gameViewModel)
         }
 
         composable(Screen.Rules.route) {

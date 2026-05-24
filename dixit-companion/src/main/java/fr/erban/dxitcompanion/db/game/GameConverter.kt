@@ -10,6 +10,8 @@ object GameConverter {
         nbTurns = gameBean.currentTurn,
         nameWinner = gameBean.nameWinner,
         pointsToWin = gameBean.pointsToWin,
-        scoreSheet = Gson().toJson(gameBean.getScoresheet())
+        scoreSheet = Gson().toJson(gameBean.getScoresheet()),
+        startedAt = gameBean.startedAt,
+        endedAt = gameBean.endedAt
     )
 }

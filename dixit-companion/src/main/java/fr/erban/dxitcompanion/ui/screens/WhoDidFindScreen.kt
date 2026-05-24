@@ -1,11 +1,16 @@
 package fr.erban.dxitcompanion.ui.screens
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -13,7 +18,6 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -27,8 +31,11 @@ import androidx.compose.ui.unit.dp
 import fr.erban.dxitcompanion.game.player.PlayerBean
 import fr.erban.dxitcompanion.ui.components.BottomCTA
 import fr.erban.dxitcompanion.ui.components.DixitScaffold
-import fr.erban.dxitcompanion.ui.theme.Purple
-import fr.erban.dxitcompanion.ui.theme.PurpleContainer
+import fr.erban.dxitcompanion.ui.components.PlayerAvatar
+import fr.erban.dxitcompanion.ui.components.TurnStep
+import fr.erban.dxitcompanion.ui.components.rememberHaptic
+import fr.erban.dxitcompanion.ui.components.tap
+import fr.erban.dxitcompanion.ui.theme.toColorOrDefault
 
 @Composable
 fun WhoDidFindScreen(
@@ -37,36 +44,68 @@ fun WhoDidFindScreen(
     onContinue: (List<PlayerBean>) -> Unit
 ) {
     var found by remember { mutableStateOf(setOf<String>()) }
+    val haptic = rememberHaptic()
 
-    DixitScaffold(title = "Qui a trouvé ?", turnNumber = turnNumber) {
-        Card(
+    DixitScaffold(
+        title = "Qui a trouvé ?",
+        turnNumber = turnNumber,
+        subtitle = "${found.size} sur ${players.size}",
+        step = TurnStep.WhoFound
+    ) {
+        Box(
             Modifier
                 .fillMaxSize()
-                .padding(16.dp)
-                .padding(bottom = 80.dp),
-            elevation = CardDefaults.cardElevation(4.dp)
+                .padding(horizontal = 16.dp)
+                .padding(bottom = 80.dp)
         ) {
-            LazyColumn {
+            LazyColumn(
+                Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
                 items(players) { player ->
                     val checked = player.name in found
-                    Row(
-                        Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 16.dp, vertical = 4.dp),
-                        verticalAlignment = Alignment.CenterVertically
+                    val color = player.colorHex.toColorOrDefault()
+                    Card(
+                        onClick = {
+                            found = if (checked) found - player.name else found + player.name
+                            haptic.tap()
+                        },
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = MaterialTheme.shapes.large,
+                        colors = CardDefaults.cardColors(
+                            containerColor = if (checked) MaterialTheme.colorScheme.primaryContainer
+                                            else MaterialTheme.colorScheme.surface
+                        ),
+                        elevation = CardDefaults.cardElevation(if (checked) 6.dp else 2.dp)
                     ) {
-                        Checkbox(
-                            checked = checked,
-                            onCheckedChange = { c ->
-                                found = if (c) found + player.name else found - player.name
-                            },
-                            colors = CheckboxDefaults.colors(checkedColor = Purple)
-                        )
-                        Spacer(Modifier.width(12.dp))
-                        Text(player.name, style = MaterialTheme.typography.titleLarge)
+                        Row(
+                            Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 12.dp, vertical = 12.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Checkbox(
+                                checked = checked,
+                                onCheckedChange = { c ->
+                                    found = if (c) found + player.name else found - player.name
+                                    haptic.tap()
+                                },
+                                colors = CheckboxDefaults.colors(
+                                    checkedColor = MaterialTheme.colorScheme.primary
+                                )
+                            )
+                            Spacer(Modifier.width(4.dp))
+                            PlayerAvatar(emoji = player.emoji, color = color, size = 40.dp)
+                            Spacer(Modifier.width(12.dp))
+                            Text(
+                                player.name,
+                                style = MaterialTheme.typography.titleLarge,
+                                color = MaterialTheme.colorScheme.onSurface
+                            )
+                        }
                     }
-                    HorizontalDivider(color = PurpleContainer)
                 }
+                item { Spacer(Modifier.height(40.dp)) }
             }
         }
     }

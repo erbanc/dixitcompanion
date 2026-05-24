@@ -14,7 +14,7 @@ import fr.erban.dxitcompanion.db.player.PlayerDao
 import fr.erban.dxitcompanion.db.player.PlayerEntity
 
 @Database(
-    version = 2,
+    version = 3,
     entities = [GameEntity::class, PlayerEntity::class, GamePlayerCrossRefEntity::class],
     exportSchema = true
 )
@@ -33,6 +33,15 @@ abstract class DxitDatabase : RoomDatabase() {
             }
         }
 
+        private val MIGRATION_2_3 = object : Migration(2, 3) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("ALTER TABLE PlayerEntity ADD COLUMN colorHex TEXT NOT NULL DEFAULT '#5C3A9E'")
+                db.execSQL("ALTER TABLE PlayerEntity ADD COLUMN emoji TEXT NOT NULL DEFAULT '🎭'")
+                db.execSQL("ALTER TABLE GameEntity ADD COLUMN startedAt INTEGER NOT NULL DEFAULT 0")
+                db.execSQL("ALTER TABLE GameEntity ADD COLUMN endedAt INTEGER NOT NULL DEFAULT 0")
+            }
+        }
+
         fun getDatabase(context: Context): DxitDatabase =
             INSTANCE ?: synchronized(this) {
                 Room.databaseBuilder(
@@ -40,7 +49,7 @@ abstract class DxitDatabase : RoomDatabase() {
                     DxitDatabase::class.java,
                     DxitConstants.DB_NAME
                 )
-                    .addMigrations(MIGRATION_1_2)
+                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
                     .build()
                     .also { INSTANCE = it }
             }

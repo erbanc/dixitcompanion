@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -18,12 +19,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import fr.erban.dxitcompanion.ui.theme.DeepNight
-import fr.erban.dxitcompanion.ui.theme.Purple
-import fr.erban.dxitcompanion.ui.theme.PurpleContainer
 
 @Composable
 fun DixitScaffold(
@@ -31,6 +28,7 @@ fun DixitScaffold(
     turnNumber: Int? = null,
     subtitle: String? = null,
     titleLines: Int = 1,
+    step: TurnStep? = null,
     content: @Composable BoxScope.() -> Unit
 ) {
     Box(
@@ -43,7 +41,7 @@ fun DixitScaffold(
         if (turnNumber != null) {
             Surface(
                 shape = RoundedCornerShape(50),
-                color = PurpleContainer,
+                color = MaterialTheme.colorScheme.primaryContainer,
                 modifier = Modifier
                     .padding(16.dp)
                     .align(Alignment.TopStart)
@@ -52,7 +50,7 @@ fun DixitScaffold(
                     "TOUR $turnNumber",
                     modifier = Modifier.padding(horizontal = 14.dp, vertical = 6.dp),
                     style = MaterialTheme.typography.labelMedium,
-                    color = Purple
+                    color = MaterialTheme.colorScheme.onPrimaryContainer
                 )
             }
         }
@@ -62,7 +60,7 @@ fun DixitScaffold(
                 title,
                 style = if (title.length > 12) MaterialTheme.typography.headlineMedium
                         else MaterialTheme.typography.headlineLarge,
-                color = DeepNight,
+                color = MaterialTheme.colorScheme.onBackground,
                 textAlign = TextAlign.Center,
                 maxLines = titleLines,
                 modifier = Modifier
@@ -73,12 +71,17 @@ fun DixitScaffold(
                 Text(
                     subtitle,
                     style = MaterialTheme.typography.bodyMedium,
-                    color = Purple,
+                    color = MaterialTheme.colorScheme.primary,
                     textAlign = TextAlign.Center,
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(bottom = 8.dp)
                 )
+            }
+            if (step != null) {
+                Spacer(Modifier.height(8.dp))
+                TurnStepIndicator(current = step)
+                Spacer(Modifier.height(8.dp))
             }
             Box(Modifier.fillMaxSize()) { content() }
         }
@@ -87,18 +90,22 @@ fun DixitScaffold(
 
 @Composable
 fun BottomCTA(label: String, enabled: Boolean = true, onClick: () -> Unit) {
+    val haptic = rememberHaptic()
     Button(
-        onClick = onClick,
+        onClick = {
+            haptic.confirm()
+            onClick()
+        },
         enabled = enabled,
         modifier = Modifier
             .fillMaxWidth()
             .height(64.dp),
         shape = RoundedCornerShape(0.dp),
         colors = ButtonDefaults.buttonColors(
-            containerColor = Purple,
-            contentColor = Color.White,
-            disabledContainerColor = PurpleContainer,
-            disabledContentColor = Purple
+            containerColor = MaterialTheme.colorScheme.primary,
+            contentColor = MaterialTheme.colorScheme.onPrimary,
+            disabledContainerColor = MaterialTheme.colorScheme.primaryContainer,
+            disabledContentColor = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.5f)
         )
     ) {
         Text(label, style = MaterialTheme.typography.titleLarge)

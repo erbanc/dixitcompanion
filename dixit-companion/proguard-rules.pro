@@ -28,9 +28,6 @@
 -dontwarn com.google.firebase.**
 -dontwarn com.google.android.gms.**
 
-# GraphView
--keep class com.jjoe64.graphview.** { *; }
-
 # Kotlin
 -keep class kotlin.Metadata { *; }
 -dontwarn kotlin.**

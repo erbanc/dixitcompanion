@@ -2,6 +2,7 @@ package fr.erban.dxitcompanion.ui.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -28,9 +29,9 @@ import androidx.compose.ui.unit.dp
 import fr.erban.dxitcompanion.game.player.PlayerBean
 import fr.erban.dxitcompanion.ui.components.BottomCTA
 import fr.erban.dxitcompanion.ui.components.DixitScaffold
-import fr.erban.dxitcompanion.ui.theme.DeepNight
-import fr.erban.dxitcompanion.ui.theme.Purple
-import fr.erban.dxitcompanion.ui.theme.PurpleContainer
+import fr.erban.dxitcompanion.ui.components.PlayerAvatar
+import fr.erban.dxitcompanion.ui.components.TurnStep
+import fr.erban.dxitcompanion.ui.theme.toColorOrDefault
 
 @Composable
 fun SelectStoryTellerScreen(
@@ -40,45 +41,70 @@ fun SelectStoryTellerScreen(
 ) {
     var selected by remember { mutableStateOf<PlayerBean?>(null) }
 
-    DixitScaffold(title = "Qui raconte ?", turnNumber = turnNumber) {
-        LazyColumn(
+    DixitScaffold(
+        title = "Qui raconte ?",
+        turnNumber = turnNumber,
+        step = TurnStep.Storyteller
+    ) {
+        Column(
             Modifier
                 .fillMaxSize()
-                .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+                .padding(horizontal = 16.dp)
+                .padding(bottom = 80.dp)
         ) {
-            items(players) { player ->
-                val isSelected = selected?.name == player.name
-                Card(
-                    onClick = { selected = player },
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = CardDefaults.cardColors(
-                        containerColor = if (isSelected) PurpleContainer else MaterialTheme.colorScheme.surface
-                    ),
-                    elevation = CardDefaults.cardElevation(if (isSelected) 8.dp else 2.dp)
-                ) {
-                    Row(Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
-                        RadioButton(
-                            selected = isSelected,
-                            onClick = { selected = player },
-                            colors = RadioButtonDefaults.colors(selectedColor = Purple)
-                        )
-                        Spacer(Modifier.width(12.dp))
-                        Text(
-                            player.name,
-                            style = MaterialTheme.typography.titleLarge,
-                            color = if (isSelected) Purple else DeepNight
-                        )
-                        Spacer(Modifier.weight(1f))
-                        Text(
-                            "${player.currentScore} pts",
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = if (isSelected) Purple else MaterialTheme.colorScheme.onSurfaceVariant
-                        )
+            LazyColumn(
+                Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
+                items(players) { player ->
+                    val isSelected = selected?.name == player.name
+                    val color = player.colorHex.toColorOrDefault()
+                    Card(
+                        onClick = { selected = player },
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = MaterialTheme.shapes.large,
+                        colors = CardDefaults.cardColors(
+                            containerColor = if (isSelected) MaterialTheme.colorScheme.primaryContainer
+                                            else MaterialTheme.colorScheme.surface
+                        ),
+                        elevation = CardDefaults.cardElevation(if (isSelected) 8.dp else 2.dp)
+                    ) {
+                        Row(
+                            Modifier.padding(horizontal = 12.dp, vertical = 14.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            RadioButton(
+                                selected = isSelected,
+                                onClick = { selected = player },
+                                colors = RadioButtonDefaults.colors(
+                                    selectedColor = MaterialTheme.colorScheme.primary
+                                )
+                            )
+                            Spacer(Modifier.width(4.dp))
+                            PlayerAvatar(
+                                emoji = player.emoji,
+                                color = color,
+                                size = 44.dp
+                            )
+                            Spacer(Modifier.width(12.dp))
+                            Column(Modifier.weight(1f)) {
+                                Text(
+                                    player.name,
+                                    style = MaterialTheme.typography.titleLarge,
+                                    color = if (isSelected) MaterialTheme.colorScheme.primary
+                                           else MaterialTheme.colorScheme.onSurface
+                                )
+                                Text(
+                                    "${player.currentScore} pts",
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
+                            }
+                        }
                     }
                 }
+                item { Spacer(Modifier.height(80.dp)) }
             }
-            item { Spacer(Modifier.height(80.dp)) }
         }
     }
     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {

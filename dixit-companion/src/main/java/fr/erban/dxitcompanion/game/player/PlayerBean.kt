@@ -11,5 +11,7 @@ data class PlayerBean(
     val scoresheet: List<TurnScore> = emptyList(),
     val nbGames: Int = 0,
     val nbWins: Int = 0,
-    val persisted: Boolean = false
+    val persisted: Boolean = false,
+    val colorHex: String = "#5C3A9E",
+    val emoji: String = "🎭"
 ) : Parcelable

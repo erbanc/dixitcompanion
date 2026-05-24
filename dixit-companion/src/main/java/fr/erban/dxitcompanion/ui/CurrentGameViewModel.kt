@@ -16,8 +16,18 @@ class CurrentGameViewModel : ViewModel() {
     var turn by mutableStateOf(Turn())
         private set
 
+    /** Players carried over from the last finished game, kept in memory for "rematch". */
+    var rematchTemplate by mutableStateOf<List<PlayerBean>?>(null)
+        private set
+
     fun startGame(players: List<PlayerBean>, pointsToWin: Int, maxTurns: Int) {
-        game = GameBean(players = players, pointsToWin = pointsToWin, maxTurns = maxTurns, currentTurn = 1)
+        game = GameBean(
+            players = players,
+            pointsToWin = pointsToWin,
+            maxTurns = maxTurns,
+            currentTurn = 1,
+            startedAt = System.currentTimeMillis()
+        )
         turn = Turn()
     }
 
@@ -55,7 +65,26 @@ class CurrentGameViewModel : ViewModel() {
                 }
             }
         }
-        game = game.copy(players = updatedPlayers, nameWinner = if (endGame) winner?.name else null)
+        val endedAt = if (endGame) System.currentTimeMillis() else game.endedAt
+        game = game.copy(
+            players = updatedPlayers,
+            nameWinner = if (endGame) winner?.name else null,
+            finished = endGame,
+            endedAt = endedAt
+        )
+        if (endGame) {
+            // Snapshot players (without scores) for a possible rematch
+            rematchTemplate = updatedPlayers.map { p ->
+                PlayerBean(
+                    name = p.name,
+                    colorHex = p.colorHex,
+                    emoji = p.emoji,
+                    persisted = p.persisted,
+                    nbGames = p.nbGames,
+                    nbWins = p.nbWins
+                )
+            }
+        }
         return Pair(game, endGame)
     }
 
@@ -67,5 +96,12 @@ class CurrentGameViewModel : ViewModel() {
     fun resetGame() {
         game = GameBean(players = emptyList())
         turn = Turn()
+        rematchTemplate = null
+    }
+
+    fun consumeRematchTemplate(): List<PlayerBean>? {
+        val tpl = rematchTemplate
+        rematchTemplate = null
+        return tpl
     }
 }

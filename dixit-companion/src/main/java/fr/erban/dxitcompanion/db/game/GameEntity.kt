@@ -11,5 +11,7 @@ data class GameEntity(
     val finished: Boolean,
     val nameWinner: String?,
     val nbTurns: Int,
-    val scoreSheet: String?
+    val scoreSheet: String?,
+    val startedAt: Long = 0L,
+    val endedAt: Long = 0L
 )
