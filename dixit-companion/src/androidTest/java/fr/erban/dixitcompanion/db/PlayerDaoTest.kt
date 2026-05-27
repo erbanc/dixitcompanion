@@ -51,7 +51,7 @@ class PlayerDaoTest {
         playerDao.insert(player)
 
         val updatedPlayer = player.copy(nbGames = 2, nbWins = 1)
-        playerDao.update(listOf(updatedPlayer))
+        playerDao.upsert(listOf(updatedPlayer))
 
         // Verify the updated entity has the correct values
         assertEquals("Bob", updatedPlayer.name)
