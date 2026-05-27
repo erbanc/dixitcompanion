@@ -58,10 +58,10 @@ fun HomeScreen(
 ) {
     val gradient = Brush.verticalGradient(
         listOf(
-            Color(0xFF1A0B40),
-            Color(0xFF2E1769),
-            Color(0xFF5C3A9E),
-            Color(0xFF7152BA)
+            Color(0xFF050110),
+            Color(0xFF0D0524),
+            Color(0xFF1E0B4A),
+            Color(0xFF3B1E7A)
         )
     )
     Box(Modifier.fillMaxSize().background(gradient)) {
@@ -102,7 +102,7 @@ fun HomeScreen(
             )
         }
         Text(
-            "v4.1",
+            "v1.1.0",
             color = Color.White.copy(alpha = 0.3f),
             style = MaterialTheme.typography.labelSmall,
             modifier = Modifier
@@ -185,25 +185,37 @@ private fun DixitHomeButton(
     }
 }
 
+private data class Star(
+    val x: Float, val y: Float, val r: Float,
+    val baseAlpha: Float, val group: Int
+)
+
 @Composable
 private fun StarField() {
     val stars = remember {
-        List(60) {
-            Triple(
-                Random.nextFloat(),
-                Random.nextFloat(),
-                0.4f + Random.nextFloat() * 0.6f
+        List(90) {
+            Star(
+                x = Random.nextFloat(),
+                y = Random.nextFloat(),
+                r = 0.6f + Random.nextFloat() * 2.0f,
+                baseAlpha = 0.25f + Random.nextFloat() * 0.75f,
+                group = Random.nextInt(3)
             )
         }
     }
+    val tr = rememberInfiniteTransition(label = "stars")
+    val t1 by tr.animateFloat(0.18f, 0.95f, infiniteRepeatable(tween(2200, easing = LinearEasing), RepeatMode.Reverse), "s1")
+    val t2 by tr.animateFloat(0.30f, 1.00f, infiniteRepeatable(tween(3100, easing = LinearEasing), RepeatMode.Reverse), "s2")
+    val t3 by tr.animateFloat(0.10f, 0.80f, infiniteRepeatable(tween(1700, easing = LinearEasing), RepeatMode.Reverse), "s3")
+
     Canvas(Modifier.fillMaxSize()) {
-        stars.forEach { (fx, fy, alpha) ->
-            val r = 0.8f + fx * 2.4f
+        stars.forEach { star ->
+            val t = when (star.group) { 0 -> t1; 1 -> t2; else -> t3 }
             drawCircle(
                 Color(0xFFFFFCE0),
-                radius = r,
-                center = Offset(fx * size.width, fy * size.height * 0.55f),
-                alpha = alpha
+                radius = star.r,
+                center = Offset(star.x * size.width, star.y * size.height),
+                alpha = star.baseAlpha * t
             )
         }
     }

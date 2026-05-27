@@ -1,6 +1,7 @@
 package fr.erban.dixitcompanion.ui.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
@@ -24,6 +25,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
@@ -37,12 +40,19 @@ fun DixitScaffold(
     actions: @Composable (() -> Unit)? = null,
     content: @Composable BoxScope.() -> Unit
 ) {
+    val isDark = isSystemInDarkTheme()
+    val bgBrush = if (isDark) {
+        Brush.verticalGradient(listOf(Color(0xFF080315), Color(0xFF0D0624), Color(0xFF130A38)))
+    } else {
+        Brush.verticalGradient(listOf(Color(0xFFF4EEFF), Color(0xFFF8F4FF), Color(0xFFFBF8FF)))
+    }
     Box(
         Modifier
             .fillMaxSize()
             .safeDrawingPadding()
-            .background(MaterialTheme.colorScheme.background)
+            .background(bgBrush)
     ) {
+        if (isDark) DreamBackground(Modifier.fillMaxSize())
         // Turn badge
         if (turnNumber != null) {
             Surface(
