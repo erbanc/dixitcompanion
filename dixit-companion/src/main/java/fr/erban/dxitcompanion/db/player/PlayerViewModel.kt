@@ -17,9 +17,9 @@ class PlayerViewModel(application: Application) : AndroidViewModel(application) 
         }
     }
 
-    fun update(players: List<PlayerEntity>) {
+    fun upsert(players: List<PlayerEntity>) {
         viewModelScope.launch {
-            playerRepository.update(players)
+            playerRepository.upsert(players)
         }
     }
 }

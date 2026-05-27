@@ -14,7 +14,7 @@ import fr.erban.dxitcompanion.db.player.PlayerDao
 import fr.erban.dxitcompanion.db.player.PlayerEntity
 
 @Database(
-    version = 3,
+    version = 5,
     entities = [GameEntity::class, PlayerEntity::class, GamePlayerCrossRefEntity::class],
     exportSchema = true
 )
@@ -42,6 +42,21 @@ abstract class DxitDatabase : RoomDatabase() {
             }
         }
 
+        private val MIGRATION_3_4 = object : Migration(3, 4) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("ALTER TABLE PlayerEntity ADD COLUMN nbAsStoryteller INTEGER NOT NULL DEFAULT 0")
+                db.execSQL("ALTER TABLE PlayerEntity ADD COLUMN nbAsVoter INTEGER NOT NULL DEFAULT 0")
+                db.execSQL("ALTER TABLE PlayerEntity ADD COLUMN nbFoundStoryteller INTEGER NOT NULL DEFAULT 0")
+            }
+        }
+
+        private val MIGRATION_4_5 = object : Migration(4, 5) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("ALTER TABLE PlayerEntity ADD COLUMN nbStorytellerOptimalTurns INTEGER NOT NULL DEFAULT 0")
+                db.execSQL("ALTER TABLE PlayerEntity ADD COLUMN totalPoints INTEGER NOT NULL DEFAULT 0")
+            }
+        }
+
         fun getDatabase(context: Context): DxitDatabase =
             INSTANCE ?: synchronized(this) {
                 Room.databaseBuilder(
@@ -49,7 +64,7 @@ abstract class DxitDatabase : RoomDatabase() {
                     DxitDatabase::class.java,
                     DxitConstants.DB_NAME
                 )
-                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
+                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5)
                     .build()
                     .also { INSTANCE = it }
             }

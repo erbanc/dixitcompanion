@@ -8,46 +8,58 @@ import org.junit.Test
 class PlayerConverterTest {
 
     @Test
-    fun roundTrip_playerBeanToEntityAndBack_preservesAllFields() {
-        val original = PlayerBean(
+    fun toBean_preservesAllStatsFields() {
+        val entity = PlayerEntity(
             name = "Alice",
-            currentScore = 15,
-            nbGames = 5,
-            nbWins = 2,
-            persisted = false
+            nbGames = 5, nbWins = 2,
+            nbAsStoryteller = 3, nbAsVoter = 10, nbFoundStoryteller = 7,
+            nbStorytellerOptimalTurns = 2, totalPoints = 48
         )
-        val entity = PlayerConverter.toEntity(original)
-        val restored = PlayerConverter.toBean(entity)
+        val bean = PlayerConverter.toBean(entity)
 
-        assertEquals(original.name, restored.name)
-        assertEquals(original.nbGames, restored.nbGames)
-        assertEquals(original.nbWins, restored.nbWins)
-        // currentScore resets to 0 when loading from DB (by design)
-        assertEquals(0, restored.currentScore)
-        // persisted flag is set to true when loaded from DB
-        assertTrue(restored.persisted)
-        // scoresheet is empty when loaded from DB
-        assertTrue(restored.scoresheet.isEmpty())
+        assertEquals("Alice", bean.name)
+        assertEquals(5, bean.nbGames)
+        assertEquals(2, bean.nbWins)
+        assertEquals(3, bean.nbAsStoryteller)
+        assertEquals(10, bean.nbAsVoter)
+        assertEquals(7, bean.nbFoundStoryteller)
+        assertEquals(2, bean.nbStorytellerOptimalTurns)
+        assertEquals(48, bean.totalPoints)
+        assertEquals(0, bean.currentScore)
+        assertTrue(bean.persisted)
+        assertTrue(bean.scoresheet.isEmpty())
     }
 
     @Test
-    fun toEntities_convertsListCorrectly() {
+    fun toEndGameEntities_incrementsGamesWins_accumulatesPoints() {
         val players = listOf(
-            PlayerBean(name = "Alice", nbGames = 3, nbWins = 1),
-            PlayerBean(name = "Bob", nbGames = 5, nbWins = 2),
-            PlayerBean(name = "Charlie", nbGames = 1, nbWins = 0)
+            PlayerBean(name = "Alice", nbGames = 3, nbWins = 1, currentScore = 15,
+                nbAsStoryteller = 2, nbAsVoter = 6, nbFoundStoryteller = 4,
+                nbStorytellerOptimalTurns = 1, totalPoints = 30),
+            PlayerBean(name = "Bob", nbGames = 3, nbWins = 0, currentScore = 10,
+                nbAsStoryteller = 1, nbAsVoter = 7, nbFoundStoryteller = 3,
+                nbStorytellerOptimalTurns = 0, totalPoints = 25)
         )
-        val entities = PlayerConverter.toEntities(players)
+        val entities = PlayerConverter.toEndGameEntities(players, winnerName = "Alice")
 
-        assertEquals(3, entities.size)
-        assertEquals("Alice", entities[0].name)
-        assertEquals(3, entities[0].nbGames)
-        assertEquals(1, entities[0].nbWins)
-        assertEquals("Bob", entities[1].name)
-        assertEquals(5, entities[1].nbGames)
-        assertEquals(2, entities[1].nbWins)
-        assertEquals("Charlie", entities[2].name)
-        assertEquals(1, entities[2].nbGames)
-        assertEquals(0, entities[2].nbWins)
+        val alice = entities.first { it.name == "Alice" }
+        assertEquals(4, alice.nbGames)
+        assertEquals(2, alice.nbWins)
+        assertEquals(45, alice.totalPoints)          // 30 + 15
+        assertEquals(1, alice.nbStorytellerOptimalTurns)
+
+        val bob = entities.first { it.name == "Bob" }
+        assertEquals(4, bob.nbGames)
+        assertEquals(0, bob.nbWins)
+        assertEquals(35, bob.totalPoints)            // 25 + 10
+    }
+
+    @Test
+    fun toEndGameEntities_noWinner_noWinIncrement() {
+        val players = listOf(PlayerBean(name = "Alice", nbGames = 1, nbWins = 0, currentScore = 8, totalPoints = 0))
+        val entities = PlayerConverter.toEndGameEntities(players, winnerName = null)
+        assertEquals(0, entities[0].nbWins)
+        assertEquals(2, entities[0].nbGames)
+        assertEquals(8, entities[0].totalPoints)
     }
 }

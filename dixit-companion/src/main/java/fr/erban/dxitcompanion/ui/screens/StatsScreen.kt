@@ -93,22 +93,26 @@ private fun PlayersTab(players: List<PlayerEntity>) {
         return
     }
     val sorted = remember(players) { players.sortedByDescending { it.nbWins } }
-    val maxWins = sorted.firstOrNull()?.nbWins?.takeIf { it > 0 } ?: 1
 
     LazyColumn(
         Modifier.fillMaxSize().padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
         items(sorted) { p ->
-            PlayerStatCard(p, maxWins)
+            PlayerStatCard(p)
         }
     }
 }
 
 @Composable
-private fun PlayerStatCard(p: PlayerEntity, maxWins: Int) {
-    val color = p.colorHex.toColorOrDefault()
-    val winRate = if (p.nbGames > 0) (p.nbWins * 100f / p.nbGames) else 0f
+private fun PlayerStatCard(p: PlayerEntity) {
+    val color              = p.colorHex.toColorOrDefault()
+    val winRate            = if (p.nbGames > 0) p.nbWins * 100f / p.nbGames else 0f
+    val findRate           = if (p.nbAsVoter > 0) p.nbFoundStoryteller * 100f / p.nbAsVoter else -1f
+    val storytellerSuccess = if (p.nbAsStoryteller > 0) p.nbStorytellerOptimalTurns * 100f / p.nbAsStoryteller else -1f
+    val avgScorePerGame    = if (p.nbGames > 0) p.totalPoints.toFloat() / p.nbGames else -1f
+    val totalTurns         = p.nbAsStoryteller + p.nbAsVoter
+
     Card(
         Modifier.fillMaxWidth(),
         shape = MaterialTheme.shapes.large,
@@ -116,6 +120,7 @@ private fun PlayerStatCard(p: PlayerEntity, maxWins: Int) {
         elevation = CardDefaults.cardElevation(3.dp)
     ) {
         Column(Modifier.padding(14.dp)) {
+            // Header
             Row(verticalAlignment = Alignment.CenterVertically) {
                 PlayerAvatar(emoji = p.emoji, color = color, size = 48.dp)
                 Spacer(Modifier.width(12.dp))
@@ -128,46 +133,95 @@ private fun PlayerStatCard(p: PlayerEntity, maxWins: Int) {
                         overflow = TextOverflow.Ellipsis
                     )
                     Text(
-                        "${p.nbGames} partie${if (p.nbGames > 1) "s" else ""} jouée${if (p.nbGames > 1) "s" else ""}",
+                        "${p.nbGames} partie${if (p.nbGames > 1) "s" else ""} · ${totalTurns} tour${if (totalTurns > 1) "s" else ""}",
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Icon(
-                        Icons.Default.EmojiEvents,
-                        null,
-                        tint = if (p.nbWins > 0) MaterialTheme.colorScheme.secondary
-                              else MaterialTheme.colorScheme.outline,
-                        modifier = Modifier.padding(end = 4.dp)
-                    )
-                    Text(
-                        "${p.nbWins}",
-                        style = MaterialTheme.typography.titleLarge,
-                        color = MaterialTheme.colorScheme.primary,
-                        fontWeight = FontWeight.Bold
-                    )
+                Column(horizontalAlignment = Alignment.End) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Icon(
+                            Icons.Default.EmojiEvents,
+                            null,
+                            tint = if (p.nbWins > 0) MaterialTheme.colorScheme.secondary
+                                  else MaterialTheme.colorScheme.outline,
+                            modifier = Modifier.padding(end = 4.dp)
+                        )
+                        Text(
+                            "${p.nbWins}",
+                            style = MaterialTheme.typography.titleLarge,
+                            color = MaterialTheme.colorScheme.primary,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
+                    if (avgScorePerGame >= 0f) {
+                        Text(
+                            "~${String.format("%.1f", avgScorePerGame)} pts/partie",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
                 }
             }
-            Spacer(Modifier.height(10.dp))
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                LinearProgressIndicator(
-                    progress = { p.nbWins.toFloat() / maxWins.coerceAtLeast(1) },
-                    modifier = Modifier
-                        .weight(1f)
-                        .height(8.dp)
-                        .clip(RoundedCornerShape(4.dp)),
-                    color = color,
-                    trackColor = MaterialTheme.colorScheme.surfaceVariant
-                )
-                Spacer(Modifier.width(10.dp))
-                Text(
-                    "${winRate.toInt()}%",
-                    style = MaterialTheme.typography.labelLarge,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
+            Spacer(Modifier.height(12.dp))
+            // Taux de victoire
+            StatBar("Taux de victoire", winRate, color)
+            // Taux de trouvage de la carte du conteur
+            if (findRate >= 0f) {
+                Spacer(Modifier.height(6.dp))
+                StatBar("Trouve la carte du conteur", findRate, MaterialTheme.colorScheme.tertiary)
+            }
+            // Réussite comme conteur (tour "parfait" : certains ont trouvé, pas tous)
+            if (storytellerSuccess >= 0f) {
+                Spacer(Modifier.height(6.dp))
+                StatBar("Réussite comme conteur", storytellerSuccess, MaterialTheme.colorScheme.secondary)
+            }
+            // Compteurs rôles
+            if (p.nbAsStoryteller > 0 || p.nbAsVoter > 0) {
+                Spacer(Modifier.height(8.dp))
+                Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                    if (p.nbAsStoryteller > 0) StatChip("🎤", "${p.nbAsStoryteller} tours conteur")
+                    if (p.nbAsVoter > 0) StatChip("🗳", "${p.nbAsVoter} tours votant")
+                }
             }
         }
+    }
+}
+
+@Composable
+private fun StatBar(label: String, percent: Float, color: androidx.compose.ui.graphics.Color) {
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        LinearProgressIndicator(
+            progress = { (percent / 100f).coerceIn(0f, 1f) },
+            modifier = Modifier
+                .weight(1f)
+                .height(8.dp)
+                .clip(RoundedCornerShape(4.dp)),
+            color = color,
+            trackColor = MaterialTheme.colorScheme.surfaceVariant
+        )
+        Spacer(Modifier.width(10.dp))
+        Text(
+            "${percent.toInt()}%",
+            style = MaterialTheme.typography.labelLarge,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.width(36.dp)
+        )
+    }
+    Text(
+        label,
+        style = MaterialTheme.typography.labelSmall,
+        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
+        modifier = Modifier.padding(start = 2.dp, top = 2.dp)
+    )
+}
+
+@Composable
+private fun StatChip(label: String, value: String) {
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        Text(label, style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        Spacer(Modifier.width(4.dp))
+        Text(value, style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.Bold)
     }
 }
 

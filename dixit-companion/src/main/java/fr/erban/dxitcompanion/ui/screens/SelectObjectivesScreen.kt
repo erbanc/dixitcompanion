@@ -90,10 +90,7 @@ fun SelectObjectivesScreen(onContinue: (pointsToWin: Int, maxTurns: Int) -> Unit
                     Modifier.padding(24.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Crossfade(
-                        targetState = isPointsMode,
-                        label = "obj-label"
-                    ) { points ->
+                    Crossfade(targetState = isPointsMode, label = "obj-label") { points ->
                         Text(
                             if (points) "Points pour gagner" else "Nombre de tours",
                             style = MaterialTheme.typography.titleMedium,
@@ -151,11 +148,11 @@ fun SelectObjectivesScreen(onContinue: (pointsToWin: Int, maxTurns: Int) -> Unit
                 textAlign = TextAlign.Center
             )
         }
-    }
-    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
-        BottomCTA("C'est parti ! ✦") {
-            if (isPointsMode) onContinue(value, Int.MAX_VALUE)
-            else onContinue(Int.MAX_VALUE, value)
+        Box(Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
+            BottomCTA("C'est parti ! ✦") {
+                if (isPointsMode) onContinue(value, Int.MAX_VALUE)
+                else onContinue(Int.MAX_VALUE, value)
+            }
         }
     }
 }

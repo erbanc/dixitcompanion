@@ -9,6 +9,7 @@ import kotlinx.parcelize.Parcelize
 data class Turn(
     val storyTeller: PlayerBean? = null,
     val votes: List<VoteBean> = emptyList(),
+    val whoFound: List<PlayerBean> = emptyList(),
     val noOneFound: Boolean = false,
     val everybodyFound: Boolean = false
 ) : Parcelable

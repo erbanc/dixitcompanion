@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import androidx.room.Update
+import androidx.room.Upsert
 
 @Dao
 interface PlayerDao {
@@ -15,6 +15,6 @@ interface PlayerDao {
     @Insert
     suspend fun insert(player: PlayerEntity)
 
-    @Update
-    suspend fun update(players: List<PlayerEntity>)
+    @Upsert
+    suspend fun upsert(players: List<PlayerEntity>)
 }

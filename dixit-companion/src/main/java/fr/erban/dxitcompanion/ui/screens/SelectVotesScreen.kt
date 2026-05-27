@@ -88,7 +88,7 @@ fun SelectVotesScreen(
                         Spacer(Modifier.height(10.dp))
                         // Storyteller card (highlighted)
                         VoteOptionRow(
-                            label = "Carte de ${storyteller.name}",
+                            label = storyteller.name,
                             emoji = storyteller.emoji,
                             color = Mint,
                             highlight = true,
@@ -118,14 +118,14 @@ fun SelectVotesScreen(
             }
             item { Spacer(Modifier.height(8.dp)) }
         }
-    }
-    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
         val allVoted = voters.all { votes[it.name] != null }
-        BottomCTA("Valider les votes", enabled = allVoted) {
-            val voteList = voters.mapNotNull { voter ->
-                votes[voter.name]?.let { VoteBean(voter, it) }
+        Box(Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
+            BottomCTA("Valider les votes", enabled = allVoted) {
+                val voteList = voters.mapNotNull { voter ->
+                    votes[voter.name]?.let { VoteBean(voter, it) }
+                }
+                onContinue(voteList)
             }
-            onContinue(voteList)
         }
     }
 }

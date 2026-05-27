@@ -42,7 +42,7 @@ class CurrentGameViewModel : ViewModel() {
     }
 
     fun setWhoFound(found: List<PlayerBean>) {
-        turn = turn.copy(noOneFound = found.isEmpty())
+        turn = turn.copy(noOneFound = found.isEmpty(), whoFound = found)
     }
 
     fun setVotes(votes: List<VoteBean>) {

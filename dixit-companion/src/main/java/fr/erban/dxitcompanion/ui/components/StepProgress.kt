@@ -1,6 +1,7 @@
 package fr.erban.dxitcompanion.ui.components
 
 import androidx.compose.animation.animateColorAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row

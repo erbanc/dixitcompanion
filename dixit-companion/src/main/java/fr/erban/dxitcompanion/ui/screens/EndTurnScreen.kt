@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -40,6 +41,7 @@ import fr.erban.dxitcompanion.game.GameBean
 import fr.erban.dxitcompanion.ui.components.BottomCTA
 import fr.erban.dxitcompanion.ui.components.ConfettiBurst
 import fr.erban.dxitcompanion.ui.components.DixitScaffold
+import fr.erban.dxitcompanion.ui.components.GoldenAura
 import fr.erban.dxitcompanion.ui.components.PlayerAvatar
 import fr.erban.dxitcompanion.ui.components.TurnStep
 import fr.erban.dxitcompanion.ui.theme.Gold
@@ -60,40 +62,37 @@ fun EndTurnScreen(
         turnNumber = if (endGame) null else turnNumber,
         step = if (endGame) null else TurnStep.EndTurn
     ) {
-        Box(Modifier.fillMaxSize()) {
-            LazyColumn(
-                Modifier
-                    .fillMaxSize()
-                    .padding(horizontal = 16.dp)
-                    .padding(bottom = 80.dp),
-                verticalArrangement = Arrangement.spacedBy(10.dp)
-            ) {
-                itemsIndexed(game.players) { index, player ->
-                    var visible by remember { mutableStateOf(false) }
-                    LaunchedEffect(Unit) {
-                        delay(index * 90L)
-                        visible = true
-                    }
-                    AnimatedVisibility(
-                        visible,
-                        enter = slideInVertically(animationSpec = tween(280)) { it } +
-                                fadeIn(animationSpec = tween(280))
-                    ) {
-                        ScoreRow(
-                            player = player,
-                            isLeader = index == 0,
-                            rank = index + 1
-                        )
-                    }
+        if (endGame) GoldenAura(Modifier.fillMaxSize())
+        LazyColumn(
+            Modifier
+                .fillMaxSize()
+                .padding(horizontal = 16.dp)
+                .padding(bottom = 80.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp)
+        ) {
+            itemsIndexed(game.players) { index, player ->
+                var visible by remember { mutableStateOf(false) }
+                LaunchedEffect(Unit) {
+                    delay(index * 90L)
+                    visible = true
+                }
+                AnimatedVisibility(
+                    visible,
+                    enter = slideInVertically(animationSpec = tween(280)) { it } +
+                            fadeIn(animationSpec = tween(280))
+                ) {
+                    ScoreRow(
+                        player = player,
+                        isLeader = index == 0,
+                        rank = index + 1
+                    )
                 }
             }
-            if (endGame) {
-                ConfettiBurst()
-            }
         }
-    }
-    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
-        BottomCTA(if (endGame) "Voir le graphique →" else "Tour suivant →") { onContinue() }
+        if (endGame) ConfettiBurst()
+        Box(Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
+            BottomCTA(if (endGame) "Voir le graphique →" else "Tour suivant →") { onContinue() }
+        }
     }
 }
 

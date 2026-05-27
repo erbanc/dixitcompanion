@@ -5,8 +5,6 @@ import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.animation.slideIntoContainer
-import androidx.compose.animation.slideOutOfContainer
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -88,7 +86,10 @@ fun DixitNavGraph(
                 gameState.consumeRematchTemplate()
                 Unit
             }
-            SelectPlayersScreen(initialPlayers = initial) { drafts ->
+            SelectPlayersScreen(
+                initialPlayers = initial,
+                knownPlayers = existingPlayers.map { PlayerDraft(it.name, it.emoji, it.colorHex) }
+            ) { drafts ->
                 val players = drafts.map { draft ->
                     val entity = existingPlayers.find { it.name.equals(draft.name, true) }
                     if (entity != null) PlayerConverter.toBean(entity).copy(
@@ -158,21 +159,26 @@ fun DixitNavGraph(
             val storyteller = gameState.turn.storyTeller!!
             val nonStorytellers = gameState.game.players
                 .filter { it.name != storyteller.name }
+            val whoFound = gameState.turn.whoFound
+            // Players who already found don't need to vote — their vote is implicit
+            val voters = nonStorytellers.filter { p -> whoFound.none { it.name == p.name } }
             SelectVotesScreen(
-                voters = nonStorytellers,
+                voters = voters,
                 storyteller = storyteller,
                 candidates = nonStorytellers,
                 turnNumber = gameState.game.currentTurn
             ) { votes ->
-                gameState.setVotes(votes)
+                val autoVotes = whoFound.map { finder ->
+                    fr.erban.dxitcompanion.game.turn.bean.VoteBean(voter = finder, elected = storyteller)
+                }
+                gameState.setVotes(votes + autoVotes)
                 navController.navigate(Screen.EndTurn.route)
             }
         }
 
         composable(Screen.EndTurn.route) {
             BackHandler(enabled = true) { /* consume the back event, do nothing */ }
-            val currentTurn = gameState.game.currentTurn
-            val (updatedGame, endGame) = remember(currentTurn) { gameState.computeEndTurn() }
+            val (updatedGame, endGame) = remember { gameState.computeEndTurn() }
             EndTurnScreen(
                 game = updatedGame,
                 turnNumber = updatedGame.currentTurn,
@@ -181,7 +187,7 @@ fun DixitNavGraph(
             ) {
                 if (endGame) {
                     gameViewModel.insert(updatedGame)
-                    playerViewModel.update(PlayerConverter.toEntities(updatedGame.players))
+                    playerViewModel.upsert(PlayerConverter.toEndGameEntities(updatedGame.players, updatedGame.nameWinner))
                     navController.navigate(Screen.ScoresResult.route) {
                         popUpTo(Screen.Home.route)
                     }

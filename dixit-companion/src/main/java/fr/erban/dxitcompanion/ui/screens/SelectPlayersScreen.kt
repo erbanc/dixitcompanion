@@ -24,6 +24,7 @@ import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.FilledIconButton
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -31,6 +32,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -61,12 +63,32 @@ data class PlayerDraft(val name: String, val emoji: String, val colorHex: String
 @Composable
 fun SelectPlayersScreen(
     initialPlayers: List<PlayerDraft> = emptyList(),
+    knownPlayers: List<PlayerDraft> = emptyList(),
     onContinue: (List<PlayerDraft>) -> Unit
 ) {
     var input by remember { mutableStateOf("") }
     var players by remember { mutableStateOf(initialPlayers) }
     var editing by remember { mutableStateOf<Int?>(null) }
     val haptic = rememberHaptic()
+
+    val suggestions by remember(input, knownPlayers, players) {
+        derivedStateOf {
+            if (input.isBlank()) emptyList()
+            else knownPlayers.filter { k ->
+                k.name.contains(input.trim(), ignoreCase = true) &&
+                players.none { p -> p.name.equals(k.name, ignoreCase = true) }
+            }
+        }
+    }
+
+    fun addPlayer(draft: PlayerDraft) {
+        if (draft.name.isBlank()) return
+        if (players.none { it.name.equals(draft.name, ignoreCase = true) }) {
+            players = players + draft
+            input = ""
+            haptic.tap()
+        }
+    }
 
     DixitScaffold(title = "Joueurs") {
         Column(
@@ -92,13 +114,7 @@ fun SelectPlayersScreen(
                             imeAction = ImeAction.Done
                         ),
                         keyboardActions = androidx.compose.foundation.text.KeyboardActions(
-                            onDone = {
-                                if (input.isNotBlank() && players.none { it.name.equals(input.trim(), true) }) {
-                                    players = players + nextDraft(input.trim(), players)
-                                    input = ""
-                                    haptic.tap()
-                                }
-                            }
+                            onDone = { addPlayer(nextDraft(input.trim(), players)) }
                         ),
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = MaterialTheme.colorScheme.primary,
@@ -107,19 +123,56 @@ fun SelectPlayersScreen(
                     )
                     Spacer(Modifier.width(8.dp))
                     FilledIconButton(
-                        onClick = {
-                            if (input.isNotBlank() && players.none { it.name.equals(input.trim(), true) }) {
-                                players = players + nextDraft(input.trim(), players)
-                                input = ""
-                                haptic.tap()
-                            }
-                        },
+                        onClick = { addPlayer(nextDraft(input.trim(), players)) },
                         modifier = Modifier.size(48.dp),
                         colors = IconButtonDefaults.filledIconButtonColors(
                             containerColor = MaterialTheme.colorScheme.primary
                         )
                     ) {
                         Icon(Icons.Default.Add, "Ajouter", tint = Color.White)
+                    }
+                }
+            }
+            // Suggestions inline — pas de popup, pas de conflit avec le bouton Ajouter
+            AnimatedVisibility(suggestions.isNotEmpty()) {
+                Card(
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(top = 4.dp),
+                    shape = RoundedCornerShape(12.dp),
+                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+                    elevation = CardDefaults.cardElevation(4.dp)
+                ) {
+                    Column {
+                        suggestions.take(5).forEachIndexed { index, suggestion ->
+                            Row(
+                                Modifier
+                                    .fillMaxWidth()
+                                    .clickable { addPlayer(suggestion) }
+                                    .padding(horizontal = 16.dp, vertical = 10.dp),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Text(suggestion.emoji, style = TextStyle(fontSize = 20.sp))
+                                Spacer(Modifier.width(12.dp))
+                                Text(
+                                    suggestion.name,
+                                    style = MaterialTheme.typography.bodyLarge,
+                                    modifier = Modifier.weight(1f),
+                                    color = MaterialTheme.colorScheme.onSurface
+                                )
+                                Icon(
+                                    Icons.Default.Add,
+                                    null,
+                                    tint = MaterialTheme.colorScheme.primary,
+                                    modifier = Modifier.size(18.dp)
+                                )
+                            }
+                            if (index < minOf(suggestions.size, 5) - 1) {
+                                HorizontalDivider(
+                                    color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.4f)
+                                )
+                            }
+                        }
                     }
                 }
             }
@@ -149,11 +202,7 @@ fun SelectPlayersScreen(
             Spacer(Modifier.weight(1f))
             if (players.size < 3) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text(
-                        "✦",
-                        color = Coral,
-                        style = MaterialTheme.typography.titleMedium
-                    )
+                    Text("✦", color = Coral, style = MaterialTheme.typography.titleMedium)
                     Spacer(Modifier.width(8.dp))
                     Text(
                         "Minimum 3 joueurs (${3 - players.size} restant${if (3 - players.size > 1) "s" else ""})",
@@ -163,24 +212,24 @@ fun SelectPlayersScreen(
                 }
             }
         }
-    }
-    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
-        BottomCTA("Continuer →", enabled = players.size >= 3) { onContinue(players) }
-    }
-    editing?.let { idx ->
-        val current = players[idx]
-        EmojiColorPickerDialog(
-            initialEmoji = current.emoji,
-            initialColorHex = current.colorHex,
-            title = current.name,
-            onDismiss = { editing = null },
-            onConfirm = { e, c ->
-                players = players.toMutableList().also {
-                    it[idx] = current.copy(emoji = e, colorHex = c)
+        Box(Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
+            BottomCTA("Continuer", enabled = players.size >= 3) { onContinue(players) }
+        }
+        editing?.let { idx ->
+            val current = players[idx]
+            EmojiColorPickerDialog(
+                initialEmoji = current.emoji,
+                initialColorHex = current.colorHex,
+                title = current.name,
+                onDismiss = { editing = null },
+                onConfirm = { e, c ->
+                    players = players.toMutableList().also {
+                        it[idx] = current.copy(emoji = e, colorHex = c)
+                    }
+                    editing = null
                 }
-                editing = null
-            }
-        )
+            )
+        }
     }
 }
 
@@ -241,4 +290,3 @@ private fun PlayerChipEditable(
         }
     }
 }
-

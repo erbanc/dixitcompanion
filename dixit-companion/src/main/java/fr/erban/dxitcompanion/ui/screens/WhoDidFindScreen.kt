@@ -1,7 +1,5 @@
 package fr.erban.dxitcompanion.ui.screens
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -10,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -52,64 +49,60 @@ fun WhoDidFindScreen(
         subtitle = "${found.size} sur ${players.size}",
         step = TurnStep.WhoFound
     ) {
-        Box(
+        LazyColumn(
             Modifier
                 .fillMaxSize()
                 .padding(horizontal = 16.dp)
-                .padding(bottom = 80.dp)
+                .padding(bottom = 80.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
-            LazyColumn(
-                Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.spacedBy(10.dp)
-            ) {
-                items(players) { player ->
-                    val checked = player.name in found
-                    val color = player.colorHex.toColorOrDefault()
-                    Card(
-                        onClick = {
-                            found = if (checked) found - player.name else found + player.name
-                            haptic.tap()
-                        },
-                        modifier = Modifier.fillMaxWidth(),
-                        shape = MaterialTheme.shapes.large,
-                        colors = CardDefaults.cardColors(
-                            containerColor = if (checked) MaterialTheme.colorScheme.primaryContainer
-                                            else MaterialTheme.colorScheme.surface
-                        ),
-                        elevation = CardDefaults.cardElevation(if (checked) 6.dp else 2.dp)
+            items(players) { player ->
+                val checked = player.name in found
+                val color = player.colorHex.toColorOrDefault()
+                Card(
+                    onClick = {
+                        found = if (checked) found - player.name else found + player.name
+                        haptic.tap()
+                    },
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = MaterialTheme.shapes.large,
+                    colors = CardDefaults.cardColors(
+                        containerColor = if (checked) MaterialTheme.colorScheme.primaryContainer
+                                        else MaterialTheme.colorScheme.surface
+                    ),
+                    elevation = CardDefaults.cardElevation(if (checked) 6.dp else 2.dp)
+                ) {
+                    Row(
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 12.dp, vertical = 12.dp),
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Row(
-                            Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = 12.dp, vertical = 12.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Checkbox(
-                                checked = checked,
-                                onCheckedChange = { c ->
-                                    found = if (c) found + player.name else found - player.name
-                                    haptic.tap()
-                                },
-                                colors = CheckboxDefaults.colors(
-                                    checkedColor = MaterialTheme.colorScheme.primary
-                                )
+                        Checkbox(
+                            checked = checked,
+                            onCheckedChange = { c ->
+                                found = if (c) found + player.name else found - player.name
+                                haptic.tap()
+                            },
+                            colors = CheckboxDefaults.colors(
+                                checkedColor = MaterialTheme.colorScheme.primary
                             )
-                            Spacer(Modifier.width(4.dp))
-                            PlayerAvatar(emoji = player.emoji, color = color, size = 40.dp)
-                            Spacer(Modifier.width(12.dp))
-                            Text(
-                                player.name,
-                                style = MaterialTheme.typography.titleLarge,
-                                color = MaterialTheme.colorScheme.onSurface
-                            )
-                        }
+                        )
+                        Spacer(Modifier.width(4.dp))
+                        PlayerAvatar(emoji = player.emoji, color = color, size = 40.dp)
+                        Spacer(Modifier.width(12.dp))
+                        Text(
+                            player.name,
+                            style = MaterialTheme.typography.titleLarge,
+                            color = MaterialTheme.colorScheme.onSurface
+                        )
                     }
                 }
-                item { Spacer(Modifier.height(40.dp)) }
             }
+            item { Spacer(Modifier.height(80.dp)) }
         }
-    }
-    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
-        BottomCTA("Continuer →") { onContinue(players.filter { it.name in found }) }
+        Box(Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
+            BottomCTA("Continuer") { onContinue(players.filter { it.name in found }) }
+        }
     }
 }

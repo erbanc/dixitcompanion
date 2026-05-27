@@ -11,6 +11,11 @@ data class PlayerBean(
     val scoresheet: List<TurnScore> = emptyList(),
     val nbGames: Int = 0,
     val nbWins: Int = 0,
+    val nbAsStoryteller: Int = 0,
+    val nbAsVoter: Int = 0,
+    val nbFoundStoryteller: Int = 0,
+    val nbStorytellerOptimalTurns: Int = 0,
+    val totalPoints: Int = 0,
     val persisted: Boolean = false,
     val colorHex: String = "#5C3A9E",
     val emoji: String = "🎭"

@@ -1,0 +1,138 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 3,
+    "identityHash": "12b8f07c64b38984e83c3c586a630a95",
+    "entities": [
+      {
+        "tableName": "GameEntity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idGame` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `pointsToWin` INTEGER NOT NULL, `finished` INTEGER NOT NULL, `nameWinner` TEXT, `nbTurns` INTEGER NOT NULL, `scoreSheet` TEXT, `startedAt` INTEGER NOT NULL, `endedAt` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "idGame",
+            "columnName": "idGame",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pointsToWin",
+            "columnName": "pointsToWin",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "finished",
+            "columnName": "finished",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nameWinner",
+            "columnName": "nameWinner",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "nbTurns",
+            "columnName": "nbTurns",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "scoreSheet",
+            "columnName": "scoreSheet",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "startedAt",
+            "columnName": "startedAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "endedAt",
+            "columnName": "endedAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "idGame"
+          ]
+        }
+      },
+      {
+        "tableName": "PlayerEntity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`name` TEXT NOT NULL, `nbGames` INTEGER NOT NULL, `nbWins` INTEGER NOT NULL, `colorHex` TEXT NOT NULL, `emoji` TEXT NOT NULL, PRIMARY KEY(`name`))",
+        "fields": [
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nbGames",
+            "columnName": "nbGames",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nbWins",
+            "columnName": "nbWins",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "colorHex",
+            "columnName": "colorHex",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "emoji",
+            "columnName": "emoji",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "name"
+          ]
+        }
+      },
+      {
+        "tableName": "GamePlayerCrossRefEntity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idGame` INTEGER NOT NULL, `name` TEXT NOT NULL, PRIMARY KEY(`idGame`, `name`))",
+        "fields": [
+          {
+            "fieldPath": "idGame",
+            "columnName": "idGame",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "idGame",
+            "name"
+          ]
+        }
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '12b8f07c64b38984e83c3c586a630a95')"
+    ]
+  }
+}

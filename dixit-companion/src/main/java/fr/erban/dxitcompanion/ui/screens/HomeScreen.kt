@@ -42,6 +42,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import fr.erban.dxitcompanion.ui.components.FloatingOrbs
 import fr.erban.dxitcompanion.ui.components.rememberHaptic
 import fr.erban.dxitcompanion.ui.components.tap
 import fr.erban.dxitcompanion.ui.theme.Coral
@@ -65,6 +66,7 @@ fun HomeScreen(
     )
     Box(Modifier.fillMaxSize().background(gradient)) {
         StarField()
+        FloatingOrbs(Modifier.fillMaxSize())
         Column(
             Modifier
                 .fillMaxSize()
