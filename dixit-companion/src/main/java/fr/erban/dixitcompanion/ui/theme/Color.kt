@@ -56,6 +56,20 @@ val PlayerColors: List<Color> = listOf(
 
 // === PLAYER ASSIGNABLE EMOJIS ===
 val PlayerEmojis: List<String> = listOf(
-    "🎭", "🦊", "🐉", "🦉", "🐲", "🧙", "🎨", "🃏",
-    "🌙", "⭐", "🔮", "🦄", "🐺", "🪄", "🌟", "🎪"
+    // Magie & fantaisie
+    "🎭", "🧙", "🔮", "🪄", "🧚", "🧜", "🧝", "🧞",
+    // Créatures fantastiques
+    "🦄", "🐉", "🐲", "🦋", "🦊", "🐺", "🦁", "🐯",
+    // Oiseaux
+    "🦉", "🦅", "🦜", "🦢", "🦚", "🦩", "🐧", "🦝",
+    // Animaux
+    "🦔", "🐸", "🐇", "🦦", "🦙", "🐻", "🐆", "🐝",
+    // Ciel & espace
+    "🌙", "⭐", "🌟", "🪐", "🌠", "☀️", "🌈", "⚡",
+    // Éléments & nature
+    "🌊", "🔥", "❄️", "🌺", "🌸", "🌋", "🍀", "🌿",
+    // Objets & jeu
+    "👑", "🗝️", "💎", "⚔️", "🎲", "🃏", "🎪", "🎨",
+    // Mystère & symboles
+    "🧿", "🕯️", "🧩", "♟️", "🎯", "💫", "🌀", "✨"
 )
