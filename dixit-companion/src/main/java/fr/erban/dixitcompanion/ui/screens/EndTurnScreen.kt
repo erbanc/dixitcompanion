@@ -20,8 +20,11 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.Undo
 import androidx.compose.material.icons.filled.EmojiEvents
 import androidx.compose.material3.Card
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -55,12 +58,22 @@ fun EndTurnScreen(
     turnNumber: Int,
     endGame: Boolean,
     winnerName: String?,
+    onUndo: (() -> Unit)? = null,
     onContinue: () -> Unit
 ) {
     DixitScaffold(
         title = if (endGame) "$winnerName gagne ! 🎉" else "Fin du tour",
         turnNumber = if (endGame) null else turnNumber,
-        step = if (endGame) null else TurnStep.EndTurn
+        step = if (endGame) null else TurnStep.EndTurn,
+        actions = if (!endGame && onUndo != null) ({
+            IconButton(onClick = onUndo) {
+                Icon(
+                    Icons.AutoMirrored.Filled.Undo,
+                    contentDescription = "Annuler le tour",
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
+                )
+            }
+        }) else null
     ) {
         if (endGame) GoldenAura(Modifier.fillMaxSize())
         LazyColumn(

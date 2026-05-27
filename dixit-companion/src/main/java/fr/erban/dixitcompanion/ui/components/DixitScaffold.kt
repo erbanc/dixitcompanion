@@ -34,6 +34,7 @@ fun DixitScaffold(
     subtitle: String? = null,
     titleLines: Int = 1,
     step: TurnStep? = null,
+    actions: @Composable (() -> Unit)? = null,
     content: @Composable BoxScope.() -> Unit
 ) {
     Box(
@@ -58,6 +59,13 @@ fun DixitScaffold(
                     color = MaterialTheme.colorScheme.onPrimaryContainer
                 )
             }
+        }
+        if (actions != null) {
+            Box(
+                Modifier
+                    .align(Alignment.TopEnd)
+                    .padding(4.dp)
+            ) { actions() }
         }
         Column(Modifier.fillMaxSize()) {
             val topPad = if (turnNumber != null) 52.dp else 40.dp

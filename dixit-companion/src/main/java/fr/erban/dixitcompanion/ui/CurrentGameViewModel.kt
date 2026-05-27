@@ -49,7 +49,16 @@ class CurrentGameViewModel : ViewModel() {
         turn = turn.copy(votes = votes)
     }
 
+    private var gameSnapshot: GameBean? = null
+
+    fun undoLastTurn() {
+        game = gameSnapshot ?: return
+        turn = Turn()
+        gameSnapshot = null
+    }
+
     fun computeEndTurn(): Pair<GameBean, Boolean> {
+        gameSnapshot = game.copy()
         val updatedPlayers = game.players
             .map { ScoringEngine.computeScore(it, turn, game.currentTurn) }
             .sortedByDescending { it.currentScore }

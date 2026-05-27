@@ -126,7 +126,6 @@ fun DixitNavGraph(
         }
 
         composable(Screen.EveryoneFound.route) {
-            BackHandler(enabled = true) { /* consume the back event, do nothing */ }
             EveryoneFoundScreen(
                 turnNumber = gameState.game.currentTurn,
                 storyteller = gameState.turn.storyTeller
@@ -142,7 +141,6 @@ fun DixitNavGraph(
         }
 
         composable(Screen.WhoDidFind.route) {
-            BackHandler(enabled = true) { /* consume the back event, do nothing */ }
             val nonStorytellers = gameState.game.players
                 .filter { it.name != gameState.turn.storyTeller?.name }
             WhoDidFindScreen(
@@ -155,7 +153,6 @@ fun DixitNavGraph(
         }
 
         composable(Screen.SelectVotes.route) {
-            BackHandler(enabled = true) { /* consume the back event, do nothing */ }
             val storyteller = gameState.turn.storyTeller!!
             val nonStorytellers = gameState.game.players
                 .filter { it.name != storyteller.name }
@@ -183,7 +180,13 @@ fun DixitNavGraph(
                 game = updatedGame,
                 turnNumber = updatedGame.currentTurn,
                 endGame = endGame,
-                winnerName = updatedGame.nameWinner
+                winnerName = updatedGame.nameWinner,
+                onUndo = if (!endGame) ({
+                    gameState.undoLastTurn()
+                    navController.navigate(Screen.SelectStoryteller.route) {
+                        popUpTo(Screen.SelectStoryteller.route) { inclusive = true }
+                    }
+                }) else null
             ) {
                 if (endGame) {
                     gameViewModel.insert(updatedGame)
