@@ -1,6 +1,9 @@
-v4.1.0 — Full UI overhaul
+First release of Dixit Companion!
 
-• New Material Design 3 interface with smooth animations
-• Modernised navigation with animated transitions
-• Fully redesigned rules screen
-• Many bug fixes and stability improvements
+• Real-time score tracking for 3 to 6 players
+• Automatic point calculation following the official rules
+• Two end-game modes: target score or number of turns
+• Score evolution graph at the end of each game
+• Game history and per-player statistics
+• Built-in game rules
+• Material Design 3 interface with smooth animations
