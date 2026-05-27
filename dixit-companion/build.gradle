@@ -7,20 +7,33 @@ plugins {
 }
 
 android {
-    namespace "fr.erban.dxitcompanion"
+    namespace "fr.erban.dixitcompanion"
     compileSdk 35
 
     defaultConfig {
-        applicationId "fr.erban.dxitcompanion"
+        applicationId "fr.erban.dixitcompanion"
         minSdk 21
         targetSdk 35
-        versionCode 19
-        versionName "4.1.0"
+        versionCode 1
+        versionName "1.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        release {
+            def ksFile = project.findProperty("RELEASE_STORE_FILE") ?: System.getenv("RELEASE_STORE_FILE")
+            if (ksFile) {
+                storeFile file(ksFile)
+                storePassword project.findProperty("RELEASE_STORE_PASSWORD") ?: System.getenv("RELEASE_STORE_PASSWORD")
+                keyAlias project.findProperty("RELEASE_KEY_ALIAS") ?: System.getenv("RELEASE_KEY_ALIAS") ?: "dixit"
+                keyPassword project.findProperty("RELEASE_KEY_PASSWORD") ?: System.getenv("RELEASE_KEY_PASSWORD")
+            }
+        }
     }
 
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'

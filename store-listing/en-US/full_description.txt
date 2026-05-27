@@ -1,0 +1,26 @@
+Dixit Companion is the perfect scorekeeping app for your Dixit game nights. No more crumpled score sheets — manage your games right from your phone.
+
+✨ KEY FEATURES
+
+• Real-time score tracking for 3 to 6 players
+• Automatic point calculation following the official rules (storyteller, found, voted)
+• Two end-game modes: target score or number of turns
+• Score evolution graph at the end of each game
+• Full history of all your games with per-player statistics
+• Built-in game rules, accessible at any time
+• Modern, smooth Material Design 3 interface
+
+📊 STATISTICS
+
+Track your long-term performance: number of games played, wins, and much more. Compare your results with your friends and find out who the best storyteller at the table is.
+
+🎮 HOW IT WORKS
+
+1. Select your players
+2. Choose the game objective
+3. Play turn by turn — the app handles all the calculations
+4. Check the final standings and statistics
+
+Compatible with Dixit, Dixit Odyssey, Dixit Journey, and all expansions.
+
+No ads. No internet connection required to play. Your data stays on your device.

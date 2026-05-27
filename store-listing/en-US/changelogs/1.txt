@@ -1,0 +1,6 @@
+v4.1.0 — Full UI overhaul
+
+• New Material Design 3 interface with smooth animations
+• Modernised navigation with animated transitions
+• Fully redesigned rules screen
+• Many bug fixes and stability improvements

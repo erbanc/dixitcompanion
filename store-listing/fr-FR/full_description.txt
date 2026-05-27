@@ -1,0 +1,26 @@
+Dixit Companion est le compagnon idéal pour vos soirées Dixit. Fini les feuilles de score froissées : gérez vos parties directement depuis votre téléphone.
+
+✨ FONCTIONNALITÉS PRINCIPALES
+
+• Suivi des scores en temps réel pour 3 à 6 joueurs
+• Calcul automatique des points selon les règles officielles (conteur, trouvé, voté)
+• Deux modes de fin de partie : objectif de points ou nombre de tours
+• Graphique d'évolution des scores à la fin de chaque partie
+• Historique complet de toutes vos parties avec statistiques par joueur
+• Règles du jeu intégrées, consultables à tout moment
+• Interface moderne et fluide en Material Design 3
+
+📊 STATISTIQUES
+
+Suivez vos performances sur le long terme : nombre de parties jouées, victoires, et bien plus encore. Comparez vos résultats avec vos amis et découvrez qui est le meilleur conteur de la tablée.
+
+🎮 COMMENT ÇA MARCHE
+
+1. Sélectionnez vos joueurs
+2. Choisissez l'objectif de la partie
+3. Jouez tour par tour — l'app s'occupe de tout calculer
+4. Consultez le classement final et les statistiques
+
+Compatible avec Dixit, Dixit Odyssey, Dixit Journey et toutes les extensions.
+
+Aucune publicité. Aucune connexion requise pour jouer. Vos données restent sur votre appareil.

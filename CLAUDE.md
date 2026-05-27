@@ -22,7 +22,7 @@ Dixit Companion is an Android app (Java, minSdk 21, targetSdk 31) that serves as
 ./gradlew test
 
 # Run a single unit test class
-./gradlew test --tests "fr.erban.dxitcompanion.ExampleUnitTest"
+./gradlew test --tests "fr.erban.dixitcompanion.ExampleUnitTest"
 
 # Run instrumented tests (requires connected device or emulator)
 ./gradlew connectedAndroidTest
@@ -106,10 +106,10 @@ Default language is **French** (`res/values/strings.xml`). English overrides liv
 The `schemas/` directory tracks exported schema versions. The `@Database` annotation in `DxitDatabase` is currently pinned to version 1 (the `2.json` schema file exists but the annotation was not updated). When adding migrations, increment `@Database(version = ...)`, provide a `Migration` object, and pass it to the `RoomDatabase.Builder`.
 
 ### Package structure
-- `fr.erban.dxitcompanion` — `MainActivity` and top-level entry point
-- `fr.erban.dxitcompanion.game` — runtime game state beans and game-level activities
-- `fr.erban.dxitcompanion.game.turn` — turn-level activities, adapters, beans
-- `fr.erban.dxitcompanion.db` — Room database, DAOs, entities, converters, ViewModels
-- `fr.erban.dxitcompanion.stats` — statistics screen
-- `fr.erban.dxitcompanion.rules` — rules display screen
-- `fr.erban.dxitcompanion.common` — `DxitConstants` (only the DB name)
+- `fr.erban.dixitcompanion` — `MainActivity` and top-level entry point
+- `fr.erban.dixitcompanion.game` — runtime game state beans and game-level activities
+- `fr.erban.dixitcompanion.game.turn` — turn-level activities, adapters, beans
+- `fr.erban.dixitcompanion.db` — Room database, DAOs, entities, converters, ViewModels
+- `fr.erban.dixitcompanion.stats` — statistics screen
+- `fr.erban.dixitcompanion.rules` — rules display screen
+- `fr.erban.dixitcompanion.common` — `DxitConstants` (only the DB name)

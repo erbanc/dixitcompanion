@@ -5,7 +5,7 @@
 # Room — garder les entités et DAOs
 -keep @androidx.room.Entity class * { *; }
 -keep @androidx.room.Dao interface * { *; }
--keep class fr.erban.dxitcompanion.db.** { *; }
+-keep class fr.erban.dixitcompanion.db.** { *; }
 
 # Gson — garder les classes sérialisées
 -keepattributes Signature

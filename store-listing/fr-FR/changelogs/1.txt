@@ -1,0 +1,6 @@
+v4.1.0 — Refonte complète de l'interface
+
+• Nouvelle interface Material Design 3 avec animations fluides
+• Navigation modernisée avec transitions animées
+• Écran des règles entièrement revu
+• Nombreuses corrections de bugs et améliorations de stabilité
